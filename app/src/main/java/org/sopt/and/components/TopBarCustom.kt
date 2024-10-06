@@ -26,8 +26,8 @@ fun TopBarCustom(
     titleContent: @Composable () -> Unit,
     hasLeftIcon: Boolean = false,
     hasRightIcon: Boolean = false,
-    onBackClicked: () -> Unit,
-    onCloseClicked: () -> Unit
+    onBackClicked: () -> Unit = {},
+    onCloseClicked: () -> Unit = {}
     ) {
     CenterAlignedTopAppBar(
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(

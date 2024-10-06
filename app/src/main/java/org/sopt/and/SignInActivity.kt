@@ -62,9 +62,8 @@ class SignInActivity : ComponentActivity() {
                                 )
                             },
                             hasLeftIcon = true,
-                            hasRightIcon = true,
-                            onBackClicked = { println("Back clicked") },
-                            onCloseClicked = { println("Close clicked") }
+                            hasRightIcon = false,
+                            onBackClicked = { println("Back clicked") }
                         )
                     },
                     content = { innerPadding ->
