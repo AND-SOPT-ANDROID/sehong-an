@@ -57,7 +57,7 @@ class SignInActivity : ComponentActivity() {
                             titleContent = {
                                 Image(
                                     painter = painterResource(id = R.drawable.wavve_icon),
-                                    contentDescription = "Example Image",
+                                    contentDescription = "main_logo",
                                     modifier = Modifier.height(30.dp)
                                 )
                             },
@@ -210,7 +210,7 @@ fun SignInPage() {
         ) {
             Image(
                 painter = painterResource(id = R.drawable.kakao_icon),
-                contentDescription = "Circular Image Example",
+                contentDescription = "kakao_icon",
                 modifier = Modifier
                     .size(50.dp)
                     .clip(CircleShape)
@@ -218,7 +218,7 @@ fun SignInPage() {
             Spacer(modifier = Modifier.width(18.dp))
             Image(
                 painter = painterResource(id = R.drawable.t_icon),
-                contentDescription = "Circular Image Example",
+                contentDescription = "t_world_icon",
                 modifier = Modifier
                     .size(50.dp)
                     .clip(CircleShape)
@@ -226,7 +226,7 @@ fun SignInPage() {
             Spacer(modifier = Modifier.width(18.dp))
             Image(
                 painter = painterResource(id = R.drawable.naver_icon),
-                contentDescription = "Circular Image Example",
+                contentDescription = "naver_icon",
                 modifier = Modifier
                     .size(50.dp)
                     .clip(CircleShape)
@@ -234,7 +234,7 @@ fun SignInPage() {
             Spacer(modifier = Modifier.width(18.dp))
             Image(
                 painter = painterResource(id = R.drawable.facebook_icon),
-                contentDescription = "Circular Image Example",
+                contentDescription = "facebook_icon",
                 modifier = Modifier
                     .size(50.dp)
                     .clip(CircleShape)
@@ -242,7 +242,7 @@ fun SignInPage() {
             Spacer(modifier = Modifier.width(18.dp))
             Image(
                 painter = painterResource(id = R.drawable.apple_icon),
-                contentDescription = "Circular Image Example",
+                contentDescription = "apple_icon",
                 modifier = Modifier
                     .size(50.dp)
                     .clip(CircleShape)
