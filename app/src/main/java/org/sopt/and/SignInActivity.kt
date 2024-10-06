@@ -1,5 +1,6 @@
 package org.sopt.and
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -171,7 +172,10 @@ fun SignInPage() {
                 textAlign = TextAlign.Left,
                 modifier = Modifier
                     .weight(1f)
-                    .clickable { /* 회원가입 */ }
+                    .clickable {
+                        val intent = Intent(context, SignUpActivity::class.java)
+                        context.startActivity(intent)
+                    }
             )
         }
         Spacer(modifier = Modifier.height(30.dp))
