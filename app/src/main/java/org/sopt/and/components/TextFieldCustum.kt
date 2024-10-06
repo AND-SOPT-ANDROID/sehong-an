@@ -69,7 +69,8 @@ fun TextFieldCustom(
                 )
 
             }
-        }
+        },
+        singleLine = true
     )
 }
 
