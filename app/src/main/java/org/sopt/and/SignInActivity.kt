@@ -253,13 +253,21 @@ fun SignInPage() {
             )
         }
         Spacer(modifier = Modifier.height(20.dp))
-        Text(
-            text = loginDescription,
-            fontSize = 12.sp,
-            color = Color.Gray,
-            modifier = Modifier
-                .padding(horizontal = 16.dp)
-        )
+        Row(
+            modifier = Modifier.padding(horizontal = 10.dp)
+        ) {
+            Text(
+                text = "·",
+                color = Color.Gray,
+                fontSize = 12.sp,
+            )
+            Text(
+                text = loginDescription,
+                color = Color.Gray,
+                fontSize = 12.sp,
+                modifier = Modifier.padding(start = 5.dp)
+            )
+        }
     }
 
 }
