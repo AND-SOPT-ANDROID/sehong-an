@@ -1,4 +1,7 @@
 package org.sopt.and
 
-class MyActivity {
+import androidx.activity.ComponentActivity
+
+class MyActivity : ComponentActivity() {
+
 }
