@@ -93,16 +93,16 @@ fun SignInPage() {
         TextFieldCustom(
             value = InputID,
             placeholder = "아이디 주소 또는 아이디",
-            onValueChange = { newEmail ->
-                InputID = newEmail
+            onValueChange = { value ->
+                InputID = value
             },
             modifier = Modifier.padding(8.dp)
         )
         TextFieldCustom(
             value = InputPassword,
             placeholder = "비밀번호",
-            onValueChange = { newEmail ->
-                InputPassword = newEmail
+            onValueChange = { value ->
+                InputPassword = value
             },
             modifier = Modifier.padding(8.dp),
             isPassword = true,
