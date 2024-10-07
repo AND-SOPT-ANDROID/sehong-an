@@ -128,7 +128,7 @@ fun SignInPage() {
         Spacer(modifier = Modifier.height(10.dp))
         Row(
             modifier = Modifier.fillMaxWidth().padding(16.dp),
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.SpaceAround
         ) {
             Text(
                 text = "아이디 찾기",
@@ -154,7 +154,6 @@ fun SignInPage() {
                 fontSize = 14.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .weight(0.8f)
                     .clickable { /* 비밀번호 재설정 */ }
             )
             Text(
