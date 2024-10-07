@@ -127,8 +127,11 @@ fun SignInPage() {
                     // 자동 로그인
                     preferencesManager.setLoggedIn(true)
                     // MyActivity 화면 이동
-                    val intent = Intent(context, MyActivity::class.java)
+                    val intent = Intent(context, MyActivity::class.java).apply {
+                        putExtra("email", InputID)  // "email" 키로 이메일 데이터 추가
+                    }
                     context.startActivity(intent)
+                    // SignInActivity 종료
                     if (context is SignInActivity) context.finish()
                 } else {
                     showDialog = true

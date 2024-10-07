@@ -1,5 +1,6 @@
 package org.sopt.and.ui.myPage
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -39,12 +40,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.sopt.and.R
+import org.sopt.and.data.PreferencesManager
+import org.sopt.and.ui.signIn.SignInActivity
 import org.sopt.and.ui.theme.ANDANDROIDTheme
 import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
@@ -54,12 +58,15 @@ class MyActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        // 전달된 이메일 정보 가져오기
+        val preferencesManager = PreferencesManager(this)
+        val email = intent.getStringExtra("email") ?: (preferencesManager.getUsername() ?: "프로필1")
         setContent {
             ANDANDROIDTheme {
                 Scaffold(
                     content = { innerPadding ->
                         Box(modifier = Modifier.padding(innerPadding)) {
-                            MyPage()
+                            MyPage(email = email)
                         }
                     },
                     bottomBar = {
@@ -72,8 +79,11 @@ class MyActivity : ComponentActivity() {
 }
 
 @Composable
-fun MyPage() {
+fun MyPage(email: String) {
     var profile_name by remember { mutableStateOf("프로필1") }
+    val context = LocalContext.current
+    val preferencesManager = PreferencesManager(context)
+    profile_name = email
     // 스크롤이 가능하도록 scrollState 설정
     val scrollState = rememberScrollState()
     Column (
@@ -117,7 +127,15 @@ fun MyPage() {
                 imageVector = Icons.Outlined.Settings,
                 contentDescription = "세팅",
                 tint = Color.White,
-                modifier = Modifier.padding(bottom = 4.dp)
+                modifier = Modifier
+                    .padding(bottom = 4.dp)
+                    .clickable {
+                        preferencesManager.logoutUser()
+                        preferencesManager.setLoggedIn(false)
+                        val intent = Intent(context, SignInActivity::class.java)
+                        context.startActivity(intent)
+                        if(context is MyActivity) context.finish()
+                    }
             )
         }
         Text(
@@ -315,7 +333,7 @@ fun MyPagePreview() {
         Scaffold(
             content = { innerPadding ->
                 Box(modifier = Modifier.padding(innerPadding)) {
-                    MyPage()
+                    MyPage(email = "프로필1")
                 }
             },
             bottomBar = {

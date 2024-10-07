@@ -19,6 +19,9 @@ class PreferencesManager(context: Context) {
         editor.putString(PASSWORD, password)
         editor.apply()
     }
+    fun getUsername(): String? {
+        return sharedPreferences.getString(USERNAME, null)
+    }
 
     // 로그인 시 아이디와 비밀번호가 일치하는지 확인
     fun loginUser(username: String, password: String): Boolean {
