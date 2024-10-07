@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -61,13 +60,11 @@ import org.sopt.and.utils.isValidEmail
 import org.sopt.and.utils.isValidPassword
 
 
-// 로그 태그 정의
 private const val TAG = "SignUpActivity"
 
 class SignUpActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         enableEdgeToEdge()
         setContent {
             ANDANDROIDTheme {
@@ -103,9 +100,9 @@ class SignUpActivity : ComponentActivity() {
 @Composable
 fun SignUpPage() {
     val context = LocalContext.current
-    // 로그인 값
+    // Email 입력값
     var inputEmail by remember { mutableStateOf("") }
-    // 비밀번호 값
+    // Password 입력값
     var inputPassword by remember { mutableStateOf("") }
     // 회원가입 가능 여부
     var isEnabled by remember { mutableStateOf(false) }

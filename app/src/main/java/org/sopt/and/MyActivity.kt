@@ -189,7 +189,7 @@ fun MyPage() {
         ) {
             Image(
                 painter = painterResource(id = R.drawable.exclamation_mark_icon),
-                contentDescription = "profile_logo",
+                contentDescription = "exclamation_mark_icon",
                 modifier = Modifier.height(60.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
@@ -216,7 +216,7 @@ fun MyPage() {
         ) {
             Image(
                 painter = painterResource(id = R.drawable.exclamation_mark_icon),
-                contentDescription = "profile_logo",
+                contentDescription = "exclamation_mark_icon",
                 modifier = Modifier.height(60.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))

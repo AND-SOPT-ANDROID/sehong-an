@@ -11,15 +11,14 @@ class MainActivity : ComponentActivity() {
         val sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
         val isLoggedIn = sharedPreferences.getBoolean("IS_LOGGED_IN", false)
         if (isLoggedIn) {
-            // 로그인된 상태 -> MyActivity로 이동
+            // isLoggedIn True -> MyActivity 이동
             val intent = Intent(this, MyActivity::class.java)
             startActivity(intent)
         } else {
-            // 로그인되지 않은 상태 -> SignInActivity로 이동
+            // isLoggedIn False -> SignInActivity 이동
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
-
         // MainActivity 종료
         finish()
     }
