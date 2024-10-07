@@ -278,6 +278,26 @@ fun SignInPage() {
 @Composable
 fun SignInPagePreview() {
     ANDANDROIDTheme {
-        SignInPage()
+        Scaffold(
+            topBar = {
+                TopBarCustom (
+                    titleContent = {
+                        Image(
+                            painter = painterResource(id = R.drawable.wavve_icon),
+                            contentDescription = "main_logo",
+                            modifier = Modifier.height(30.dp)
+                        )
+                    },
+                    hasLeftIcon = true,
+                    hasRightIcon = false,
+                    onBackClicked = { println("Back clicked") }
+                )
+            },
+            content = { innerPadding ->
+                Box(modifier = Modifier.padding(innerPadding)) {
+                    SignInPage()
+                }
+            }
+        )
     }
 }

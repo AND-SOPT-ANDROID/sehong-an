@@ -341,6 +341,29 @@ fun SignUpPage() {
 @Composable
 fun SignUpPagePreview() {
     ANDANDROIDTheme {
-        SignUpPage()
+        val context = LocalContext.current
+        Scaffold(
+            topBar = {
+                TopBarCustom (
+                    titleContent = {
+                        Text(
+                            text = "회원가입"
+                        )
+                    },
+                    hasLeftIcon = false,
+                    hasRightIcon = true,
+                    onCloseClicked = {
+                        if (context is SignUpActivity) {
+                            context.finish()
+                        }
+                    }
+                )
+            },
+            content = { innerPadding ->
+                Box(modifier = Modifier.padding(innerPadding)) {
+                    SignUpPage()
+                }
+            }
+        )
     }
 }
