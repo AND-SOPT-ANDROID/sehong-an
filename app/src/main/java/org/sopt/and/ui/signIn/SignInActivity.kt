@@ -1,7 +1,8 @@
-package org.sopt.and
+package org.sopt.and.ui.signIn
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -20,10 +21,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -39,8 +42,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.sopt.and.R
 import org.sopt.and.components.TextFieldCustom
 import org.sopt.and.components.TopBarCustom
+import org.sopt.and.data.PreferencesManager
+import org.sopt.and.ui.myPage.MyActivity
+import org.sopt.and.ui.signUp.SignUpActivity
 import org.sopt.and.ui.theme.ANDANDROIDTheme
 import org.sopt.and.ui.theme.BlueBtnColor
 import org.sopt.and.ui.theme.darkGray1
@@ -84,6 +91,10 @@ fun SignInPage() {
     var InputPassword by remember { mutableStateOf("") }
     val context = LocalContext.current
     val loginDescription = context.getString(R.string.login_description)
+    // SharedPreferences 사용을 위한 PreferencesManager
+    val preferencesManager = PreferencesManager(context)
+    // Dialog 표시 여부
+    var showDialog by remember { mutableStateOf(false) }
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -109,7 +120,20 @@ fun SignInPage() {
         )
         Spacer(modifier = Modifier.height(30.dp))
         Button(
-            onClick = { /* 로그인 실행 */ },
+            onClick = {
+                val login = preferencesManager.loginUser(InputID, InputPassword)
+                if(login) {
+                    Toast.makeText(context, "로그인 성공", Toast.LENGTH_SHORT).show()
+                    // 자동 로그인
+                    preferencesManager.setLoggedIn(true)
+                    // MyActivity 화면 이동
+                    val intent = Intent(context, MyActivity::class.java)
+                    context.startActivity(intent)
+                    if (context is SignInActivity) context.finish()
+                } else {
+                    showDialog = true
+                }
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
@@ -265,6 +289,21 @@ fun SignInPage() {
                 color = Color.Gray,
                 fontSize = 12.sp,
                 modifier = Modifier.padding(start = 5.dp)
+            )
+        }
+        // 다이얼로그를 표시할지 여부
+        if (showDialog) {
+            AlertDialog(
+                onDismissRequest = { showDialog = false },
+                title = { Text("로그인 실패") },
+                text = { Text("아이디 또는 비밀번호가 올바르지 않습니다.") },
+                confirmButton = {
+                    TextButton(
+                        onClick = { showDialog = false }
+                    ) {
+                        Text("확인")
+                    }
+                }
             )
         }
     }
