@@ -1,7 +1,6 @@
 package org.sopt.and
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -56,6 +55,7 @@ import org.sopt.and.ui.theme.BlueBtnColor
 import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
 import org.sopt.and.ui.theme.darkGray4
+import org.sopt.and.ui.theme.errorColor
 import org.sopt.and.utils.isValidEmail
 import org.sopt.and.utils.isValidPassword
 
@@ -106,12 +106,27 @@ fun SignUpPage() {
     var inputPassword by remember { mutableStateOf("") }
     // 회원가입 가능 여부
     var isEnabled by remember { mutableStateOf(false) }
+    // Email Valid 여부
+    var isEmailValid by remember { mutableStateOf(true) }
+    // Password Valid 여부
+    var isPasswordValid by remember { mutableStateOf(true) }
     // 로그인 설명 R.string.login_description 참고
     val loginDescription = context.getString(R.string.login_description)
+    val signUpEmailDefault = context.getString(R.string.sign_up_email_default)
+    val signUpEmailError1 = context.getString(R.string.sign_up_email_error1)
+    val signUpEmailError2 = context.getString(R.string.sign_up_email_error2)
+    val signUpPasswordDefault = context.getString(R.string.sign_up_password_default)
+    val signUpPasswordError1 = context.getString(R.string.sign_up_password_error1)
     // 각 TextField 의 포커스를 요청하기 위한 FocusRequester 생성
     val focusRequesterEmail = remember { FocusRequester() }
     val focusRequesterPassword = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current
+    // Email, Password 초기 포커스 한번은 무시해야됨
+    var hasFocusEmailChanged by remember { mutableStateOf(false) }
+    var hasFocusPasswordChanged by remember { mutableStateOf(false) }
+    // Email, Password 의 Description 을 원하는 타이밍에 변경하고 싶기 때문에 remember 사용
+    var signUpEmailDescription by remember { mutableStateOf(signUpEmailDefault) }
+    var signUpPasswordDescription by remember { mutableStateOf(signUpPasswordDefault) }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -145,14 +160,27 @@ fun SignUpPage() {
             modifier = Modifier
                 .padding(horizontal = 10.dp)
                 .onFocusChanged { focusState ->
-                    Log.d(TAG, "isFocused: ${focusState.isFocused}")
-                    if (!focusState.isFocused) {
-                        isEnabled = if(!(inputEmail.isEmpty() || inputPassword.isEmpty())) {
-                            isValidEmail(inputEmail) && isValidPassword(inputPassword)
-                        } else {
-                            false
+                    if(hasFocusEmailChanged) {
+                        if (!focusState.isFocused) {
+                            isEnabled = if(!(inputEmail.isEmpty() || inputPassword.isEmpty())) {
+                                isValidEmail(inputEmail) && isValidPassword(inputPassword)
+                            } else {
+                                false
+                            }
+                            isEmailValid = if(inputEmail.isNotEmpty()) {
+                                isValidEmail(inputEmail)
+                            } else {
+                                false
+                            }
+                            signUpEmailDescription = if(inputEmail.length < 5) {
+                                signUpEmailError1
+                            } else {
+                                if(isEmailValid) signUpEmailDefault
+                                else signUpEmailError2
+                            }
                         }
                     }
+                    hasFocusEmailChanged = true
                 }
                 .focusRequester(focusRequesterEmail),
             keyboardOptions = KeyboardOptions.Default.copy(
@@ -160,20 +188,21 @@ fun SignUpPage() {
             ),
             keyboardActions = KeyboardActions(
                 onNext = { focusRequesterPassword.requestFocus() }
-            )
+            ),
+            isValid = isEmailValid,
         )
         Spacer(modifier = Modifier.height(5.dp))
         Row(
             modifier = Modifier.padding(horizontal = 10.dp)
         ) {
             Text(
-                text = "\u24D8",
-                color = darkGray3,
+                text = "ⓘ",
+                color = if(isEmailValid) darkGray3 else errorColor,
                 fontSize = 13.sp,
             )
             Text(
-                text = "로그인, 비밀번호 찾기, 알림에 사용되니 정확한 이메일을 입력해 주세요",
-                color = darkGray3,
+                text = signUpEmailDescription,
+                color = if(isEmailValid) darkGray3 else errorColor,
                 fontSize = 13.sp,
                 modifier = Modifier.padding(start = 5.dp)
             )
@@ -188,13 +217,23 @@ fun SignUpPage() {
             modifier = Modifier
                 .padding(8.dp)
                 .onFocusChanged { focusState ->
-                    if (!focusState.isFocused) {
-                        isEnabled = if(!(inputEmail.isEmpty() || inputPassword.isEmpty())) {
-                            isValidEmail(inputEmail) && isValidPassword(inputPassword)
-                        } else {
-                            false
+                    if(hasFocusPasswordChanged) {
+                        if (!focusState.isFocused) {
+                            isEnabled = if(!(inputEmail.isEmpty() || inputPassword.isEmpty())) {
+                                isValidEmail(inputEmail) && isValidPassword(inputPassword)
+                            } else {
+                                false
+                            }
+                            isPasswordValid = if(inputPassword.isNotEmpty()) {
+                                isValidPassword(inputPassword)
+                            } else {
+                                false
+                            }
+                            signUpPasswordDescription = if(isPasswordValid) signUpPasswordDefault
+                            else signUpPasswordError1
                         }
                     }
+                    hasFocusPasswordChanged = true
                 }
                 .focusRequester(focusRequesterPassword),
             isPassword = true,
@@ -204,18 +243,19 @@ fun SignUpPage() {
             keyboardActions = KeyboardActions(
                 onDone = { focusManager.clearFocus() }
             ),
+            isValid = isPasswordValid,
         )
         Row(
             modifier = Modifier.padding(horizontal = 10.dp)
         ) {
             Text(
-                text = "\u24D8",
-                color = darkGray3,
+                text = "ⓘ",
+                color = if(isPasswordValid) darkGray3 else errorColor,
                 fontSize = 13.sp,
             )
             Text(
-                text = "비밀번호는 8~20자 이내로 영문 대소문자, 숫자, 특수문자 중 3가지 이상 혼용하여 입력해 주세요.",
-                color = darkGray3,
+                text = signUpPasswordDescription,
+                color = if(isPasswordValid) darkGray3 else errorColor,
                 fontSize = 13.sp,
                 modifier = Modifier.padding(start = 5.dp)
             )

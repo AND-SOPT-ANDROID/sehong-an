@@ -2,6 +2,7 @@ package org.sopt.and.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import org.sopt.and.ui.theme.ANDANDROIDTheme
 import org.sopt.and.ui.theme.darkGray2
 import org.sopt.and.ui.theme.darkGray3
+import org.sopt.and.ui.theme.errorColor
 
 @Composable
 fun TextFieldCustom(
@@ -34,25 +36,30 @@ fun TextFieldCustom(
     onValueChange: (String) -> Unit,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
     keyboardActions: KeyboardActions = KeyboardActions.Default,
-    isPassword: Boolean = false
+    isPassword: Boolean = false,
+    isValid: Boolean = true,
 ) {
     var passwordVisible by remember { mutableStateOf(false) }
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        placeholder = {Text(text = placeholder, fontSize = 12.sp, color = darkGray3)},
+        placeholder = {Text(text = placeholder, color = darkGray3)},
         modifier = modifier
             .padding(4.dp)
             .fillMaxWidth(),
+        isError = !isValid,
         visualTransformation = if (isPassword && !passwordVisible) PasswordVisualTransformation() else VisualTransformation.None,
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = Color.Transparent,
             unfocusedBorderColor = Color.Transparent,
             cursorColor = Color.White,
+            errorTextColor = darkGray3,
+            errorCursorColor = Color.White,
             unfocusedContainerColor = darkGray2,
             focusedContainerColor = darkGray2,
             focusedTextColor = darkGray3,
             unfocusedTextColor = darkGray3,
+            errorBorderColor = errorColor
         ),
         textStyle = TextStyle(fontSize = 15.sp),
         keyboardOptions = keyboardOptions,

@@ -17,3 +17,5 @@ val darkGray2 = Color(0xFF2F2F2F)
 val darkGray3 = Color(0xFFA5A5A5)
 val darkGray4 = Color(0xFF717171)
 val darkGray5 = Color(0xFF1B1B1B)
+
+val errorColor = Color(0xFFFF27A3)
