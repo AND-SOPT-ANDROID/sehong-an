@@ -87,7 +87,7 @@ class SignInActivity : ComponentActivity() {
 }
 
 @Composable
-fun SignInPage() {
+private fun SignInPage() {
     var userIdInput by remember { mutableStateOf("") }
     var passwordInput by remember { mutableStateOf("") }
     val context = LocalContext.current

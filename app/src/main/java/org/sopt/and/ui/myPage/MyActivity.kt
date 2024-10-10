@@ -77,7 +77,7 @@ class MyActivity : ComponentActivity() {
 }
 
 @Composable
-fun MyPage() {
+private fun MyPage() {
     var profileName by remember { mutableStateOf("프로필1") }
     val context = LocalContext.current
     val preferencesManager = PreferencesManager(context)

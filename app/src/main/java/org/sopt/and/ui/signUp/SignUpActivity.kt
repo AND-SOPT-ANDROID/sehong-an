@@ -101,7 +101,7 @@ class SignUpActivity : ComponentActivity() {
 }
 
 @Composable
-fun SignUpPage() {
+private fun SignUpPage() {
     val context = LocalContext.current
     // Email 입력값
     var inputEmail by remember { mutableStateOf("") }
