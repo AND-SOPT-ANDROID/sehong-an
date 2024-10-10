@@ -138,7 +138,7 @@ fun SignInPage() {
                     }
                     context.startActivity(intent)
                     // SignInActivity 종료
-                    if (context is SignInActivity) context.finish()
+                    if (context is ComponentActivity) context.finish()
                 } else {
                     showDialog = true
                 }
