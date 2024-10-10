@@ -46,6 +46,7 @@ import org.sopt.and.R
 import org.sopt.and.components.TextFieldCustom
 import org.sopt.and.components.TopBarCustom
 import org.sopt.and.data.PreferencesManager
+import org.sopt.and.data.UserManager
 import org.sopt.and.ui.myPage.MyActivity
 import org.sopt.and.ui.signUp.SignUpActivity
 import org.sopt.and.ui.theme.ANDANDROIDTheme
@@ -93,6 +94,7 @@ fun SignInPage() {
     val loginDescription = context.getString(R.string.login_description)
     // SharedPreferences 사용을 위한 PreferencesManager
     val preferencesManager = PreferencesManager(context)
+    val userManager = UserManager(preferencesManager)
     // Dialog 표시 여부
     var showDialog by remember { mutableStateOf(false) }
     Column (
@@ -121,11 +123,11 @@ fun SignInPage() {
         Spacer(modifier = Modifier.height(30.dp))
         Button(
             onClick = {
-                val login = preferencesManager.loginUser(InputID, InputPassword)
+                val login = userManager.loginUser(InputID, InputPassword)
                 if(login) {
                     Toast.makeText(context, "로그인 성공", Toast.LENGTH_SHORT).show()
                     // 자동 로그인
-                    preferencesManager.setLoggedIn(true)
+                    userManager.setLoggedIn(true)
                     // MyActivity 화면 이동
                     val intent = Intent(context, MyActivity::class.java).apply {
                         putExtra("email", InputID)  // "email" 키로 이메일 데이터 추가

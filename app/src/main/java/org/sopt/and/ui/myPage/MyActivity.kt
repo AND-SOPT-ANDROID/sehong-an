@@ -48,6 +48,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.sopt.and.R
 import org.sopt.and.data.PreferencesManager
+import org.sopt.and.data.UserManager
 import org.sopt.and.ui.signIn.SignInActivity
 import org.sopt.and.ui.theme.ANDANDROIDTheme
 import org.sopt.and.ui.theme.darkGray1
@@ -58,15 +59,12 @@ class MyActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        // 전달된 이메일 정보 가져오기
-        val preferencesManager = PreferencesManager(this)
-        val email = intent.getStringExtra("email") ?: (preferencesManager.getUsername() ?: "프로필1")
         setContent {
             ANDANDROIDTheme {
                 Scaffold(
                     content = { innerPadding ->
                         Box(modifier = Modifier.padding(innerPadding)) {
-                            MyPage(email = email)
+                            MyPage()
                         }
                     },
                     bottomBar = {
@@ -79,11 +77,12 @@ class MyActivity : ComponentActivity() {
 }
 
 @Composable
-fun MyPage(email: String) {
+fun MyPage() {
     var profile_name by remember { mutableStateOf("프로필1") }
     val context = LocalContext.current
     val preferencesManager = PreferencesManager(context)
-    profile_name = email
+    val userManager = UserManager(preferencesManager)
+    profile_name = userManager.getUserEmail() ?: "프로필1"
     // 스크롤이 가능하도록 scrollState 설정
     val scrollState = rememberScrollState()
     Column (
@@ -130,8 +129,8 @@ fun MyPage(email: String) {
                 modifier = Modifier
                     .padding(bottom = 4.dp)
                     .clickable {
-                        preferencesManager.logoutUser()
-                        preferencesManager.setLoggedIn(false)
+                        userManager.logoutUser()
+                        userManager.setLoggedIn(false)
                         val intent = Intent(context, SignInActivity::class.java)
                         context.startActivity(intent)
                         if(context is MyActivity) context.finish()
@@ -333,7 +332,7 @@ fun MyPagePreview() {
         Scaffold(
             content = { innerPadding ->
                 Box(modifier = Modifier.padding(innerPadding)) {
-                    MyPage(email = "프로필1")
+                    MyPage()
                 }
             },
             bottomBar = {

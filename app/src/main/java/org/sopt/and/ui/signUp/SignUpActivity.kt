@@ -27,7 +27,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -54,6 +53,7 @@ import org.sopt.and.R
 import org.sopt.and.components.TextFieldCustom
 import org.sopt.and.components.TopBarCustom
 import org.sopt.and.data.PreferencesManager
+import org.sopt.and.data.UserManager
 import org.sopt.and.ui.theme.ANDANDROIDTheme
 import org.sopt.and.ui.theme.BlueBtnColor
 import org.sopt.and.ui.theme.darkGray1
@@ -65,7 +65,6 @@ import org.sopt.and.utils.isValidPassword
 
 
 private const val TAG = "SignUpActivity"
-
 class SignUpActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,6 +132,7 @@ fun SignUpPage() {
     var signUpPasswordDescription by remember { mutableStateOf(signUpPasswordDefault) }
     // SharedPreferences 사용을 위한 PreferencesManager
     val preferencesManager = PreferencesManager(context)
+    val userManager = UserManager(preferencesManager)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -361,7 +361,7 @@ fun SignUpPage() {
         Spacer(modifier = Modifier.weight(1f))
         Button(
             onClick = {
-                preferencesManager.registerUser(inputEmail, inputPassword)
+                userManager.registerUser(inputEmail, inputPassword)
                 Toast.makeText(context, "회원가입 성공", Toast.LENGTH_SHORT).show()
                 if (context is SignUpActivity) context.finish()
             },
