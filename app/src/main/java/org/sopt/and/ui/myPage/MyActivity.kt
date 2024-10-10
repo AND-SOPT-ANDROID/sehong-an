@@ -248,8 +248,10 @@ fun MyPage() {
 
 @Composable
 fun MyBottomNavigationBar() {
+    // 현재 메뉴 아이템에서 MyPage 만 설정되었기 때문에 초기 설정을 2(MyPage SelectedItem)로 설정
+    val initialSelectedItem = 2
     // 상태 변수: 현재 선택된 아이템의 인덱스 저장
-    var selectedItem by remember { mutableIntStateOf(2) }
+    var selectedItem by remember { mutableIntStateOf(initialSelectedItem) }
     BottomAppBar(
         containerColor = Color.Black,
         contentColor = Color.Gray
