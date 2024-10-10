@@ -123,6 +123,10 @@ fun SignInPage() {
         Spacer(modifier = Modifier.height(30.dp))
         Button(
             onClick = {
+                if((InputID == "") || (InputPassword == "")) {
+                    showDialog = true
+                    return@Button
+                }
                 val login = userManager.loginUser(InputID, InputPassword)
                 if(login) {
                     Toast.makeText(context, "로그인 성공", Toast.LENGTH_SHORT).show()
