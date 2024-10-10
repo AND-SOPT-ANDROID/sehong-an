@@ -83,7 +83,7 @@ class SignUpActivity : ComponentActivity() {
                             hasLeftIcon = false,
                             hasRightIcon = true,
                             onCloseClicked = {
-                                if (context is SignUpActivity) {
+                                if (context is ComponentActivity) {
                                     context.finish()
                                 }
                             }
@@ -363,7 +363,7 @@ fun SignUpPage() {
             onClick = {
                 userManager.registerUser(inputEmail, inputPassword)
                 Toast.makeText(context, "회원가입 성공", Toast.LENGTH_SHORT).show()
-                if (context is SignUpActivity) context.finish()
+                if (context is ComponentActivity) context.finish()
             },
             shape = RoundedCornerShape(0.dp),
             enabled = isEnabled,
@@ -400,7 +400,7 @@ fun SignUpPagePreview() {
                     hasLeftIcon = false,
                     hasRightIcon = true,
                     onCloseClicked = {
-                        if (context is SignUpActivity) {
+                        if (context is ComponentActivity) {
                             context.finish()
                         }
                     }

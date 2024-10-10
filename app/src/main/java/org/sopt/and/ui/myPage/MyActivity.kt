@@ -133,7 +133,7 @@ fun MyPage() {
                         userManager.setLoggedIn(false)
                         val intent = Intent(context, SignInActivity::class.java)
                         context.startActivity(intent)
-                        if(context is MyActivity) context.finish()
+                        if(context is ComponentActivity) context.finish()
                     }
             )
         }
