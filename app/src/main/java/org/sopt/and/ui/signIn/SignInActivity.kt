@@ -88,8 +88,8 @@ class SignInActivity : ComponentActivity() {
 
 @Composable
 fun SignInPage() {
-    var InputID by remember { mutableStateOf("") }
-    var InputPassword by remember { mutableStateOf("") }
+    var userIdInput by remember { mutableStateOf("") }
+    var passwordInput by remember { mutableStateOf("") }
     val context = LocalContext.current
     val loginDescription = context.getString(R.string.login_description)
     // SharedPreferences 사용을 위한 PreferencesManager
@@ -104,18 +104,18 @@ fun SignInPage() {
     ){
         Spacer(modifier = Modifier.height(30.dp))
         TextFieldCustom(
-            value = InputID,
+            value = userIdInput,
             placeholder = "아이디 주소 또는 아이디",
             onValueChange = { value ->
-                InputID = value
+                userIdInput = value
             },
             modifier = Modifier.padding(8.dp)
         )
         TextFieldCustom(
-            value = InputPassword,
+            value = passwordInput,
             placeholder = "비밀번호",
             onValueChange = { value ->
-                InputPassword = value
+                passwordInput = value
             },
             modifier = Modifier.padding(8.dp),
             isPassword = true,
@@ -123,18 +123,18 @@ fun SignInPage() {
         Spacer(modifier = Modifier.height(30.dp))
         Button(
             onClick = {
-                if((InputID == "") || (InputPassword == "")) {
+                if((userIdInput == "") || (passwordInput == "")) {
                     showDialog = true
                     return@Button
                 }
-                val login = userManager.loginUser(InputID, InputPassword)
+                val login = userManager.loginUser(userIdInput, passwordInput)
                 if(login) {
                     Toast.makeText(context, "로그인 성공", Toast.LENGTH_SHORT).show()
                     // 자동 로그인
                     userManager.setLoggedIn(true)
                     // MyActivity 화면 이동
                     val intent = Intent(context, MyActivity::class.java).apply {
-                        putExtra("email", InputID)  // "email" 키로 이메일 데이터 추가
+                        putExtra("email", userIdInput)  // "email" 키로 이메일 데이터 추가
                     }
                     context.startActivity(intent)
                     // SignInActivity 종료

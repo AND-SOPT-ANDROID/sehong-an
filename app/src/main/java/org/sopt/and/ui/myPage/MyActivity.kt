@@ -78,11 +78,11 @@ class MyActivity : ComponentActivity() {
 
 @Composable
 fun MyPage() {
-    var profile_name by remember { mutableStateOf("프로필1") }
+    var profileName by remember { mutableStateOf("프로필1") }
     val context = LocalContext.current
     val preferencesManager = PreferencesManager(context)
     val userManager = UserManager(preferencesManager)
-    profile_name = userManager.getUserEmail() ?: "프로필1"
+    profileName = userManager.getUserEmail() ?: "프로필1"
     // 스크롤이 가능하도록 scrollState 설정
     val scrollState = rememberScrollState()
     Column (
@@ -107,7 +107,7 @@ fun MyPage() {
             )
             Spacer(modifier = Modifier.width(20.dp))
             Text(
-                text = profile_name,
+                text = profileName,
                 color = Color.White,
             )
             Text(
