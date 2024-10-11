@@ -38,6 +38,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -91,7 +92,7 @@ private fun SignInPage() {
     var userIdInput by remember { mutableStateOf("") }
     var passwordInput by remember { mutableStateOf("") }
     val context = LocalContext.current
-    val loginDescription = context.getString(R.string.login_description)
+    val loginDescription = stringResource(id = R.string.login_description)
     /** SharedPreferences 사용을 위한 PreferencesManager */
     val preferencesManager = PreferencesManager(context)
     val userManager = UserManager(preferencesManager)

@@ -41,6 +41,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.ImeAction
@@ -114,12 +115,17 @@ private fun SignUpPage() {
     /** Password Valid 여부 */
     var isPasswordValid by remember { mutableStateOf(true) }
     /** 로그인 설명 R.string.login_description 참고 */
-    val loginDescription = context.getString(R.string.login_description)
-    val signUpEmailDefault = context.getString(R.string.sign_up_email_default)
-    val signUpEmailError1 = context.getString(R.string.sign_up_email_error1)
-    val signUpEmailError2 = context.getString(R.string.sign_up_email_error2)
-    val signUpPasswordDefault = context.getString(R.string.sign_up_password_default)
-    val signUpPasswordError1 = context.getString(R.string.sign_up_password_error1)
+    val loginDescription = stringResource(id = R.string.login_description)
+    /** 로그인 설명 R.string.login_description 참고 */
+    val signUpEmailDefault = stringResource(id = R.string.sign_up_email_default)
+    /** 로그인 설명 R.string.login_description 참고 */
+    val signUpEmailError1 = stringResource(id = R.string.sign_up_email_error1)
+    /** 로그인 설명 R.string.login_description 참고 */
+    val signUpEmailError2 = stringResource(id = R.string.sign_up_email_error2)
+    /** 로그인 설명 R.string.login_description 참고 */
+    val signUpPasswordDefault = stringResource(id = R.string.sign_up_password_default)
+    /** 로그인 설명 R.string.login_description 참고 */
+    val signUpPasswordError1 = stringResource(id = R.string.sign_up_password_error1)
     /** 각 TextField 의 포커스를 요청하기 위한 FocusRequester 생성 */
     val focusRequesterEmail = remember { FocusRequester() }
     val focusRequesterPassword = remember { FocusRequester() }
