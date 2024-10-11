@@ -103,34 +103,36 @@ class SignUpActivity : ComponentActivity() {
 @Composable
 private fun SignUpPage() {
     val context = LocalContext.current
-    // Email 입력값
-    var inputEmail by remember { mutableStateOf("") }
-    // Password 입력값
-    var inputPassword by remember { mutableStateOf("") }
-    // 회원가입 가능 여부
+    /** Email 입력값 */
+    var userIdInput by remember { mutableStateOf("") }
+    /** Password 입력값 */
+    var passwordInput by remember { mutableStateOf("") }
+    /** 회원가입 가능 여부 */
     var isEnabled by remember { mutableStateOf(false) }
-    // Email Valid 여부
+    /** Email Valid 여부 */
     var isEmailValid by remember { mutableStateOf(true) }
-    // Password Valid 여부
+    /** Password Valid 여부 */
     var isPasswordValid by remember { mutableStateOf(true) }
-    // 로그인 설명 R.string.login_description 참고
+    /** 로그인 설명 R.string.login_description 참고 */
     val loginDescription = context.getString(R.string.login_description)
     val signUpEmailDefault = context.getString(R.string.sign_up_email_default)
     val signUpEmailError1 = context.getString(R.string.sign_up_email_error1)
     val signUpEmailError2 = context.getString(R.string.sign_up_email_error2)
     val signUpPasswordDefault = context.getString(R.string.sign_up_password_default)
     val signUpPasswordError1 = context.getString(R.string.sign_up_password_error1)
-    // 각 TextField 의 포커스를 요청하기 위한 FocusRequester 생성
+    /** 각 TextField 의 포커스를 요청하기 위한 FocusRequester 생성 */
     val focusRequesterEmail = remember { FocusRequester() }
     val focusRequesterPassword = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current
-    // Email, Password 초기 포커스 한번은 무시해야됨
+    /** Email 초기 포커스 한번은 무시하기 */
     var hasFocusEmailChanged by remember { mutableStateOf(false) }
+    /** Password 초기 포커스 한번은 무시하기 */
     var hasFocusPasswordChanged by remember { mutableStateOf(false) }
-    // Email, Password 의 Description 을 원하는 타이밍에 변경하고 싶기 때문에 remember 사용
+    /** Email 의 Description 을 원하는 타이밍에 변경하고 싶기 때문에 remember 사용 */
     var signUpEmailDescription by remember { mutableStateOf(signUpEmailDefault) }
+    /** Password 의 Description 을 원하는 타이밍에 변경하고 싶기 때문에 remember 사용 */
     var signUpPasswordDescription by remember { mutableStateOf(signUpPasswordDefault) }
-    // SharedPreferences 사용을 위한 PreferencesManager
+    /** SharedPreferences 사용을 위한 PreferencesManager */
     val preferencesManager = PreferencesManager(context)
     val userManager = UserManager(preferencesManager)
     Column(
@@ -158,27 +160,27 @@ private fun SignUpPage() {
         )
         Spacer(modifier = Modifier.height(20.dp))
         TextFieldCustom(
-            value = inputEmail,
+            value = userIdInput,
             placeholder = "wavve@example.com",
             onValueChange = { value ->
-                inputEmail = value
+                userIdInput = value
             },
             modifier = Modifier
                 .padding(horizontal = 10.dp)
                 .onFocusChanged { focusState ->
                     if(hasFocusEmailChanged) {
                         if (!focusState.isFocused) {
-                            isEnabled = if(!(inputEmail.isEmpty() || inputPassword.isEmpty())) {
-                                isValidEmail(inputEmail) && isValidPassword(inputPassword)
+                            isEnabled = if(!(userIdInput.isEmpty() || passwordInput.isEmpty())) {
+                                isValidEmail(userIdInput) && isValidPassword(passwordInput)
                             } else {
                                 false
                             }
-                            isEmailValid = if(inputEmail.isNotEmpty()) {
-                                isValidEmail(inputEmail)
+                            isEmailValid = if(userIdInput.isNotEmpty()) {
+                                isValidEmail(userIdInput)
                             } else {
                                 false
                             }
-                            signUpEmailDescription = if(inputEmail.length < 5) {
+                            signUpEmailDescription = if(userIdInput.length < 5) {
                                 signUpEmailError1
                             } else {
                                 if(isEmailValid) signUpEmailDefault
@@ -215,23 +217,23 @@ private fun SignUpPage() {
         }
 
         TextFieldCustom(
-            value = inputPassword,
+            value = passwordInput,
             placeholder = "Wavve 비밀번호 설정",
             onValueChange = { value ->
-                inputPassword = value
+                passwordInput = value
             },
             modifier = Modifier
                 .padding(8.dp)
                 .onFocusChanged { focusState ->
                     if(hasFocusPasswordChanged) {
                         if (!focusState.isFocused) {
-                            isEnabled = if(!(inputEmail.isEmpty() || inputPassword.isEmpty())) {
-                                isValidEmail(inputEmail) && isValidPassword(inputPassword)
+                            isEnabled = if(!(userIdInput.isEmpty() || passwordInput.isEmpty())) {
+                                isValidEmail(userIdInput) && isValidPassword(passwordInput)
                             } else {
                                 false
                             }
-                            isPasswordValid = if(inputPassword.isNotEmpty()) {
-                                isValidPassword(inputPassword)
+                            isPasswordValid = if(passwordInput.isNotEmpty()) {
+                                isValidPassword(passwordInput)
                             } else {
                                 false
                             }
@@ -361,7 +363,7 @@ private fun SignUpPage() {
         Spacer(modifier = Modifier.weight(1f))
         Button(
             onClick = {
-                userManager.registerUser(inputEmail, inputPassword)
+                userManager.registerUser(userIdInput, passwordInput)
                 Toast.makeText(context, "회원가입 성공", Toast.LENGTH_SHORT).show()
                 if (context is ComponentActivity) context.finish()
             },

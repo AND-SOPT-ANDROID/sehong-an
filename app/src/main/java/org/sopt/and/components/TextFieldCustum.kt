@@ -85,13 +85,13 @@ fun TextFieldCustom(
 @Preview
 @Composable
 fun TextFieldCustomPreview() {
-    var InputID by remember { mutableStateOf("") }
+    var userIdInput by remember { mutableStateOf("") }
     ANDANDROIDTheme {
         TextFieldCustom(
-            value = InputID,
+            value = userIdInput,
             placeholder = "Email",
             onValueChange = { value ->
-                InputID = value
+                userIdInput = value
             },
             modifier = Modifier.padding(8.dp),
             isPassword = true
