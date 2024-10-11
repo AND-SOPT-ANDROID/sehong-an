@@ -83,7 +83,7 @@ private fun MyPage() {
     val preferencesManager = PreferencesManager(context)
     val userManager = UserManager(preferencesManager)
     profileName = userManager.getUserEmail() ?: "프로필1"
-    // 스크롤이 가능하도록 scrollState 설정
+    /** 스크롤이 가능하도록 scrollState 설정 */
     val scrollState = rememberScrollState()
     Column (
         modifier = Modifier
@@ -248,9 +248,9 @@ private fun MyPage() {
 
 @Composable
 fun MyBottomNavigationBar() {
-    // 현재 메뉴 아이템에서 MyPage 만 설정되었기 때문에 초기 설정을 2(MyPage SelectedItem)로 설정
+    /** 현재 메뉴 아이템에서 MyPage 만 설정되었기 때문에 초기 설정을 2(MyPage SelectedItem)로 설정 */
     val initialSelectedItem = 2
-    // 상태 변수: 현재 선택된 아이템의 인덱스 저장
+    /** 상태 변수: 현재 선택된 아이템의 인덱스 저장 */
     var selectedItem by remember { mutableIntStateOf(initialSelectedItem) }
     BottomAppBar(
         containerColor = Color.Black,
@@ -267,7 +267,7 @@ fun MyBottomNavigationBar() {
                     Icon(
                         imageVector = Icons.Outlined.Home,
                         contentDescription = "홈",
-                        tint = if (selectedItem == 0) Color.White else Color.Gray, // 선택 상태에 따라 색상 변경
+                        tint = if (selectedItem == 0) Color.White else Color.Gray,
                         modifier = Modifier.padding(bottom = 4.dp)
                     )
                 },
@@ -280,7 +280,7 @@ fun MyBottomNavigationBar() {
                     Icon(
                         imageVector = Icons.Outlined.Search,
                         contentDescription = "찾기",
-                        tint = if (selectedItem == 1) Color.White else Color.Gray, // 선택 상태에 따라 색상 변경
+                        tint = if (selectedItem == 1) Color.White else Color.Gray,
                         modifier = Modifier.padding(bottom = 4.dp)
                     )
                 },

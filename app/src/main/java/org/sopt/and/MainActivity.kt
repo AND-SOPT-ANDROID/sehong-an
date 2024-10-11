@@ -14,15 +14,15 @@ class MainActivity : ComponentActivity() {
         val preferencesManager = PreferencesManager(this)
         val userManager = UserManager(preferencesManager)
         if (userManager.isLoggedIn()) {
-            // isLoggedIn True -> MyActivity 이동
+            /** isLoggedIn True -> MyActivity 이동 */
             val intent = Intent(this, MyActivity::class.java)
             startActivity(intent)
         } else {
-            // isLoggedIn False -> SignInActivity 이동
+            /** isLoggedIn False -> SignInActivity 이동 */
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
-        // MainActivity 종료
+        /** MainActivity 종료 */
         finish()
     }
 }

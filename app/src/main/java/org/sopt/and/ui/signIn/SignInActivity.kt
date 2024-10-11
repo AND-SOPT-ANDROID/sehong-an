@@ -92,10 +92,10 @@ private fun SignInPage() {
     var passwordInput by remember { mutableStateOf("") }
     val context = LocalContext.current
     val loginDescription = context.getString(R.string.login_description)
-    // SharedPreferences 사용을 위한 PreferencesManager
+    /** SharedPreferences 사용을 위한 PreferencesManager */
     val preferencesManager = PreferencesManager(context)
     val userManager = UserManager(preferencesManager)
-    // Dialog 표시 여부
+    /** Dialog 표시 여부 */
     var showDialog by remember { mutableStateOf(false) }
     Column (
         modifier = Modifier
@@ -130,14 +130,14 @@ private fun SignInPage() {
                 val login = userManager.loginUser(userIdInput, passwordInput)
                 if(login) {
                     Toast.makeText(context, "로그인 성공", Toast.LENGTH_SHORT).show()
-                    // 자동 로그인
+                    /** 자동 로그인 */
                     userManager.setLoggedIn(true)
-                    // MyActivity 화면 이동
+                    /** MyActivity 화면 이동 */
                     val intent = Intent(context, MyActivity::class.java).apply {
                         putExtra("email", userIdInput)  // "email" 키로 이메일 데이터 추가
                     }
                     context.startActivity(intent)
-                    // SignInActivity 종료
+                    /** SignInActivity 종료 */
                     if (context is ComponentActivity) context.finish()
                 } else {
                     showDialog = true
@@ -300,7 +300,7 @@ private fun SignInPage() {
                 modifier = Modifier.padding(start = 5.dp)
             )
         }
-        // 다이얼로그를 표시할지 여부
+        /** 다이얼로그를 표시할지 여부 */
         if (showDialog) {
             AlertDialog(
                 onDismissRequest = { showDialog = false },
