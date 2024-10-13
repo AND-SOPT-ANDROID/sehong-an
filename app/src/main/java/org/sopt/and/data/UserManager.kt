@@ -1,8 +1,5 @@
 package org.sopt.and.data
 
-import android.util.Log
-
-private val Tag = "PreferencesManager"
 class UserManager(private val preferencesManager: PreferencesManager) {
     companion object {
         private const val IS_LOGGED_IN = "IS_LOGGED_IN"

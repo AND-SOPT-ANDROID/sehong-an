@@ -65,7 +65,6 @@ import org.sopt.and.utils.isValidEmail
 import org.sopt.and.utils.isValidPassword
 
 
-private const val TAG = "SignUpActivity"
 class SignUpActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,7 +74,7 @@ class SignUpActivity : ComponentActivity() {
                 val context = LocalContext.current
                 Scaffold(
                     topBar = {
-                        TopBarCustom (
+                        TopBarCustom(
                             titleContent = {
                                 Text(
                                     text = "회원가입"
@@ -104,40 +103,57 @@ class SignUpActivity : ComponentActivity() {
 @Composable
 private fun SignUpPage() {
     val context = LocalContext.current
+
     /** Email 입력값 */
     var userIdInput by remember { mutableStateOf("") }
+
     /** Password 입력값 */
     var passwordInput by remember { mutableStateOf("") }
+
     /** 회원가입 가능 여부 */
     var isEnabled by remember { mutableStateOf(false) }
+
     /** Email Valid 여부 */
     var isEmailValid by remember { mutableStateOf(true) }
+
     /** Password Valid 여부 */
     var isPasswordValid by remember { mutableStateOf(true) }
+
     /** 로그인 설명 R.string.login_description 참고 */
     val loginDescription = stringResource(id = R.string.login_description)
+
     /** 로그인 설명 R.string.login_description 참고 */
     val signUpEmailDefault = stringResource(id = R.string.sign_up_email_default)
+
     /** 로그인 설명 R.string.login_description 참고 */
     val signUpEmailError1 = stringResource(id = R.string.sign_up_email_error1)
+
     /** 로그인 설명 R.string.login_description 참고 */
     val signUpEmailError2 = stringResource(id = R.string.sign_up_email_error2)
+
     /** 로그인 설명 R.string.login_description 참고 */
     val signUpPasswordDefault = stringResource(id = R.string.sign_up_password_default)
+
     /** 로그인 설명 R.string.login_description 참고 */
     val signUpPasswordError1 = stringResource(id = R.string.sign_up_password_error1)
+
     /** 각 TextField 의 포커스를 요청하기 위한 FocusRequester 생성 */
     val focusRequesterEmail = remember { FocusRequester() }
     val focusRequesterPassword = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current
+
     /** Email 초기 포커스 한번은 무시하기 */
     var hasFocusEmailChanged by remember { mutableStateOf(false) }
+
     /** Password 초기 포커스 한번은 무시하기 */
     var hasFocusPasswordChanged by remember { mutableStateOf(false) }
+
     /** Email 의 Description 을 원하는 타이밍에 변경하고 싶기 때문에 remember 사용 */
     var signUpEmailDescription by remember { mutableStateOf(signUpEmailDefault) }
+
     /** Password 의 Description 을 원하는 타이밍에 변경하고 싶기 때문에 remember 사용 */
     var signUpPasswordDescription by remember { mutableStateOf(signUpPasswordDefault) }
+
     /** SharedPreferences 사용을 위한 PreferencesManager */
     val preferencesManager = PreferencesManager(context)
     val userManager = UserManager(preferencesManager)
@@ -174,22 +190,22 @@ private fun SignUpPage() {
             modifier = Modifier
                 .padding(horizontal = 10.dp)
                 .onFocusChanged { focusState ->
-                    if(hasFocusEmailChanged) {
+                    if (hasFocusEmailChanged) {
                         if (!focusState.isFocused) {
-                            isEnabled = if(!(userIdInput.isEmpty() || passwordInput.isEmpty())) {
+                            isEnabled = if (!(userIdInput.isEmpty() || passwordInput.isEmpty())) {
                                 isValidEmail(userIdInput) && isValidPassword(passwordInput)
                             } else {
                                 false
                             }
-                            isEmailValid = if(userIdInput.isNotEmpty()) {
+                            isEmailValid = if (userIdInput.isNotEmpty()) {
                                 isValidEmail(userIdInput)
                             } else {
                                 false
                             }
-                            signUpEmailDescription = if(userIdInput.length < 5) {
+                            signUpEmailDescription = if (userIdInput.length < 5) {
                                 signUpEmailError1
                             } else {
-                                if(isEmailValid) signUpEmailDefault
+                                if (isEmailValid) signUpEmailDefault
                                 else signUpEmailError2
                             }
                         }
@@ -211,12 +227,12 @@ private fun SignUpPage() {
         ) {
             Text(
                 text = "ⓘ",
-                color = if(isEmailValid) darkGray3 else errorColor,
+                color = if (isEmailValid) darkGray3 else errorColor,
                 fontSize = 13.sp,
             )
             Text(
                 text = signUpEmailDescription,
-                color = if(isEmailValid) darkGray3 else errorColor,
+                color = if (isEmailValid) darkGray3 else errorColor,
                 fontSize = 13.sp,
                 modifier = Modifier.padding(start = 5.dp)
             )
@@ -231,19 +247,19 @@ private fun SignUpPage() {
             modifier = Modifier
                 .padding(8.dp)
                 .onFocusChanged { focusState ->
-                    if(hasFocusPasswordChanged) {
+                    if (hasFocusPasswordChanged) {
                         if (!focusState.isFocused) {
-                            isEnabled = if(!(userIdInput.isEmpty() || passwordInput.isEmpty())) {
+                            isEnabled = if (!(userIdInput.isEmpty() || passwordInput.isEmpty())) {
                                 isValidEmail(userIdInput) && isValidPassword(passwordInput)
                             } else {
                                 false
                             }
-                            isPasswordValid = if(passwordInput.isNotEmpty()) {
+                            isPasswordValid = if (passwordInput.isNotEmpty()) {
                                 isValidPassword(passwordInput)
                             } else {
                                 false
                             }
-                            signUpPasswordDescription = if(isPasswordValid) signUpPasswordDefault
+                            signUpPasswordDescription = if (isPasswordValid) signUpPasswordDefault
                             else signUpPasswordError1
                         }
                     }
@@ -264,12 +280,12 @@ private fun SignUpPage() {
         ) {
             Text(
                 text = "ⓘ",
-                color = if(isPasswordValid) darkGray3 else errorColor,
+                color = if (isPasswordValid) darkGray3 else errorColor,
                 fontSize = 13.sp,
             )
             Text(
                 text = signUpPasswordDescription,
-                color = if(isPasswordValid) darkGray3 else errorColor,
+                color = if (isPasswordValid) darkGray3 else errorColor,
                 fontSize = 13.sp,
                 modifier = Modifier.padding(start = 5.dp)
             )
@@ -399,7 +415,7 @@ fun SignUpPagePreview() {
         val context = LocalContext.current
         Scaffold(
             topBar = {
-                TopBarCustom (
+                TopBarCustom(
                     titleContent = {
                         Text(
                             text = "회원가입"
