@@ -91,7 +91,7 @@ class SignUpActivity : ComponentActivity() {
                     },
                     content = { innerPadding ->
                         Box(modifier = Modifier.padding(innerPadding)) {
-                            SignUpPage()
+                            SignUpScreen()
                         }
                     }
                 )
@@ -101,7 +101,7 @@ class SignUpActivity : ComponentActivity() {
 }
 
 @Composable
-private fun SignUpPage() {
+private fun SignUpScreen() {
     val context = LocalContext.current
 
     /** Email 입력값 */
@@ -410,7 +410,7 @@ private fun SignUpPage() {
 
 @Preview(showBackground = true)
 @Composable
-fun SignUpPagePreview() {
+fun SignUpScreenPreview() {
     ANDANDROIDTheme {
         val context = LocalContext.current
         Scaffold(
@@ -432,7 +432,7 @@ fun SignUpPagePreview() {
             },
             content = { innerPadding ->
                 Box(modifier = Modifier.padding(innerPadding)) {
-                    SignUpPage()
+                    SignUpScreen()
                 }
             }
         )

@@ -64,7 +64,7 @@ class MyActivity : ComponentActivity() {
                 Scaffold(
                     content = { innerPadding ->
                         Box(modifier = Modifier.padding(innerPadding)) {
-                            MyPage()
+                            MyScreen()
                         }
                     },
                     bottomBar = {
@@ -77,7 +77,7 @@ class MyActivity : ComponentActivity() {
 }
 
 @Composable
-private fun MyPage() {
+private fun MyScreen() {
     var profileName by remember { mutableStateOf("프로필1") }
     val context = LocalContext.current
     val preferencesManager = PreferencesManager(context)
@@ -85,7 +85,7 @@ private fun MyPage() {
     profileName = userManager.getUserEmail() ?: "프로필1"
     /** 스크롤이 가능하도록 scrollState 설정 */
     val scrollState = rememberScrollState()
-    Column (
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(darkGray5)
@@ -133,7 +133,7 @@ private fun MyPage() {
                         userManager.setLoggedIn(false)
                         val intent = Intent(context, SignInActivity::class.java)
                         context.startActivity(intent)
-                        if(context is ComponentActivity) context.finish()
+                        if (context is ComponentActivity) context.finish()
                     }
             )
         }
@@ -169,7 +169,7 @@ private fun MyPage() {
             modifier = Modifier
                 .background(darkGray1)
                 .fillMaxWidth()
-                .padding(top =15.dp, start = 15.dp, end = 15.dp)
+                .padding(top = 15.dp, start = 15.dp, end = 15.dp)
         )
         Row(
             modifier = Modifier
@@ -198,7 +198,7 @@ private fun MyPage() {
             fontSize = 18.sp
         )
         Spacer(modifier = Modifier.height(20.dp))
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp),
@@ -225,7 +225,7 @@ private fun MyPage() {
             fontSize = 18.sp
         )
         Spacer(modifier = Modifier.height(20.dp))
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp),
@@ -248,8 +248,9 @@ private fun MyPage() {
 
 @Composable
 fun MyBottomNavigationBar() {
-    /** 현재 메뉴 아이템에서 MyPage 만 설정되었기 때문에 초기 설정을 2(MyPage SelectedItem)로 설정 */
+    /** 현재 메뉴 아이템에서 MyScreen 만 설정되었기 때문에 초기 설정을 2(MyScreen SelectedItem)로 설정 */
     val initialSelectedItem = 2
+
     /** 상태 변수: 현재 선택된 아이템의 인덱스 저장 */
     var selectedItem by remember { mutableIntStateOf(initialSelectedItem) }
     BottomAppBar(
@@ -303,9 +304,10 @@ fun MyBottomNavigationBar() {
         }
     }
 }
+
 @Composable
 fun BottomBarItem(
-    itemContent : @Composable () -> Unit,
+    itemContent: @Composable () -> Unit,
     label: String,
     isSelected: Boolean,
     onClick: () -> Unit
@@ -327,14 +329,15 @@ fun BottomBarItem(
         )
     }
 }
+
 @Preview(showBackground = true)
 @Composable
-fun MyPagePreview() {
+fun MyScreenPreview() {
     ANDANDROIDTheme {
         Scaffold(
             content = { innerPadding ->
                 Box(modifier = Modifier.padding(innerPadding)) {
-                    MyPage()
+                    MyScreen()
                 }
             },
             bottomBar = {

@@ -78,7 +78,7 @@ class SignInActivity : ComponentActivity() {
                     },
                     content = { innerPadding ->
                         Box(modifier = Modifier.padding(innerPadding)) {
-                            SignInPage()
+                            SignInScreen()
                         }
                     }
                 )
@@ -88,7 +88,7 @@ class SignInActivity : ComponentActivity() {
 }
 
 @Composable
-private fun SignInPage() {
+private fun SignInScreen() {
     var userIdInput by remember { mutableStateOf("") }
     var passwordInput by remember { mutableStateOf("") }
     val context = LocalContext.current
@@ -332,7 +332,7 @@ private fun SignInPage() {
 
 @Preview(showBackground = true)
 @Composable
-fun SignInPagePreview() {
+fun SignInScreenPreview() {
     ANDANDROIDTheme {
         Scaffold(
             topBar = {
@@ -351,7 +351,7 @@ fun SignInPagePreview() {
             },
             content = { innerPadding ->
                 Box(modifier = Modifier.padding(innerPadding)) {
-                    SignInPage()
+                    SignInScreen()
                 }
             }
         )
