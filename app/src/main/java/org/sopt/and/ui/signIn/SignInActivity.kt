@@ -63,7 +63,7 @@ class SignInActivity : ComponentActivity() {
             ANDANDROIDTheme {
                 Scaffold(
                     topBar = {
-                        TopBarCustom (
+                        TopBarCustom(
                             titleContent = {
                                 Image(
                                     painter = painterResource(id = R.drawable.wavve_icon),
@@ -93,16 +93,41 @@ private fun SignInPage() {
     var passwordInput by remember { mutableStateOf("") }
     val context = LocalContext.current
     val loginDescription = stringResource(id = R.string.login_description)
+
     /** SharedPreferences 사용을 위한 PreferencesManager */
     val preferencesManager = PreferencesManager(context)
     val userManager = UserManager(preferencesManager)
+
     /** Dialog 표시 여부 */
     var showDialog by remember { mutableStateOf(false) }
-    Column (
+
+    /** 로그인 버튼 클릭 이벤트를 처리하는 함수 */
+    fun handleLoginClick() {
+        if ((userIdInput.isEmpty()) || (passwordInput.isEmpty())) {
+            showDialog = true
+            return
+        }
+        val login = userManager.loginUser(userIdInput, passwordInput)
+        if (login) {
+            Toast.makeText(context, "로그인 성공", Toast.LENGTH_SHORT).show()
+            userManager.setLoggedIn(true)  // 자동 로그인 설정
+            val intent = Intent(context, MyActivity::class.java).apply {
+                putExtra("email", userIdInput)  // 이메일 데이터 추가
+            }
+            context.startActivity(intent)
+            if (context is ComponentActivity) {
+                context.finish()  // SignInActivity 종료
+            }
+        } else {
+            showDialog = true
+        }
+    }
+
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(darkGray1)
-    ){
+    ) {
         Spacer(modifier = Modifier.height(30.dp))
         TextFieldCustom(
             value = userIdInput,
@@ -123,27 +148,7 @@ private fun SignInPage() {
         )
         Spacer(modifier = Modifier.height(30.dp))
         Button(
-            onClick = {
-                if((userIdInput == "") || (passwordInput == "")) {
-                    showDialog = true
-                    return@Button
-                }
-                val login = userManager.loginUser(userIdInput, passwordInput)
-                if(login) {
-                    Toast.makeText(context, "로그인 성공", Toast.LENGTH_SHORT).show()
-                    /** 자동 로그인 */
-                    userManager.setLoggedIn(true)
-                    /** MyActivity 화면 이동 */
-                    val intent = Intent(context, MyActivity::class.java).apply {
-                        putExtra("email", userIdInput)  // "email" 키로 이메일 데이터 추가
-                    }
-                    context.startActivity(intent)
-                    /** SignInActivity 종료 */
-                    if (context is ComponentActivity) context.finish()
-                } else {
-                    showDialog = true
-                }
-            },
+            onClick = { handleLoginClick() },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
@@ -161,7 +166,9 @@ private fun SignInPage() {
         }
         Spacer(modifier = Modifier.height(10.dp))
         Row(
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
             Text(
@@ -213,7 +220,9 @@ private fun SignInPage() {
         }
         Spacer(modifier = Modifier.height(30.dp))
         Row(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Spacer(
@@ -321,14 +330,13 @@ private fun SignInPage() {
 }
 
 
-
 @Preview(showBackground = true)
 @Composable
 fun SignInPagePreview() {
     ANDANDROIDTheme {
         Scaffold(
             topBar = {
-                TopBarCustom (
+                TopBarCustom(
                     titleContent = {
                         Image(
                             painter = painterResource(id = R.drawable.wavve_icon),
