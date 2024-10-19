@@ -1,12 +1,12 @@
-package org.sopt.and
+package org.sopt.and.ui
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import org.sopt.and.data.PreferencesManager
 import org.sopt.and.data.UserManager
-import org.sopt.and.ui.myPage.MyActivity
-import org.sopt.and.ui.signIn.SignInActivity
+import org.sopt.and.ui.screen.myPage.composable.MyActivity
+import org.sopt.and.ui.screen.signIn.composable.SignInActivity
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,5 +24,6 @@ class MainActivity : ComponentActivity() {
         }
         /** MainActivity 종료 */
         finish()
+
     }
 }

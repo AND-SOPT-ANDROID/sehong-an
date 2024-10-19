@@ -1,4 +1,4 @@
-package org.sopt.and.ui.signUp
+package org.sopt.and.ui.screen.signUp.composable
 
 import android.os.Bundle
 import android.widget.Toast
@@ -51,10 +51,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.sopt.and.R
-import org.sopt.and.components.TextFieldCustom
-import org.sopt.and.components.TopBarCustom
 import org.sopt.and.data.PreferencesManager
 import org.sopt.and.data.UserManager
+import org.sopt.and.ui.components.textField.TextFieldCustom
+import org.sopt.and.ui.components.topBar.TopBarCustom
 import org.sopt.and.ui.theme.ANDANDROIDTheme
 import org.sopt.and.ui.theme.BlueBtnColor
 import org.sopt.and.ui.theme.darkGray1

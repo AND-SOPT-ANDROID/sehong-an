@@ -1,4 +1,4 @@
-package org.sopt.and.ui.myPage
+package org.sopt.and.ui.screen.myPage.composable
 
 import android.content.Intent
 import android.os.Bundle
@@ -49,7 +49,7 @@ import androidx.compose.ui.unit.sp
 import org.sopt.and.R
 import org.sopt.and.data.PreferencesManager
 import org.sopt.and.data.UserManager
-import org.sopt.and.ui.signIn.SignInActivity
+import org.sopt.and.ui.screen.signIn.composable.SignInActivity
 import org.sopt.and.ui.theme.ANDANDROIDTheme
 import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3

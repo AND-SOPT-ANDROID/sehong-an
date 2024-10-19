@@ -1,4 +1,4 @@
-package org.sopt.and.components
+package org.sopt.and.ui.components.topBar
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.height
@@ -28,7 +28,7 @@ fun TopBarCustom(
     hasRightIcon: Boolean = false,
     onBackClicked: () -> Unit = {},
     onCloseClicked: () -> Unit = {}
-    ) {
+) {
     CenterAlignedTopAppBar(
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
             containerColor = darkGray1,
@@ -37,7 +37,7 @@ fun TopBarCustom(
             actionIconContentColor = Color.White,
         ),
         title = { titleContent() },
-        navigationIcon =  {
+        navigationIcon = {
             if (hasLeftIcon) {
                 IconButton(onClick = onBackClicked) {
                     Icon(

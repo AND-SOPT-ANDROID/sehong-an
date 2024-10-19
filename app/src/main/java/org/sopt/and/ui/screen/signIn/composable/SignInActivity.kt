@@ -1,4 +1,4 @@
-package org.sopt.and.ui.signIn
+package org.sopt.and.ui.screen.signIn.composable
 
 import android.content.Intent
 import android.os.Bundle
@@ -44,12 +44,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.sopt.and.R
-import org.sopt.and.components.TextFieldCustom
-import org.sopt.and.components.TopBarCustom
 import org.sopt.and.data.PreferencesManager
 import org.sopt.and.data.UserManager
-import org.sopt.and.ui.myPage.MyActivity
-import org.sopt.and.ui.signUp.SignUpActivity
+import org.sopt.and.ui.components.textField.TextFieldCustom
+import org.sopt.and.ui.components.topBar.TopBarCustom
+import org.sopt.and.ui.screen.myPage.composable.MyActivity
+import org.sopt.and.ui.screen.signUp.composable.SignUpActivity
 import org.sopt.and.ui.theme.ANDANDROIDTheme
 import org.sopt.and.ui.theme.BlueBtnColor
 import org.sopt.and.ui.theme.darkGray1

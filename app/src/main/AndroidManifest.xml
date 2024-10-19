@@ -13,7 +13,7 @@
         android:theme="@style/Theme.ANDANDROID"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.ANDANDROID">
@@ -24,14 +24,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.signIn.SignInActivity"
-            android:exported="false"/>
+            android:name=".ui.screen.signIn.composable.SignInActivity"
+            android:exported="false" />
         <activity
-            android:name=".ui.myPage.MyActivity"
-            android:exported="false"/>
+            android:name=".ui.screen.myPage.composable.MyActivity"
+            android:exported="false" />
         <activity
-            android:name=".ui.signUp.SignUpActivity"
-            android:exported="false"/>
+            android:name=".ui.screen.signUp.composable.SignUpActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

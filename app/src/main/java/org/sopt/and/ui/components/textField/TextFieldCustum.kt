@@ -1,4 +1,4 @@
-package org.sopt.and.components
+package org.sopt.and.ui.components.textField
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -42,7 +42,7 @@ fun TextFieldCustom(
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        placeholder = {Text(text = placeholder, color = darkGray3)},
+        placeholder = { Text(text = placeholder, color = darkGray3) },
         modifier = modifier
             .padding(4.dp)
             .fillMaxWidth(),
@@ -79,7 +79,6 @@ fun TextFieldCustom(
         singleLine = true
     )
 }
-
 
 
 @Preview
