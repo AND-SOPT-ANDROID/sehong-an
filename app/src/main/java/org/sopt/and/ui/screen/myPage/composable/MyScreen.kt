@@ -1,19 +1,14 @@
 package org.sopt.and.ui.screen.myPage.composable
 
 import android.content.Intent
-import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -23,17 +18,12 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
-import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Notifications
-import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Settings
-import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -43,41 +33,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.sopt.and.R
 import org.sopt.and.data.PreferencesManager
 import org.sopt.and.data.UserManager
 import org.sopt.and.ui.screen.signIn.composable.SignInActivity
-import org.sopt.and.ui.theme.ANDANDROIDTheme
 import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
 import org.sopt.and.ui.theme.darkGray5
 
-class MyActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            ANDANDROIDTheme {
-                Scaffold(
-                    content = { innerPadding ->
-                        Box(modifier = Modifier.padding(innerPadding)) {
-                            MyScreen1()
-                        }
-                    },
-                    bottomBar = {
-                        MyBottomNavigationBar()
-                    }
-                )
-            }
-        }
-    }
-}
-
 @Composable
-private fun MyScreen1() {
+fun MyScreen(navController: androidx.navigation.NavHostController) {
     var profileName by remember { mutableStateOf("프로필1") }
     val context = LocalContext.current
     val preferencesManager = PreferencesManager(context)
@@ -243,106 +210,5 @@ private fun MyScreen1() {
                 color = darkGray3,
             )
         }
-    }
-}
-
-@Composable
-fun MyBottomNavigationBar() {
-    /** 현재 메뉴 아이템에서 MyScreen 만 설정되었기 때문에 초기 설정을 2(MyScreen SelectedItem)로 설정 */
-    val initialSelectedItem = 2
-
-    /** 상태 변수: 현재 선택된 아이템의 인덱스 저장 */
-    var selectedItem by remember { mutableIntStateOf(initialSelectedItem) }
-    BottomAppBar(
-        containerColor = Color.Black,
-        contentColor = Color.Gray
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceAround,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            BottomBarItem(
-                itemContent = {
-                    Icon(
-                        imageVector = Icons.Outlined.Home,
-                        contentDescription = "홈",
-                        tint = if (selectedItem == 0) Color.White else Color.Gray,
-                        modifier = Modifier.padding(bottom = 4.dp)
-                    )
-                },
-                label = "홈",
-                isSelected = selectedItem == 0,
-                onClick = { selectedItem = 0 }
-            )
-            BottomBarItem(
-                itemContent = {
-                    Icon(
-                        imageVector = Icons.Outlined.Search,
-                        contentDescription = "찾기",
-                        tint = if (selectedItem == 1) Color.White else Color.Gray,
-                        modifier = Modifier.padding(bottom = 4.dp)
-                    )
-                },
-                label = "검색",
-                isSelected = selectedItem == 1,
-                onClick = { selectedItem = 1 }
-            )
-            BottomBarItem(
-                itemContent = {
-                    Image(
-                        painter = painterResource(id = R.drawable.profile_icon),
-                        contentDescription = "profile_logo",
-                        modifier = Modifier.height(25.dp)
-                    )
-                },
-                label = "프로필",
-                isSelected = selectedItem == 2,
-                onClick = { selectedItem = 2 },
-            )
-        }
-    }
-}
-
-@Composable
-fun BottomBarItem(
-    itemContent: @Composable () -> Unit,
-    label: String,
-    isSelected: Boolean,
-    onClick: () -> Unit
-) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .padding(vertical = 8.dp)
-            .clickable { onClick() }
-            .fillMaxHeight()
-
-    ) {
-        itemContent()
-        Spacer(modifier = Modifier.weight(1f))
-        Text(
-            text = label,
-            color = if (isSelected) Color.White else Color.Gray,
-            fontSize = 14.sp
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun MyScreenPreview() {
-    ANDANDROIDTheme {
-        Scaffold(
-            content = { innerPadding ->
-                Box(modifier = Modifier.padding(innerPadding)) {
-                    MyScreen1()
-                }
-            },
-            bottomBar = {
-                MyBottomNavigationBar()
-            }
-        )
     }
 }

@@ -91,7 +91,7 @@ class SignUpActivity : ComponentActivity() {
                     },
                     content = { innerPadding ->
                         Box(modifier = Modifier.padding(innerPadding)) {
-                            SignUpScreen()
+                            SignUpScreen1()
                         }
                     }
                 )
@@ -101,7 +101,7 @@ class SignUpActivity : ComponentActivity() {
 }
 
 @Composable
-private fun SignUpScreen() {
+private fun SignUpScreen1() {
     val context = LocalContext.current
 
     /** Email 입력값 */
@@ -424,15 +424,13 @@ fun SignUpScreenPreview() {
                     hasLeftIcon = false,
                     hasRightIcon = true,
                     onCloseClicked = {
-                        if (context is ComponentActivity) {
-                            context.finish()
-                        }
+
                     }
                 )
             },
             content = { innerPadding ->
                 Box(modifier = Modifier.padding(innerPadding)) {
-                    SignUpScreen()
+                    SignUpScreen1()
                 }
             }
         )

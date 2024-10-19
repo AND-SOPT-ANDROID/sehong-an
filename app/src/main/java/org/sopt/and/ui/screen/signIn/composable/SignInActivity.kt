@@ -78,7 +78,7 @@ class SignInActivity : ComponentActivity() {
                     },
                     content = { innerPadding ->
                         Box(modifier = Modifier.padding(innerPadding)) {
-                            SignInScreen()
+                            SignInScreen1()
                         }
                     }
                 )
@@ -88,7 +88,7 @@ class SignInActivity : ComponentActivity() {
 }
 
 @Composable
-private fun SignInScreen() {
+private fun SignInScreen1() {
     var userIdInput by remember { mutableStateOf("") }
     var passwordInput by remember { mutableStateOf("") }
     val context = LocalContext.current
@@ -351,7 +351,7 @@ fun SignInScreenPreview() {
             },
             content = { innerPadding ->
                 Box(modifier = Modifier.padding(innerPadding)) {
-                    SignInScreen()
+                    SignInScreen1()
                 }
             }
         )
