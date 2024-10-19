@@ -1,7 +1,5 @@
 package org.sopt.and.ui.screen.myPage.composable
 
-import android.content.Intent
-import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -38,7 +36,6 @@ import androidx.compose.ui.unit.sp
 import org.sopt.and.R
 import org.sopt.and.data.PreferencesManager
 import org.sopt.and.data.UserManager
-import org.sopt.and.ui.screen.signIn.composable.SignInActivity
 import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
 import org.sopt.and.ui.theme.darkGray5
@@ -98,9 +95,7 @@ fun MyScreen(navController: androidx.navigation.NavHostController) {
                     .clickable {
                         userManager.logoutUser()
                         userManager.setLoggedIn(false)
-                        val intent = Intent(context, SignInActivity::class.java)
-                        context.startActivity(intent)
-                        if (context is ComponentActivity) context.finish()
+                        navController.navigate("signIn")
                     }
             )
         }
