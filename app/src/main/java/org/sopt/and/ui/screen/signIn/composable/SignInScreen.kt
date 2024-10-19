@@ -1,8 +1,6 @@
 package org.sopt.and.ui.screen.signIn.composable
 
-import android.content.Intent
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -44,7 +42,6 @@ import org.sopt.and.data.PreferencesManager
 import org.sopt.and.data.UserManager
 import org.sopt.and.ui.components.textField.TextFieldCustom
 import org.sopt.and.ui.components.topBar.TopBarCustom
-import org.sopt.and.ui.screen.myPage.composable.MyActivity
 import org.sopt.and.ui.theme.BlueBtnColor
 import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
@@ -74,12 +71,13 @@ fun SignInScreen(navController: androidx.navigation.NavHostController) {
         if (login) {
             Toast.makeText(context, "로그인 성공", Toast.LENGTH_SHORT).show()
             userManager.setLoggedIn(true)  // 자동 로그인 설정
-            val intent = Intent(context, MyActivity::class.java).apply {
-                putExtra("email", userIdInput)  // 이메일 데이터 추가
-            }
-            context.startActivity(intent)
-            if (context is ComponentActivity) {
-                context.finish()  // SignInActivity 종료
+            navController.navigate("myPage") {
+                /** 현재 스택에 쌓인 모든 화면을 제거하고 myPage 화면으로 이동 */
+                popUpTo(navController.graph.startDestinationId) {
+                    inclusive = true // 시작 지점도 포함하여 모두 제거
+                }
+                /** myPage 화면을 스택에 중복해서 쌓지 않음 */
+                launchSingleTop = true
             }
         } else {
             showDialog = true
