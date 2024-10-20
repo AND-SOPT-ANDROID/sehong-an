@@ -15,7 +15,9 @@ import org.sopt.and.ui.screen.signIn.composable.SignInScreen
 import org.sopt.and.ui.screen.signUp.composable.SignUpScreen
 
 @Composable
-fun WavveNavigation() {
+fun WavveNavigation(
+    userManager: UserManager
+) {
     val navController = rememberNavController()
     val startDestination = remember { mutableStateOf("signIn") }
     val context = LocalContext.current
