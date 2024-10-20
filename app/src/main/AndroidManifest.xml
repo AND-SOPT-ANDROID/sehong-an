@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".AndSopt"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -24,13 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.screen.signIn.composable.SignInActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.screen.myPage.composable.MyActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.screen.signUp.composable.SignUpActivity"
             android:exported="false" />
     </application>
 
