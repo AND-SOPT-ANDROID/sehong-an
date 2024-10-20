@@ -1,4 +1,4 @@
-package org.sopt.and.ui.navigation
+package org.sopt.and.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

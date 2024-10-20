@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material3.Surface
 import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.and.data.UserManager
-import org.sopt.and.ui.navigation.WavveNavigation
+import org.sopt.and.navigation.WavveNavigation
 import org.sopt.and.ui.theme.ANDANDROIDTheme
 import javax.inject.Inject
 
