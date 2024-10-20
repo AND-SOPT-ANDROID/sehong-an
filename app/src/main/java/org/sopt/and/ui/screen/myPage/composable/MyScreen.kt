@@ -21,10 +21,8 @@ import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,20 +31,25 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.and.R
 import org.sopt.and.data.PreferencesManager
 import org.sopt.and.data.UserManager
+import org.sopt.and.ui.screen.myPage.viewmodel.MyScreenViewModel
 import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
 import org.sopt.and.ui.theme.darkGray5
 
 @Composable
-fun MyScreen(navController: androidx.navigation.NavHostController) {
-    var profileName by remember { mutableStateOf("프로필1") }
+fun MyScreen(
+    navController: androidx.navigation.NavHostController,
+    viewModel: MyScreenViewModel = hiltViewModel()
+) {
+    val profileName by viewModel.profileName.collectAsState()
     val context = LocalContext.current
     val preferencesManager = PreferencesManager(context)
     val userManager = UserManager(preferencesManager)
-    profileName = userManager.getUserEmail() ?: "프로필1"
+
     /** 스크롤이 가능하도록 scrollState 설정 */
     val scrollState = rememberScrollState()
     Column(
@@ -93,8 +96,7 @@ fun MyScreen(navController: androidx.navigation.NavHostController) {
                 modifier = Modifier
                     .padding(bottom = 4.dp)
                     .clickable {
-                        userManager.logoutUser()
-                        userManager.setLoggedIn(false)
+                        viewModel.logout()
                         navController.navigate("signIn")
                     }
             )
