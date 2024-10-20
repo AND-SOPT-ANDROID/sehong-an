@@ -1,6 +1,5 @@
 package org.sopt.and.ui.screen.myPage.composable
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -49,7 +48,6 @@ import androidx.compose.ui.unit.sp
 import org.sopt.and.R
 import org.sopt.and.data.PreferencesManager
 import org.sopt.and.data.UserManager
-import org.sopt.and.ui.screen.signIn.composable.SignInActivity
 import org.sopt.and.ui.theme.ANDANDROIDTheme
 import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
@@ -131,9 +129,6 @@ private fun MyScreen1() {
                     .clickable {
                         userManager.logoutUser()
                         userManager.setLoggedIn(false)
-                        val intent = Intent(context, SignInActivity::class.java)
-                        context.startActivity(intent)
-                        if (context is ComponentActivity) context.finish()
                     }
             )
         }
