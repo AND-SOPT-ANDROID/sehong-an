@@ -2,8 +2,9 @@ package org.sopt.and.data
 
 import android.content.Context
 import android.content.SharedPreferences
+import javax.inject.Inject
 
-class PreferencesManager(context: Context) {
+class PreferencesManager @Inject constructor(context: Context) {
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
 

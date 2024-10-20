@@ -1,6 +1,8 @@
 package org.sopt.and.data
 
-class UserManager(private val preferencesManager: PreferencesManager) {
+import javax.inject.Inject
+
+class UserManager @Inject constructor(private val preferencesManager: PreferencesManager) {
     companion object {
         private const val IS_LOGGED_IN = "IS_LOGGED_IN"
         private const val USERNAME = "USERNAME"
