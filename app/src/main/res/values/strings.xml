@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Wavve</string>
+    <string name="title_sign_up">회원가입</string>
+    <string name="title_home">홈</string>
+    <string name="title_my">MY</string>
+    <string name="title_search">검색</string>
     <string name="login_description">SNS계정으로 간편하게 가입하여 서비스를 이용하실 수 있습니다. \n기존 POOQ 계정 또는 Wavve 계정과는 연동되지 않으니 이용에 참고하세요.</string>
     <string name="sign_up_email_default">로그인, 비밀번호 찾기, 알림에 사용되니 정확한 이메일을 입력해 주세요.</string>
     <string name="sign_up_email_error1">5~50자의 이메일 형식으로 입력해 주세요.</string>
