@@ -56,7 +56,8 @@ class MainActivity : ComponentActivity() {
                     // Scaffold의 패딩을 content에 적용
                     MainNavigation(
                         navController = navController,
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier.padding(innerPadding),
+                        userManager = userManager
                     )
                 }
             }
