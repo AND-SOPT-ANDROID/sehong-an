@@ -3,8 +3,10 @@ package org.sopt.and.navigation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
@@ -20,7 +22,9 @@ fun BottomNavigation(navController: NavController) {
         BottomNavItem.Search,
         BottomNavItem.My
     )
-    NavigationBar {
+    NavigationBar(
+        containerColor = Color.Black
+    ) {
         items.forEach { item ->
             NavigationBarItem(
                 icon = {
@@ -35,7 +39,14 @@ fun BottomNavigation(navController: NavController) {
                     navController.navigate(item.route) {
                         launchSingleTop = true
                     }
-                }
+                },
+                colors = NavigationBarItemDefaults.colors(
+                    selectedIconColor = Color.White,
+                    unselectedIconColor = Color.Gray,
+                    selectedTextColor = Color.White,
+                    unselectedTextColor = Color.Gray,
+                    indicatorColor = Color.Transparent
+                )
             )
         }
     }
