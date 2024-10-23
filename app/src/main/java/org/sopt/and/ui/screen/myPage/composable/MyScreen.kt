@@ -26,15 +26,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.and.R
-import org.sopt.and.data.PreferencesManager
-import org.sopt.and.data.UserManager
 import org.sopt.and.ui.screen.myPage.viewmodel.MyScreenViewModel
 import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
@@ -43,17 +40,15 @@ import org.sopt.and.ui.theme.darkGray5
 @Composable
 fun MyScreen(
     navController: androidx.navigation.NavHostController,
+    modifier: Modifier,
     viewModel: MyScreenViewModel = hiltViewModel()
 ) {
     val profileName by viewModel.profileName.collectAsState()
-    val context = LocalContext.current
-    val preferencesManager = PreferencesManager(context)
-    val userManager = UserManager(preferencesManager)
 
     /** 스크롤이 가능하도록 scrollState 설정 */
     val scrollState = rememberScrollState()
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(darkGray5)
             .verticalScroll(scrollState)
