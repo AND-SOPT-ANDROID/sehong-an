@@ -92,7 +92,7 @@ fun MyScreen(
                     .padding(bottom = 4.dp)
                     .clickable {
                         viewModel.logout()
-                        navController.navigate("signIn")
+                        navController.navigate("login")
                     }
             )
         }

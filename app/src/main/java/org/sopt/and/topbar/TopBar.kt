@@ -97,7 +97,7 @@ fun TopBar(navController: NavHostController, currentRoute: String?) {
                         tint = Color.White
                     )
                 },
-                onRightIconClicked = { println("Right icon clicked") }
+                onRightIconClicked = { navController.navigate("login") }
             )
         }
 
