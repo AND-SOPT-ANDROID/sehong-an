@@ -1,6 +1,7 @@
 package org.sopt.and.ui.screen.signUp.viewmodel
 
 import android.content.Context
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -25,8 +26,9 @@ class SignUpViewModel @Inject constructor(
         private set
 
     /** 회원가입 가능 여부 */
-    var isEnabled by mutableStateOf(false)
-        private set
+    val isEnabled by derivedStateOf {
+        isEmailValid && isPasswordValid && userIdInput.isNotEmpty() && passwordInput.isNotEmpty()
+    }
 
     /** Email Valid 여부 */
     var isEmailValid by mutableStateOf(true)
@@ -55,13 +57,11 @@ class SignUpViewModel @Inject constructor(
     fun onUserIdInputChange(value: String) {
         userIdInput = value
         validateEmail()
-        updateIsEnabled()
     }
 
     fun onPasswordInputChange(value: String) {
         passwordInput = value
         validatePassword()
-        updateIsEnabled()
     }
 
     fun onEmailFocusChange(isFocused: Boolean) {
@@ -94,11 +94,6 @@ class SignUpViewModel @Inject constructor(
             if (isPasswordValid) context.getString(R.string.sign_up_password_default) else context.getString(
                 R.string.sign_up_password_error1
             )
-    }
-
-    private fun updateIsEnabled() {
-        isEnabled =
-            isEmailValid && isPasswordValid && userIdInput.isNotEmpty() && passwordInput.isNotEmpty()
     }
 
     fun registerUser() {
