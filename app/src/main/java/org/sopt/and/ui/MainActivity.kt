@@ -3,6 +3,7 @@ package org.sopt.and.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -13,18 +14,16 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import org.sopt.and.data.UserManager
 import org.sopt.and.navigation.BottomNavItem
 import org.sopt.and.navigation.BottomNavigation
 import org.sopt.and.navigation.MainNavigation
 import org.sopt.and.topbar.TopBar
 import org.sopt.and.ui.theme.ANDANDROIDTheme
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject
-    lateinit var userManager: UserManager
+    // ViewModel 인스턴스 생성
+    private val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -57,7 +56,7 @@ class MainActivity : ComponentActivity() {
                     MainNavigation(
                         navController = navController,
                         modifier = Modifier.padding(innerPadding),
-                        userManager = userManager
+                        userManager = viewModel.userManager
                     )
                 }
             }
