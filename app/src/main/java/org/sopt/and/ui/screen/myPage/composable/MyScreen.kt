@@ -1,9 +1,6 @@
 package org.sopt.and.ui.screen.myPage.composable
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,21 +8,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
-import androidx.compose.material.icons.outlined.Notifications
-import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,6 +25,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.sopt.and.R
 import org.sopt.and.ui.components.container.ProfileContainer
+import org.sopt.and.ui.components.text.ColumnIconText
 import org.sopt.and.ui.screen.myPage.viewmodel.MyScreenViewModel
 import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
@@ -128,25 +121,11 @@ fun MyScreen(
             fontWeight = FontWeight.Bold,
             fontSize = 18.sp
         )
-        Spacer(modifier = Modifier.height(20.dp))
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.exclamation_mark_icon),
-                contentDescription = "exclamation_mark_icon",
-                modifier = Modifier.height(60.dp)
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-            Text(
-                text = "시청내역이 없어요.",
-                color = darkGray3,
-            )
-        }
+        ColumnIconText(
+            text = "시청내역이 없어요.",
+            iconResId = R.drawable.exclamation_mark_icon,
+            iconContentDescription = "exclamation_mark_icon"
+        )
         Text(
             text = "관심 프로그램",
             color = Color.White,
@@ -155,24 +134,11 @@ fun MyScreen(
             fontWeight = FontWeight.Bold,
             fontSize = 18.sp
         )
-        Spacer(modifier = Modifier.height(20.dp))
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.exclamation_mark_icon),
-                contentDescription = "exclamation_mark_icon",
-                modifier = Modifier.height(60.dp)
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-            Text(
-                text = "관심 프로그램이 없어요.",
-                color = darkGray3,
-            )
-        }
+//        Spacer(modifier = Modifier.height(20.dp))
+        ColumnIconText(
+            text = "관심 프로그램이 없어요.",
+            iconResId = R.drawable.exclamation_mark_icon,
+            iconContentDescription = "exclamation_mark_icon"
+        )
     }
 }
