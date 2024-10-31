@@ -43,6 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.and.R
+import org.sopt.and.ui.components.text.TitleText
 import org.sopt.and.ui.components.textField.TextFieldCustom
 import org.sopt.and.ui.screen.signUp.viewmodel.SignUpViewModel
 import org.sopt.and.ui.theme.BlueBtnColor
@@ -69,7 +70,7 @@ fun SignUpScreen(
                 .background(darkGray1)
         ) {
             Spacer(modifier = Modifier.height(30.dp))
-            Text(
+            TitleText(
                 text = buildAnnotatedString {
                     withStyle(style = SpanStyle(color = Color.White, fontSize = 22.sp)) {
                         append("이메일과 비밀번호")
@@ -79,12 +80,7 @@ fun SignUpScreen(
                         append(" Wavve를 즐길 수")
                     }
                     append("있어요!")
-                },
-                lineHeight = 40.sp,
-                fontSize = 22.sp,
-                color = darkGray3,
-                modifier = Modifier
-                    .padding(start = 30.dp)
+                }
             )
             Spacer(modifier = Modifier.height(20.dp))
             TextFieldCustom(
