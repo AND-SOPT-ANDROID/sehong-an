@@ -1,6 +1,7 @@
 package org.sopt.and.ui.screen.home.composable
 
 import android.util.Log
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -49,6 +50,7 @@ import org.sopt.and.ui.screen.home.viewmodel.HomeViewModel
 import org.sopt.and.ui.screen.home.viewmodel.ImageOverviewViewState
 import org.sopt.and.ui.theme.darkGray1
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
     navController: NavHostController,
@@ -70,7 +72,7 @@ fun HomeScreen(
         modifier = modifier
             .background(darkGray1)
     ) {
-        item {
+        stickyHeader {
             HorizontalCategoryList(categories)
         }
         item {
@@ -98,6 +100,7 @@ fun HorizontalCategoryList(categories: List<String>) {
     LazyRow(
         modifier = Modifier
             .fillMaxWidth()
+            .background(darkGray1)
             .padding(vertical = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp) // 텍스트 사이의 간격을 설정합니다.
     ) {
