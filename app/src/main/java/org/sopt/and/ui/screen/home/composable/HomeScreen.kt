@@ -96,12 +96,12 @@ fun HomeScreenContent(
         }
         item {
             AutoSlidingImagePager(
-                modifier = Modifier.fillMaxWidth(),
                 state = pagerState,
                 imageOverviews = imageOverviews,
                 onImageClicked = { imageOverview ->
                     Log.d("HomeScreen", "Image clicked: ${imageOverview.title}")
-                }
+                },
+                modifier = Modifier.fillMaxWidth(),
             )
         }
         item {
@@ -252,10 +252,10 @@ fun ImageItemType2(imageRes: Int, index: Int) {
 
 @Composable
 fun AutoSlidingImagePager(
-    modifier: Modifier = Modifier,
     state: PagerState,
     imageOverviews: List<ImageOverviewViewState>,
-    onImageClicked: (ImageOverviewViewState) -> Unit
+    onImageClicked: (ImageOverviewViewState) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     // 자동 슬라이딩 효과를 추가하는 부분
     LaunchedEffect(state.currentPage) {
