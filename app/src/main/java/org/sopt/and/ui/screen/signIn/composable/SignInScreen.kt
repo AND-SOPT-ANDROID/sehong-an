@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.and.R
-import org.sopt.and.ui.components.textField.TextFieldCustom
+import org.sopt.and.ui.components.textField.FillMaxWidthTextField
 import org.sopt.and.ui.screen.signIn.viewmodel.SignInViewModel
 import org.sopt.and.ui.theme.BlueBtnColor
 import org.sopt.and.ui.theme.darkGray1
@@ -61,13 +61,13 @@ fun SignInScreen(
                 .background(darkGray1)
         ) {
             Spacer(modifier = Modifier.height(30.dp))
-            TextFieldCustom(
+            FillMaxWidthTextField(
                 value = viewModel.userIdInput,
                 placeholder = "아이디 주소 또는 아이디",
                 onValueChange = viewModel::onUserIdInputChange,
                 modifier = Modifier.padding(8.dp)
             )
-            TextFieldCustom(
+            FillMaxWidthTextField(
                 value = viewModel.passwordInput,
                 placeholder = "비밀번호",
                 onValueChange = viewModel::onPasswordInputChange,

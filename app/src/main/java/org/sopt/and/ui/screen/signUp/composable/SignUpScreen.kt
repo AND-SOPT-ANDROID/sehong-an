@@ -44,7 +44,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.and.R
 import org.sopt.and.ui.components.text.TitleText
-import org.sopt.and.ui.components.textField.TextFieldCustom
+import org.sopt.and.ui.components.textField.FillMaxWidthTextField
 import org.sopt.and.ui.screen.signUp.viewmodel.SignUpViewModel
 import org.sopt.and.ui.theme.BlueBtnColor
 import org.sopt.and.ui.theme.darkGray1
@@ -83,7 +83,7 @@ fun SignUpScreen(
                 }
             )
             Spacer(modifier = Modifier.height(20.dp))
-            TextFieldCustom(
+            FillMaxWidthTextField(
                 value = viewModel.userIdInput,
                 placeholder = "wavve@example.com",
                 onValueChange = viewModel::onUserIdInputChange,
@@ -118,7 +118,7 @@ fun SignUpScreen(
                 )
             }
 
-            TextFieldCustom(
+            FillMaxWidthTextField(
                 value = viewModel.passwordInput,
                 placeholder = "Wavve 비밀번호 설정",
                 onValueChange = viewModel::onPasswordInputChange,
