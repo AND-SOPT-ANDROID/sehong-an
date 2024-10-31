@@ -21,7 +21,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -32,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.and.R
+import org.sopt.and.ui.components.text.StrikethroughText
 import org.sopt.and.ui.components.textField.FillMaxWidthTextField
 import org.sopt.and.ui.screen.signIn.viewmodel.SignInViewModel
 import org.sopt.and.ui.theme.BlueBtnColor
@@ -146,33 +146,9 @@ fun SignInScreen(
                 )
             }
             Spacer(modifier = Modifier.height(30.dp))
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Spacer(
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(1.dp)
-                        .padding(end = 8.dp)
-                        .background(Color.DarkGray)
-                )
-                Text(
-                    text = "또는 다른 서비스 계정으로 로그인",
-                    fontSize = 14.sp,
-                    color = Color.Gray,
-                    textAlign = TextAlign.Center
-                )
-                Spacer(
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(1.dp)
-                        .padding(start = 8.dp)
-                        .background(Color.DarkGray)
-                )
-            }
+            StrikethroughText(
+                text = "또는 다른 서비스 계정으로 로그인"
+            )
             Spacer(modifier = Modifier.height(35.dp))
             Row(
                 modifier = Modifier
