@@ -21,7 +21,6 @@ import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,6 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.sopt.and.R
 import org.sopt.and.ui.screen.myPage.viewmodel.MyScreenViewModel
 import org.sopt.and.ui.theme.darkGray1
@@ -43,7 +43,7 @@ fun MyScreen(
     modifier: Modifier,
     viewModel: MyScreenViewModel = hiltViewModel()
 ) {
-    val profileName by viewModel.profileName.collectAsState()
+    val profileName by viewModel.profileName.collectAsStateWithLifecycle()
 
     /** 스크롤이 가능하도록 scrollState 설정 */
     val scrollState = rememberScrollState()
