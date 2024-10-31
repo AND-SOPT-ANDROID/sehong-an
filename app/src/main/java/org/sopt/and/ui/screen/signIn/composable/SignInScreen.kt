@@ -15,8 +15,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -30,11 +28,11 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.and.R
 import org.sopt.and.data.SocialLogin
+import org.sopt.and.ui.components.buttom.FillMaxWidthButton
 import org.sopt.and.ui.components.icon.SocialLoginIcon
 import org.sopt.and.ui.components.text.StrikethroughText
 import org.sopt.and.ui.components.textField.FillMaxWidthTextField
 import org.sopt.and.ui.screen.signIn.viewmodel.SignInViewModel
-import org.sopt.and.ui.theme.BlueBtnColor
 import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
 
@@ -69,23 +67,10 @@ fun SignInScreen(
                 isPassword = true,
             )
             Spacer(modifier = Modifier.height(30.dp))
-            Button(
-                onClick = { viewModel.handleLoginClick(navController) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                colors = ButtonDefaults.buttonColors(
-                    BlueBtnColor,
-                    Color.White,
-                )
-            ) {
-                Text(
-                    text = "로그인",
-                    fontSize = 18.sp,
-                    color = Color.White,
-                    modifier = Modifier.padding(8.dp)
-                )
-            }
+            FillMaxWidthButton(
+                text = "로그인",
+                onClick = { viewModel.handleLoginClick(navController) }
+            )
             Spacer(modifier = Modifier.height(10.dp))
             Row(
                 modifier = Modifier
@@ -102,7 +87,6 @@ fun SignInScreen(
                         .weight(1f)
                         .clickable { /* 아이디 찾기 */ }
                 )
-
                 Text(
                     text = "|",
                     color = darkGray3,
@@ -126,7 +110,6 @@ fun SignInScreen(
                     textAlign = TextAlign.Center,
                     modifier = Modifier.weight(0.2f)
                 )
-
                 Text(
                     text = "회원가입",
                     color = darkGray3,
