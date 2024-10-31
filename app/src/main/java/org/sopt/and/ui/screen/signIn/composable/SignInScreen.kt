@@ -39,6 +39,14 @@ import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
 
 
+val icons = listOf(
+    Pair(R.drawable.kakao_icon, "kakao_icon"),
+    Pair(R.drawable.t_icon, "t_world_icon"),
+    Pair(R.drawable.naver_icon, "naver_icon"),
+    Pair(R.drawable.facebook_icon, "facebook_icon"),
+    Pair(R.drawable.apple_icon, "apple_icon")
+)
+
 @Composable
 fun SignInScreen(
     navController: androidx.navigation.NavHostController,
@@ -172,46 +180,19 @@ fun SignInScreen(
                     .padding(horizontal = 16.dp),
                 horizontalArrangement = Arrangement.Center,
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.kakao_icon),
-                    contentDescription = "kakao_icon",
-                    modifier = Modifier
-                        .size(50.dp)
-                        .clip(CircleShape)
-                )
-                Spacer(modifier = Modifier.width(18.dp))
-                Image(
-                    painter = painterResource(id = R.drawable.t_icon),
-                    contentDescription = "t_world_icon",
-                    modifier = Modifier
-                        .size(50.dp)
-                        .clip(CircleShape)
-                )
-                Spacer(modifier = Modifier.width(18.dp))
-                Image(
-                    painter = painterResource(id = R.drawable.naver_icon),
-                    contentDescription = "naver_icon",
-                    modifier = Modifier
-                        .size(50.dp)
-                        .clip(CircleShape)
-                )
-                Spacer(modifier = Modifier.width(18.dp))
-                Image(
-                    painter = painterResource(id = R.drawable.facebook_icon),
-                    contentDescription = "facebook_icon",
-                    modifier = Modifier
-                        .size(50.dp)
-                        .clip(CircleShape)
-                )
-                Spacer(modifier = Modifier.width(18.dp))
-                Image(
-                    painter = painterResource(id = R.drawable.apple_icon),
-                    contentDescription = "apple_icon",
-                    modifier = Modifier
-                        .size(50.dp)
-                        .clip(CircleShape)
-                        .background(Color.White)
-                )
+                icons.forEachIndexed { index, (iconRes, description) ->
+                    Image(
+                        painter = painterResource(id = iconRes),
+                        contentDescription = description,
+                        modifier = Modifier
+                            .size(50.dp)
+                            .clip(CircleShape)
+                            .then(if (description == "apple_icon") Modifier.background(Color.White) else Modifier)
+                    )
+                    if (index < icons.size - 1) {
+                        Spacer(modifier = Modifier.width(18.dp))
+                    }
+                }
             }
             Spacer(modifier = Modifier.height(20.dp))
             Row(
