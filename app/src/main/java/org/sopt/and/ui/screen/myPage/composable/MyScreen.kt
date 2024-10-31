@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.sopt.and.R
+import org.sopt.and.ui.components.container.ProfileContainer
 import org.sopt.and.ui.screen.myPage.viewmodel.MyScreenViewModel
 import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
@@ -58,42 +59,13 @@ fun MyScreen(
                 .fillMaxWidth()
                 .background(darkGray1)
                 .padding(top = 15.dp, start = 15.dp, end = 15.dp, bottom = 30.dp),
-
-            verticalAlignment = Alignment.CenterVertically
-
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.profile_icon),
-                contentDescription = "profile_logo",
-                modifier = Modifier.height(60.dp)
-            )
-            Spacer(modifier = Modifier.width(20.dp))
-            Text(
-                text = profileName,
-                color = Color.White,
-            )
-            Text(
-                text = "님",
-                color = Color.White,
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            Icon(
-                imageVector = Icons.Outlined.Notifications,
-                contentDescription = "알림",
-                tint = Color.White,
-                modifier = Modifier.padding(bottom = 4.dp)
-            )
-            Spacer(modifier = Modifier.width(20.dp))
-            Icon(
-                imageVector = Icons.Outlined.Settings,
-                contentDescription = "세팅",
-                tint = Color.White,
-                modifier = Modifier
-                    .padding(bottom = 4.dp)
-                    .clickable {
-                        viewModel.logout()
-                        navController.navigate("login")
-                    }
+            ProfileContainer(
+                profileName,
+                onLogoutClick = {
+                    viewModel.logout()
+                    navController.navigate("login")
+                }
             )
         }
         Text(
