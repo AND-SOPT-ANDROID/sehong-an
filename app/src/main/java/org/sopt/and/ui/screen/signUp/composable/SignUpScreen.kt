@@ -53,7 +53,7 @@ import org.sopt.and.ui.theme.errorColor
 
 @Composable
 fun SignUpScreen(
-    navController: androidx.navigation.NavHostController,
+    onNavigateToSignIn: () -> Unit,
     modifier: Modifier,
     viewModel: SignUpViewModel = hiltViewModel()
 ) {
@@ -264,12 +264,7 @@ fun SignUpScreen(
                 onClick = {
                     viewModel.registerUser()
                     Toast.makeText(context, "회원가입 성공", Toast.LENGTH_SHORT).show()
-                    navController.navigate("login") {
-                        popUpTo(navController.graph.startDestinationId) {
-                            inclusive = true
-                        }
-                        launchSingleTop = true
-                    }
+                    onNavigateToSignIn()
                 },
                 shape = RoundedCornerShape(0.dp),
                 enabled = isEnabled,

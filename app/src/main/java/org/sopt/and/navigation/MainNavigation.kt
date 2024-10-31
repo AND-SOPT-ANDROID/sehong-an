@@ -50,7 +50,14 @@ fun NavGraphBuilder.authGraph(
             route = Screen.SignUp.route
         ) {
             SignUpScreen(
-                navController = navController,
+                onNavigateToSignIn = {
+                    navController.navigate("login") {
+                        popUpTo(navController.graph.startDestinationId) {
+                            inclusive = true
+                        }
+                        launchSingleTop = true
+                    }
+                },
                 modifier = modifier
             )
         }
