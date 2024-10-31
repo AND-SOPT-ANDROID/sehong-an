@@ -56,17 +56,13 @@ fun SignInScreen(
             TextFieldCustom(
                 value = viewModel.userIdInput,
                 placeholder = "아이디 주소 또는 아이디",
-                onValueChange = { value ->
-                    viewModel.onUserIdInputChange(value)
-                },
+                onValueChange = viewModel::onUserIdInputChange,
                 modifier = Modifier.padding(8.dp)
             )
             TextFieldCustom(
                 value = viewModel.passwordInput,
                 placeholder = "비밀번호",
-                onValueChange = { value ->
-                    viewModel.onPasswordInputChange(value)
-                },
+                onValueChange = viewModel::onPasswordInputChange,
                 modifier = Modifier.padding(8.dp),
                 isPassword = true,
             )

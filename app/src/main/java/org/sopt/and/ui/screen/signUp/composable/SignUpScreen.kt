@@ -97,9 +97,7 @@ fun SignUpScreen(
             TextFieldCustom(
                 value = userIdInput,
                 placeholder = "wavve@example.com",
-                onValueChange = { value ->
-                    viewModel.onUserIdInputChange(value)
-                },
+                onValueChange = viewModel::onUserIdInputChange,
                 modifier = Modifier
                     .padding(horizontal = 10.dp)
                     .onFocusChanged { focusState ->
@@ -134,9 +132,7 @@ fun SignUpScreen(
             TextFieldCustom(
                 value = passwordInput,
                 placeholder = "Wavve 비밀번호 설정",
-                onValueChange = { value ->
-                    viewModel.onPasswordInputChange(value)
-                },
+                onValueChange = viewModel::onPasswordInputChange,
                 modifier = Modifier
                     .padding(8.dp)
                     .onFocusChanged { focusState ->
