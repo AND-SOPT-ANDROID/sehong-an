@@ -8,12 +8,14 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import org.sopt.and.data.UserManager
 import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val userManager: UserManager
+    private val userManager: UserManager,
+    @ApplicationContext private val myContext: Context
 ) : ViewModel() {
     var userIdInput by mutableStateOf("")
         private set
@@ -30,14 +32,14 @@ class SignInViewModel @Inject constructor(
         passwordInput = newInput
     }
 
-    fun handleLoginClick(navController: NavHostController, context: Context) {
+    fun handleLoginClick(navController: NavHostController) {
         if (userIdInput.isEmpty() || passwordInput.isEmpty()) {
             showDialog = true
             return
         }
         val login = userManager.loginUser(userIdInput, passwordInput)
         if (login) {
-            Toast.makeText(context, "로그인 성공", Toast.LENGTH_SHORT).show()
+            Toast.makeText(myContext, "로그인 성공", Toast.LENGTH_SHORT).show()
             userManager.setLoggedIn(true)  // 자동 로그인 설정
             navController.navigate("my") {
                 popUpTo(navController.graph.startDestinationId) {

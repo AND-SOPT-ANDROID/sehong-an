@@ -25,7 +25,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -46,7 +45,6 @@ fun SignInScreen(
     modifier: Modifier,
     viewModel: SignInViewModel = hiltViewModel()
 ) {
-    val context = LocalContext.current
     val loginDescription = stringResource(id = R.string.login_description)
     Box(modifier = modifier) {
         Column(
@@ -74,7 +72,7 @@ fun SignInScreen(
             )
             Spacer(modifier = Modifier.height(30.dp))
             Button(
-                onClick = { viewModel.handleLoginClick(navController, context) },
+                onClick = { viewModel.handleLoginClick(navController) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp),
