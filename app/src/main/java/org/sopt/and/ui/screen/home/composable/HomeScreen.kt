@@ -100,7 +100,7 @@ fun HomeScreenContent(
                 state = pagerState,
                 imageOverviews = imageOverviews,
                 onImageClicked = { imageOverview ->
-                    println("Image clicked: ${imageOverview.title}")
+                    Log.d("HomeScreen", "Image clicked: ${imageOverview.title}")
                 }
             )
         }

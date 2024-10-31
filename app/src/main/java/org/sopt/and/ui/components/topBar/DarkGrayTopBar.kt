@@ -1,5 +1,6 @@
 package org.sopt.and.ui.components.topBar
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -107,8 +108,8 @@ fun SignInTopBarCustomPreview() {
                     modifier = Modifier.size(80.dp)
                 )
             },
-            onLeftIconClicked = { println("Left icon clicked") },
-            onCenterIconClicked = { println("Center icon clicked") }
+            onLeftIconClicked = { Log.d("DarkGrayTopBar", "Left icon clicked") },
+            onCenterIconClicked = { Log.d("DarkGrayTopBar", "Center icon clicked") }
         )
     }
 }
@@ -134,8 +135,8 @@ fun HomeTopBarCustomPreview() {
                     tint = Color.White
                 )
             },
-            onLeftIconClicked = { println("Left icon clicked") },
-            onRightIconClicked = { println("Right icon clicked") }
+            onLeftIconClicked = { Log.d("DarkGrayTopBar", "Left icon clicked") },
+            onRightIconClicked = { Log.d("DarkGrayTopBar", "Right icon clicked") }
         )
     }
 }
@@ -154,7 +155,7 @@ fun SignUpTopBarCustomPreview() {
                     tint = Color.White
                 )
             },
-            onRightIconClicked = { println("Right icon clicked") }
+            onRightIconClicked = { Log.d("DarkGrayTopBar", "Right icon clicked") }
         )
     }
 }

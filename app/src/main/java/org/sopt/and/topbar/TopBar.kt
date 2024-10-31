@@ -1,18 +1,15 @@
 package org.sopt.and.topbar
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.KeyboardArrowLeft
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,7 +17,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import org.sopt.and.R
 import org.sopt.and.navigation.BottomNavItem
 import org.sopt.and.navigation.Screen
@@ -48,8 +44,8 @@ fun TopBar(navController: NavHostController, currentRoute: String?) {
                         tint = Color.White
                     )
                 },
-                onLeftIconClicked = { println("Left icon clicked") },
-                onRightIconClicked = { println("Right icon clicked") }
+                onLeftIconClicked = { Log.d("TopBar", "Left icon clicked") },
+                onRightIconClicked = { Log.d("TopBar", "Right icon clicked") }
             )
         }
 
@@ -81,8 +77,8 @@ fun TopBar(navController: NavHostController, currentRoute: String?) {
                         modifier = Modifier.size(80.dp)
                     )
                 },
-                onLeftIconClicked = { println("Left icon clicked") },
-                onCenterIconClicked = { println("Center icon clicked") }
+                onLeftIconClicked = { Log.d("TopBar", "Left icon clicked") },
+                onCenterIconClicked = { Log.d("TopBar", "Center icon clicked") }
             )
         }
 
@@ -128,8 +124,8 @@ fun PreviewHomeTopAppBar() {
                 tint = Color.White
             )
         },
-        onLeftIconClicked = { println("Left icon clicked") },
-        onRightIconClicked = { println("Right icon clicked") }
+        onLeftIconClicked = { Log.d("TopBar", "Left icon clicked") },
+        onRightIconClicked = { Log.d("TopBar", "Right icon clicked") }
     )
 }
 
@@ -155,8 +151,8 @@ fun PreviewSignInTopAppBar() {
                 modifier = Modifier.size(120.dp)
             )
         },
-        onLeftIconClicked = { println("Left icon clicked") },
-        onCenterIconClicked = { println("Center icon clicked") }
+        onLeftIconClicked = { Log.d("TopBar", "Left icon clicked") },
+        onCenterIconClicked = { Log.d("TopBar", "Center icon clicked") }
     )
 }
 
@@ -174,6 +170,6 @@ fun PreviewSignUpTopAppBar() {
                 tint = Color.White
             )
         },
-        onRightIconClicked = { println("Right icon clicked") }
+        onRightIconClicked = { Log.d("TopBar", "Right icon clicked") }
     )
 }
