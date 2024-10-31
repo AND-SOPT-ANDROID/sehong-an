@@ -1,6 +1,5 @@
 package org.sopt.and.ui.screen.signIn.composable
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -24,13 +23,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.and.R
+import org.sopt.and.data.SocialLogin
+import org.sopt.and.ui.components.icon.SocialLoginIcon
 import org.sopt.and.ui.components.text.StrikethroughText
 import org.sopt.and.ui.components.textField.FillMaxWidthTextField
 import org.sopt.and.ui.screen.signIn.viewmodel.SignInViewModel
@@ -39,13 +39,7 @@ import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
 
 
-val icons = listOf(
-    Pair(R.drawable.kakao_icon, "kakao_icon"),
-    Pair(R.drawable.t_icon, "t_world_icon"),
-    Pair(R.drawable.naver_icon, "naver_icon"),
-    Pair(R.drawable.facebook_icon, "facebook_icon"),
-    Pair(R.drawable.apple_icon, "apple_icon")
-)
+val icons = SocialLogin.entries
 
 @Composable
 fun SignInScreen(
@@ -156,14 +150,18 @@ fun SignInScreen(
                     .padding(horizontal = 16.dp),
                 horizontalArrangement = Arrangement.Center,
             ) {
-                icons.forEachIndexed { index, (iconRes, description) ->
-                    Image(
-                        painter = painterResource(id = iconRes),
-                        contentDescription = description,
+                icons.forEachIndexed { index, socialLogin ->
+                    SocialLoginIcon(
+                        iconRes = socialLogin.iconResId,
+                        description = socialLogin.description,
                         modifier = Modifier
                             .size(50.dp)
                             .clip(CircleShape)
-                            .then(if (description == "apple_icon") Modifier.background(Color.White) else Modifier)
+                            .then(
+                                if (socialLogin.description == "apple_icon") Modifier.background(
+                                    Color.White
+                                ) else Modifier
+                            )
                     )
                     if (index < icons.size - 1) {
                         Spacer(modifier = Modifier.width(18.dp))

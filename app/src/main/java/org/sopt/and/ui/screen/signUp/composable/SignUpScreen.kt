@@ -1,7 +1,6 @@
 package org.sopt.and.ui.screen.signUp.composable
 
 import android.widget.Toast
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -41,6 +40,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.and.R
+import org.sopt.and.data.SocialLogin
+import org.sopt.and.ui.components.icon.SocialLoginIcon
 import org.sopt.and.ui.components.text.LabeledIconText
 import org.sopt.and.ui.components.text.StrikethroughText
 import org.sopt.and.ui.components.text.TitleText
@@ -50,6 +51,8 @@ import org.sopt.and.ui.theme.BlueBtnColor
 import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
 import org.sopt.and.ui.theme.darkGray4
+
+val icons = SocialLogin.entries
 
 @Composable
 fun SignUpScreen(
@@ -107,7 +110,6 @@ fun SignUpScreen(
                 color = darkGray3,
                 fontSize = 13.sp
             )
-
             FillMaxWidthTextField(
                 value = viewModel.passwordInput,
                 placeholder = "Wavve 비밀번호 설정",
@@ -144,46 +146,23 @@ fun SignUpScreen(
                     .padding(horizontal = 16.dp),
                 horizontalArrangement = Arrangement.Center,
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.kakao_icon),
-                    contentDescription = "kakao_icon",
-                    modifier = Modifier
-                        .size(50.dp)
-                        .clip(CircleShape)
-                )
-                Spacer(modifier = Modifier.width(18.dp))
-                Image(
-                    painter = painterResource(id = R.drawable.t_icon),
-                    contentDescription = "t_world_icon",
-                    modifier = Modifier
-                        .size(50.dp)
-                        .clip(CircleShape)
-                )
-                Spacer(modifier = Modifier.width(18.dp))
-                Image(
-                    painter = painterResource(id = R.drawable.naver_icon),
-                    contentDescription = "naver_icon",
-                    modifier = Modifier
-                        .size(50.dp)
-                        .clip(CircleShape)
-                )
-                Spacer(modifier = Modifier.width(18.dp))
-                Image(
-                    painter = painterResource(id = R.drawable.facebook_icon),
-                    contentDescription = "facebook_icon",
-                    modifier = Modifier
-                        .size(50.dp)
-                        .clip(CircleShape)
-                )
-                Spacer(modifier = Modifier.width(18.dp))
-                Image(
-                    painter = painterResource(id = R.drawable.apple_icon),
-                    contentDescription = "apple_icon",
-                    modifier = Modifier
-                        .size(50.dp)
-                        .clip(CircleShape)
-                        .background(Color.White)
-                )
+                icons.forEachIndexed { index, socialLogin ->
+                    SocialLoginIcon(
+                        iconRes = socialLogin.iconResId,
+                        description = socialLogin.description,
+                        modifier = Modifier
+                            .size(50.dp)
+                            .clip(CircleShape)
+                            .then(
+                                if (socialLogin.description == "apple_icon") Modifier.background(
+                                    Color.White
+                                ) else Modifier
+                            )
+                    )
+                    if (index < org.sopt.and.ui.screen.signIn.composable.icons.size - 1) {
+                        Spacer(modifier = Modifier.width(18.dp))
+                    }
+                }
             }
             Spacer(modifier = Modifier.height(50.dp))
             Row(
