@@ -176,21 +176,16 @@ fun ImageLazyListType1(imageItems: List<Int>) {
 
 @Composable
 fun ImageItemType1(imageRes: Int) {
-    Box(
+    Image(
+        painter = painterResource(id = imageRes),
+        contentDescription = null,
         modifier = Modifier
             .fillMaxWidth()
+            .height(200.dp)
             .padding(8.dp)
-    ) {
-        Image(
-            painter = painterResource(id = imageRes),
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp)
-                .clip(RoundedCornerShape(8.dp)),
-            contentScale = ContentScale.Crop
-        )
-    }
+            .clip(RoundedCornerShape(8.dp)),
+        contentScale = ContentScale.Crop
+    )
 }
 
 @Composable
