@@ -58,13 +58,6 @@ fun SignUpScreen(
     viewModel: SignUpViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
-    val userIdInput = viewModel.userIdInput
-    val passwordInput = viewModel.passwordInput
-    val isEnabled = viewModel.isEnabled
-    val isEmailValid = viewModel.isEmailValid
-    val isPasswordValid = viewModel.isPasswordValid
-    val signUpEmailDescription = viewModel.signUpEmailDescription
-    val signUpPasswordDescription = viewModel.signUpPasswordDescription
     val loginDescription = stringResource(id = R.string.login_description)
     val focusRequesterEmail = remember { FocusRequester() }
     val focusRequesterPassword = remember { FocusRequester() }
@@ -95,7 +88,7 @@ fun SignUpScreen(
             )
             Spacer(modifier = Modifier.height(20.dp))
             TextFieldCustom(
-                value = userIdInput,
+                value = viewModel.userIdInput,
                 placeholder = "wavve@example.com",
                 onValueChange = viewModel::onUserIdInputChange,
                 modifier = Modifier
@@ -110,7 +103,7 @@ fun SignUpScreen(
                 keyboardActions = KeyboardActions(
                     onNext = { focusRequesterPassword.requestFocus() }
                 ),
-                isValid = isEmailValid,
+                isValid = viewModel.isEmailValid,
             )
             Spacer(modifier = Modifier.height(5.dp))
             Row(
@@ -118,19 +111,19 @@ fun SignUpScreen(
             ) {
                 Text(
                     text = "ⓘ",
-                    color = if (isEmailValid) darkGray3 else errorColor,
+                    color = if (viewModel.isEmailValid) darkGray3 else errorColor,
                     fontSize = 13.sp,
                 )
                 Text(
-                    text = signUpEmailDescription,
-                    color = if (isEmailValid) darkGray3 else errorColor,
+                    text = viewModel.signUpEmailDescription,
+                    color = if (viewModel.isEmailValid) darkGray3 else errorColor,
                     fontSize = 13.sp,
                     modifier = Modifier.padding(start = 5.dp)
                 )
             }
 
             TextFieldCustom(
-                value = passwordInput,
+                value = viewModel.passwordInput,
                 placeholder = "Wavve 비밀번호 설정",
                 onValueChange = viewModel::onPasswordInputChange,
                 modifier = Modifier
@@ -146,19 +139,19 @@ fun SignUpScreen(
                 keyboardActions = KeyboardActions(
                     onDone = { focusManager.clearFocus() }
                 ),
-                isValid = isPasswordValid,
+                isValid = viewModel.isPasswordValid,
             )
             Row(
                 modifier = Modifier.padding(horizontal = 10.dp)
             ) {
                 Text(
                     text = "ⓘ",
-                    color = if (isPasswordValid) darkGray3 else errorColor,
+                    color = if (viewModel.isPasswordValid) darkGray3 else errorColor,
                     fontSize = 13.sp,
                 )
                 Text(
-                    text = signUpPasswordDescription,
-                    color = if (isPasswordValid) darkGray3 else errorColor,
+                    text = viewModel.signUpPasswordDescription,
+                    color = if (viewModel.isPasswordValid) darkGray3 else errorColor,
                     fontSize = 13.sp,
                     modifier = Modifier.padding(start = 5.dp)
                 )
@@ -263,7 +256,7 @@ fun SignUpScreen(
                     onNavigateToSignIn()
                 },
                 shape = RoundedCornerShape(0.dp),
-                enabled = isEnabled,
+                enabled = viewModel.isEnabled,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = BlueBtnColor,
                     disabledContainerColor = darkGray4,
