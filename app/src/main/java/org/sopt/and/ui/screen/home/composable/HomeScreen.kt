@@ -63,11 +63,30 @@ fun HomeScreen(
     val imageItemsType1 by viewModel.imageItemsType1.observeAsState(emptyList())
     val imageItemsType2 by viewModel.imageItemsType2.observeAsState(emptyList())
 
-    val pagerState = rememberPagerState(
-        initialPage = 0, // 첫 번째 페이지부터 시작
-        initialPageOffsetFraction = 0f, // 페이지 오프셋 초기값 설정
-        pageCount = { imageOverviews.size } // 전체 페이지 수를 이미지 목록 크기로 설정
+    HomeScreenContent(
+        modifier = modifier,
+        imageOverviews = imageOverviews,
+        categories = categories,
+        imageItemsType1 = imageItemsType1,
+        imageItemsType2 = imageItemsType2
     )
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun HomeScreenContent(
+    modifier: Modifier,
+    imageOverviews: List<ImageOverviewViewState>,
+    categories: List<String>,
+    imageItemsType1: List<Int>,
+    imageItemsType2: List<Int>
+) {
+    val pagerState = rememberPagerState(
+        initialPage = 0,
+        initialPageOffsetFraction = 0f,
+        pageCount = { imageOverviews.size }
+    )
+
     LazyColumn(
         modifier = modifier
             .background(darkGray1)
@@ -93,7 +112,6 @@ fun HomeScreen(
         }
     }
 }
-
 
 @Composable
 fun HorizontalCategoryList(categories: List<String>) {
