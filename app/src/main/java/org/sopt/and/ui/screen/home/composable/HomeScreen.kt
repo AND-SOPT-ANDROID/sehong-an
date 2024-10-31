@@ -38,6 +38,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -46,6 +47,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.delay
+import org.sopt.and.R
 import org.sopt.and.ui.screen.home.viewmodel.HomeViewModel
 import org.sopt.and.ui.screen.home.viewmodel.ImageOverviewViewState
 import org.sopt.and.ui.theme.darkGray1
@@ -311,7 +313,7 @@ fun AutoSlidingImageItem(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "$currentPage / $totalPage",
+                text = stringResource(R.string.page_indicator, currentPage, totalPage),
                 color = Color.White,
                 style = MaterialTheme.typography.bodySmall
             )

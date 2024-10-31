@@ -10,4 +10,5 @@
     <string name="sign_up_email_error2">입력하신 이메일 주소가 형식에 맞지 않습니다. 다시 입력해 주세요.</string>
     <string name="sign_up_password_default">비밀번호는 8~20자 이내로 영문 대소문자, 숫자, 특수문자 중 3가지 이상 혼용하여 입력해 주세요.</string>
     <string name="sign_up_password_error1">비밀번호는 8~20자 이내로 영문 대소문자, 숫자, 특수문자 중 3가지 이상 혼용하여 입력해 주세요. 연속된 숫자 또는 4자 이상의 동일 문자는 비밀번호로 사용할 수 없습니다.</string>
+    <string name="page_indicator">%1$d / %2$d</string>
 </resources>
