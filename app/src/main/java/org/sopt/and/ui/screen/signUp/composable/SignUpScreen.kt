@@ -43,6 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.and.R
+import org.sopt.and.ui.components.text.LabeledIconText
 import org.sopt.and.ui.components.text.TitleText
 import org.sopt.and.ui.components.textField.FillMaxWidthTextField
 import org.sopt.and.ui.screen.signUp.viewmodel.SignUpViewModel
@@ -50,7 +51,6 @@ import org.sopt.and.ui.theme.BlueBtnColor
 import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
 import org.sopt.and.ui.theme.darkGray4
-import org.sopt.and.ui.theme.errorColor
 
 @Composable
 fun SignUpScreen(
@@ -102,21 +102,12 @@ fun SignUpScreen(
                 isValid = viewModel.isEmailValid,
             )
             Spacer(modifier = Modifier.height(5.dp))
-            Row(
-                modifier = Modifier.padding(horizontal = 10.dp)
-            ) {
-                Text(
-                    text = "ⓘ",
-                    color = if (viewModel.isEmailValid) darkGray3 else errorColor,
-                    fontSize = 13.sp,
-                )
-                Text(
-                    text = viewModel.signUpEmailDescription,
-                    color = if (viewModel.isEmailValid) darkGray3 else errorColor,
-                    fontSize = 13.sp,
-                    modifier = Modifier.padding(start = 5.dp)
-                )
-            }
+            LabeledIconText(
+                text = viewModel.signUpEmailDescription,
+                icon = painterResource(id = R.drawable.exclamation_mark_icon),
+                color = darkGray3,
+                fontSize = 13.sp
+            )
 
             FillMaxWidthTextField(
                 value = viewModel.passwordInput,
@@ -137,21 +128,12 @@ fun SignUpScreen(
                 ),
                 isValid = viewModel.isPasswordValid,
             )
-            Row(
-                modifier = Modifier.padding(horizontal = 10.dp)
-            ) {
-                Text(
-                    text = "ⓘ",
-                    color = if (viewModel.isPasswordValid) darkGray3 else errorColor,
-                    fontSize = 13.sp,
-                )
-                Text(
-                    text = viewModel.signUpPasswordDescription,
-                    color = if (viewModel.isPasswordValid) darkGray3 else errorColor,
-                    fontSize = 13.sp,
-                    modifier = Modifier.padding(start = 5.dp)
-                )
-            }
+            LabeledIconText(
+                text = viewModel.signUpPasswordDescription,
+                icon = painterResource(id = R.drawable.exclamation_mark_icon),
+                color = darkGray3,
+                fontSize = 13.sp
+            )
             Spacer(modifier = Modifier.height(30.dp))
             Row(
                 modifier = Modifier

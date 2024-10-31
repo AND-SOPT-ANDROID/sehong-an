@@ -1,0 +1,59 @@
+package org.sopt.and.ui.components.text
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import org.sopt.and.R
+import org.sopt.and.ui.theme.darkGray3
+
+@Composable
+fun LabeledIconText(
+    text: String,
+    icon: Painter,
+    color: Color = darkGray3,
+    fontSize: TextUnit = 13.sp,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier.padding(horizontal = 10.dp)
+    ) {
+        Image(
+            painter = icon,
+            contentDescription = "exclamation_mark_icon",
+            modifier = Modifier
+                .size(20.dp)
+                .padding(top = 5.dp)
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+        Text(
+            text = text,
+            color = color,
+            fontSize = fontSize,
+            modifier = Modifier.padding(start = 5.dp)
+        )
+    }
+}
+
+@Preview
+@Composable
+fun LabeledIconTextPreview() {
+    LabeledIconText(
+        text = "로그인, 비밀번호 찾기, 알림에 사용되니 정확한 이메일을 입력해 주세요.",
+        icon = painterResource(id = R.drawable.exclamation_mark_icon),
+        color = darkGray3,
+        fontSize = 13.sp
+    )
+}
