@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,8 +24,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.sopt.and.R
+import org.sopt.and.ui.theme.darkGray1
 
 @Composable
 fun TopTwentyImageList(
@@ -88,5 +92,25 @@ fun TopTwentyImageListItem(imageRes: Int, index: Int) {
                 .align(Alignment.BottomStart)
                 .padding(start = 8.dp)
         )
+    }
+}
+
+@Preview
+@Composable
+fun PreviewTopTwentyImageList() {
+    val imageItems = listOf(
+        R.drawable.wavve_image1,
+        R.drawable.wavve_image1,
+        R.drawable.wavve_image1,
+        R.drawable.wavve_image1,
+        R.drawable.wavve_image1,
+    )
+    LazyColumn(
+        modifier = Modifier
+            .background(darkGray1)
+    ) {
+        item {
+            TopTwentyImageList(imageItems)
+        }
     }
 }

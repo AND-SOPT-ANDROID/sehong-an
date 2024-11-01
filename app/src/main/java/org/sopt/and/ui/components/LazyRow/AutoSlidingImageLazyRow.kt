@@ -8,8 +8,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,16 +24,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import org.sopt.and.R
 import org.sopt.and.ui.screen.home.viewmodel.ImageOverviewViewState
+import org.sopt.and.ui.theme.darkGray1
 
 @Composable
 fun AutoSlidingImagePager(
     state: PagerState,
     imageOverviews: List<ImageOverviewViewState>,
-    onImageClicked: (ImageOverviewViewState) -> Unit,
+    onImageClicked: (ImageOverviewViewState) -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
     // 자동 슬라이딩 효과를 추가하는 부분
@@ -91,6 +95,34 @@ fun AutoSlidingImageItem(
                 text = stringResource(R.string.page_indicator, currentPage, totalPage),
                 color = Color.White,
                 style = MaterialTheme.typography.bodySmall
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun PreviewAutoSlidingImagePager() {
+    val imageItems = listOf(
+        R.drawable.wavve_image1,
+        R.drawable.wavve_image1,
+        R.drawable.wavve_image1,
+        R.drawable.wavve_image1,
+        R.drawable.wavve_image1,
+    )
+    val pagerState = rememberPagerState(
+        initialPage = 0,
+        initialPageOffsetFraction = 0f,
+        pageCount = { imageItems.size }
+    )
+    LazyColumn(
+        modifier = Modifier
+            .background(darkGray1)
+    ) {
+        item {
+            AutoSlidingImagePager(
+                state = pagerState,
+                imageOverviews = imageItems.map { ImageOverviewViewState(it, "") },
             )
         }
     }
