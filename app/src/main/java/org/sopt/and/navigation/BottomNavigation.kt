@@ -54,7 +54,7 @@ fun BottomNavigation(navController: NavController) {
 
 @Preview
 @Composable
-fun MyScreenPreview() {
+fun BottomNavigationPreview() {
     ANDANDROIDTheme {
         val navController = rememberNavController()
         BottomNavigation(navController = navController)
