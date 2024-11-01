@@ -87,7 +87,7 @@ fun DarkGrayTopBar(
 
 @Preview(showBackground = true)
 @Composable
-fun SignInTopBarCustomPreview() {
+fun SignInTopBarPreview() {
     ANDANDROIDTheme {
         DarkGrayTopBar(
             modifier = Modifier,
@@ -116,7 +116,7 @@ fun SignInTopBarCustomPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun HomeTopBarCustomPreview() {
+fun HomeTopBarPreview() {
     ANDANDROIDTheme {
         DarkGrayTopBar(
             modifier = Modifier,
@@ -143,7 +143,7 @@ fun HomeTopBarCustomPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun SignUpTopBarCustomPreview() {
+fun SignUpTopBarPreview() {
     ANDANDROIDTheme {
         DarkGrayTopBar(
             modifier = Modifier,
