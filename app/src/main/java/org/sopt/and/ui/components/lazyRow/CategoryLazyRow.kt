@@ -1,4 +1,4 @@
-package org.sopt.and.ui.components.LazyRow
+package org.sopt.and.ui.components.lazyRow
 
 import android.util.Log
 import androidx.compose.foundation.background

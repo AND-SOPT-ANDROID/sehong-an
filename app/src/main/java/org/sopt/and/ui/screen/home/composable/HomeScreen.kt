@@ -16,10 +16,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import org.sopt.and.ui.components.LazyRow.AutoSlidingImagePager
-import org.sopt.and.ui.components.LazyRow.CategoryLazyRow
-import org.sopt.and.ui.components.LazyRow.EditorSelectImageLazyList
-import org.sopt.and.ui.components.LazyRow.TopTwentyImageList
+import org.sopt.and.ui.components.lazyRow.AutoSlidingImagePager
+import org.sopt.and.ui.components.lazyRow.CategoryLazyRow
+import org.sopt.and.ui.components.lazyRow.EditorSelectImageLazyList
+import org.sopt.and.ui.components.lazyRow.TopTwentyImageList
 import org.sopt.and.ui.screen.home.viewmodel.HomeViewModel
 import org.sopt.and.ui.screen.home.viewmodel.ImageOverviewViewState
 import org.sopt.and.ui.theme.darkGray1

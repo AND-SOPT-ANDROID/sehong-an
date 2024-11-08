@@ -1,4 +1,4 @@
-package org.sopt.and.ui.components.LazyRow
+package org.sopt.and.ui.components.lazyRow
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -80,19 +80,19 @@ fun EditorSelectImageLazyListItem(imageRes: Int) {
 
 @Preview
 @Composable
-fun PreviewEditorSelectImageLazyList () {
+fun PreviewEditorSelectImageLazyList() {
     val imageItems = listOf(
         R.drawable.wavve_image1,
         R.drawable.wavve_image1,
         R.drawable.wavve_image1,
         R.drawable.wavve_image1,
         R.drawable.wavve_image1,
-        )
+    )
     LazyColumn(
         modifier = Modifier
             .background(darkGray1)
     ) {
-        item{
+        item {
             EditorSelectImageLazyList(imageItems)
         }
     }
