@@ -45,8 +45,7 @@ fun CategoryItem(category: String) {
         modifier = Modifier
             .padding(horizontal = 8.dp)
             .clickable {
-                // 각 항목을 클릭했을 때의 동작을 정의합니다.
-                Log.d("CategoryLazyRow", "$category clicked")
+
             }
     )
 }
