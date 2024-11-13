@@ -9,11 +9,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import org.sopt.and.ui.theme.BlueBtnColor
+import org.sopt.and.ui.theme.WavveTheme
 
 @Composable
 fun FillMaxWidthButton(
@@ -24,7 +24,7 @@ fun FillMaxWidthButton(
         containerColor = BlueBtnColor,
         contentColor = Color.White
     ),
-    fontSize: TextUnit = 18.sp
+    style: TextStyle = WavveTheme.typography.title,
 ) {
     Button(
         onClick = onClick,
@@ -35,7 +35,7 @@ fun FillMaxWidthButton(
     ) {
         Text(
             text = text,
-            fontSize = fontSize,
+            style = style,
             color = Color.White,
             modifier = Modifier.padding(8.dp)
         )
@@ -47,7 +47,7 @@ fun FillMaxWidthButton(
 fun FillMaxWidthButtonPreview() {
     FillMaxWidthButton(
         text = "로그인",
-        onClick = {  }
+        onClick = { }
     )
 }
 
