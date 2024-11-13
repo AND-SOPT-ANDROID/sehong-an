@@ -36,7 +36,6 @@ fun LabeledIconText(
                 .size(20.dp)
                 .padding(top = 5.dp)
         )
-        Spacer(modifier = Modifier.height(20.dp))
         Text(
             text = text,
             color = color,
