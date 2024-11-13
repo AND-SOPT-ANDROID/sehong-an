@@ -68,7 +68,10 @@ fun TopTwentyImageList(
 }
 
 @Composable
-fun TopTwentyImageListItem(imageRes: Int, index: Int) {
+fun TopTwentyImageListItem(
+    imageRes: Int,
+    index: Int
+) {
     Box(
         modifier = Modifier
             .width(180.dp)
@@ -79,7 +82,7 @@ fun TopTwentyImageListItem(imageRes: Int, index: Int) {
     ) {
         Image(
             painter = painterResource(id = imageRes),
-            contentDescription = null,
+            contentDescription = "imageRes",
             modifier = Modifier
                 .fillMaxSize(),
             contentScale = ContentScale.Crop
