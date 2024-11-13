@@ -1,11 +1,9 @@
 package org.sopt.and.ui.components.text
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -29,12 +27,13 @@ fun LabeledIconText(
     Row(
         modifier = modifier.padding(horizontal = 10.dp)
     ) {
-        Image(
+        Icon(
             painter = icon,
             contentDescription = "exclamation_mark_icon",
             modifier = Modifier
-                .size(20.dp)
-                .padding(top = 5.dp)
+                .size(16.dp)
+                .padding(top = 5.dp),
+            tint = WavveTheme.colors.white
         )
         Text(
             text = text,
@@ -51,6 +50,8 @@ fun LabeledIconTextPreview() {
     LabeledIconText(
         text = "로그인, 비밀번호 찾기, 알림에 사용되니 정확한 이메일을 입력해 주세요.",
         icon = painterResource(id = R.drawable.exclamation_mark_icon),
-        color = WavveTheme.colors.gray_3,
+        style = WavveTheme.typography.body1.copy(
+            color = WavveTheme.colors.gray_3
+        )
     )
 }

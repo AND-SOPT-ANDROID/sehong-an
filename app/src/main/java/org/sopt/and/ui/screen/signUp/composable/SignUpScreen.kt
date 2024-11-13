@@ -59,6 +59,7 @@ fun SignUpScreen(
     val loginDescription = stringResource(id = R.string.login_description)
     val focusRequesterEmail = remember { FocusRequester() }
     val focusRequesterPassword = remember { FocusRequester() }
+    val focusRequesterHobby = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current
     Box(modifier = modifier) {
         Column(
@@ -112,7 +113,9 @@ fun SignUpScreen(
             LabeledIconText(
                 text = viewModel.signUpEmailDescription,
                 icon = painterResource(id = R.drawable.exclamation_mark_icon),
-                color = WavveTheme.colors.gray_3,
+                style = WavveTheme.typography.caption.copy(
+                    color = WavveTheme.colors.gray_3
+                )
             )
             FillMaxWidthTextField(
                 value = viewModel.passwordInput,
@@ -136,11 +139,40 @@ fun SignUpScreen(
             LabeledIconText(
                 text = viewModel.signUpPasswordDescription,
                 icon = painterResource(id = R.drawable.exclamation_mark_icon),
-                color = WavveTheme.colors.gray_3,
+                style = WavveTheme.typography.caption.copy(
+                    color = WavveTheme.colors.gray_3
+                )
+            )
+            Spacer(modifier = Modifier.height(5.dp))
+            FillMaxWidthTextField(
+                value = viewModel.hobbyInput,
+                placeholder = "취미를 설정해주세요",
+                onValueChange = viewModel::onUserIdInputChange,
+                modifier = Modifier
+                    .padding(horizontal = 10.dp)
+                    .onFocusChanged { focusState ->
+                        viewModel.onHobbyFocusChange(focusState.isFocused)
+                    }
+                    .focusRequester(focusRequesterHobby),
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    imeAction = ImeAction.Done
+                ),
+                keyboardActions = KeyboardActions(
+                    onDone = { focusManager.clearFocus() }
+                ),
+                isValid = viewModel.isHobbyValid,
+            )
+            Spacer(modifier = Modifier.height(5.dp))
+            LabeledIconText(
+                text = stringResource(id = R.string.sign_up_hobby),
+                icon = painterResource(id = R.drawable.exclamation_mark_icon),
+                style = WavveTheme.typography.caption.copy(
+                    color = WavveTheme.colors.gray_3
+                )
             )
             Spacer(modifier = Modifier.height(30.dp))
             StrikethroughText(
-                text = "또는 다른 서비스 계정으로 로그인"
+                text = stringResource(id = R.string.sign_up_social_login)
             )
             Spacer(modifier = Modifier.height(35.dp))
             Row(
@@ -203,7 +235,7 @@ fun SignUpScreen(
                     .height(50.dp)
             ) {
                 Text(
-                    text = "Wavve 회원가입",
+                    text = stringResource(id = R.string.sign_up_button),
                     style = WavveTheme.typography.body1.copy(
                         color = WavveTheme.colors.white
                     )

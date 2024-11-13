@@ -10,6 +10,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.sopt.and.R
 import org.sopt.and.data.UserManager
+import org.sopt.and.utils.isValidEmail
+import org.sopt.and.utils.isValidPassword
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,6 +27,10 @@ class SignUpViewModel @Inject constructor(
     var passwordInput by mutableStateOf("")
         private set
 
+    /** hobby 입력값 */
+    var hobbyInput by mutableStateOf("")
+        private set
+
     /** 회원가입 가능 여부 */
     val isEnabled by derivedStateOf {
         isEmailValid && isPasswordValid && userIdInput.isNotEmpty() && passwordInput.isNotEmpty()
@@ -36,6 +42,10 @@ class SignUpViewModel @Inject constructor(
 
     /** Password Valid 여부 */
     var isPasswordValid by mutableStateOf(true)
+        private set
+
+    /** Password Valid 여부 */
+    var isHobbyValid by mutableStateOf(true)
         private set
 
     /** Email 의 Description */
@@ -52,6 +62,10 @@ class SignUpViewModel @Inject constructor(
 
     /** Password 초기 포커스 한번은 무시하기 */
     var hasFocusPasswordChanged by mutableStateOf(false)
+        private set
+
+    /** hobby 초기 포커스 한번은 무시하기 */
+    var hasFocusHobbyChanged by mutableStateOf(false)
         private set
 
     fun onUserIdInputChange(value: String) {
@@ -78,6 +92,14 @@ class SignUpViewModel @Inject constructor(
         hasFocusPasswordChanged = true
     }
 
+    fun onHobbyFocusChange(isFocused: Boolean) {
+        if (hasFocusHobbyChanged && !isFocused) {
+            validateHobby()
+        }
+        hasFocusHobbyChanged = true
+    }
+
+
     private fun validateEmail() {
         isEmailValid = userIdInput.isNotEmpty() && isValidEmail(userIdInput)
         signUpEmailDescription = when {
@@ -96,17 +118,11 @@ class SignUpViewModel @Inject constructor(
             )
     }
 
+    private fun validateHobby() {
+        isHobbyValid = hobbyInput.isNotEmpty()
+    }
+
     fun registerUser() {
         userManager.registerUser(userIdInput, passwordInput)
-    }
-
-    private fun isValidEmail(email: String): Boolean {
-        // Email 검증 로직 추가
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
-    private fun isValidPassword(password: String): Boolean {
-        // Password 검증 로직 추가 (예: 8자 이상)
-        return password.length >= 8
     }
 }

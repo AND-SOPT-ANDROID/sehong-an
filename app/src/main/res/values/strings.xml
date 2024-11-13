@@ -14,4 +14,7 @@
     <string name="my_screen_no_history">시청내역이 없어요.</string>
     <string name="my_screen_interest_program">관심 프로그램</string>
     <string name="my_screen_no_interest_program">관심 프로그램이 없어요.</string>
+    <string name="sign_up_social_login">또는 다른 서비스 계정으로 로그인</string>
+    <string name="sign_up_hobby">취미는 8글자 이내로 작성해 주세요.</string>
+    <string name="sign_up_button">Wavve 회원가입</string>
 </resources>
