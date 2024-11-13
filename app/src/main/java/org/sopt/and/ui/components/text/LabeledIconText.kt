@@ -12,11 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import org.sopt.and.R
+import org.sopt.and.ui.theme.WavveTheme
 import org.sopt.and.ui.theme.darkGray3
 
 @Composable
@@ -24,7 +24,7 @@ fun LabeledIconText(
     text: String,
     icon: Painter,
     color: Color = darkGray3,
-    fontSize: TextUnit = 13.sp,
+    style: TextStyle = WavveTheme.typography.caption,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -41,7 +41,7 @@ fun LabeledIconText(
         Text(
             text = text,
             color = color,
-            fontSize = fontSize,
+            style = style,
             modifier = Modifier.padding(start = 5.dp)
         )
     }
@@ -54,6 +54,5 @@ fun LabeledIconTextPreview() {
         text = "로그인, 비밀번호 찾기, 알림에 사용되니 정확한 이메일을 입력해 주세요.",
         icon = painterResource(id = R.drawable.exclamation_mark_icon),
         color = darkGray3,
-        fontSize = 13.sp
     )
 }
