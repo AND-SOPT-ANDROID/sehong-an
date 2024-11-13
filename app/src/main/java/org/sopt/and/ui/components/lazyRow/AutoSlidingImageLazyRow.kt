@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,7 +12,6 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -81,22 +79,18 @@ fun AutoSlidingImageItem(
             modifier = Modifier
                 .fillMaxWidth()
         )
-
-        Row(
+        Text(
+            text = stringResource(R.string.page_indicator, currentPage, totalPage),
+            style = WavveTheme.typography.body2.copy(
+                color = WavveTheme.colors.white
+            ),
             modifier = Modifier
                 .align(Alignment.BottomEnd)
-                .padding(12.dp)
+                .padding(12.dp) // 바깥쪽 패딩
                 .clip(RoundedCornerShape(50))
                 .background(Color.Black.copy(alpha = 0.6f))
-                .padding(horizontal = 6.dp, vertical = 4.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = stringResource(R.string.page_indicator, currentPage, totalPage),
-                color = WavveTheme.colors.white,
-                style = MaterialTheme.typography.bodySmall
-            )
-        }
+                .padding(horizontal = 6.dp, vertical = 4.dp) // 내부 패딩
+        )
     }
 }
 
