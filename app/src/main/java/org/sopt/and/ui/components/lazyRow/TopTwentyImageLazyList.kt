@@ -8,9 +8,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -74,8 +73,7 @@ fun TopTwentyImageListItem(
 ) {
     Box(
         modifier = Modifier
-            .width(180.dp)
-            .height(270.dp)
+            .size(180.dp, 270.dp)
             .padding(8.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(Color.DarkGray)

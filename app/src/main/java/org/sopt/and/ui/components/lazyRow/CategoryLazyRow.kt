@@ -53,12 +53,5 @@ fun CategoryItem(category: String) {
 @Composable
 fun PreviewCategoryLazyRow() {
     val categories = listOf("뉴클래식", "드라마", "예능", "영화", "애니", "해외시리즈", "시사교양", "키즈")
-    LazyColumn(
-        modifier = Modifier
-            .background(WavveTheme.colors.gray_1)
-    ) {
-        item {
-            CategoryLazyRow(categories)
-        }
-    }
+    CategoryLazyRow(categories)
 }
