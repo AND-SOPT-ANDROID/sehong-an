@@ -37,7 +37,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.and.R
 import org.sopt.and.data.SocialLogin
@@ -48,6 +47,7 @@ import org.sopt.and.ui.components.text.TitleText
 import org.sopt.and.ui.components.textField.FillMaxWidthTextField
 import org.sopt.and.ui.screen.signUp.viewmodel.SignUpViewModel
 import org.sopt.and.ui.theme.BlueBtnColor
+import org.sopt.and.ui.theme.WavveTheme
 import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
 import org.sopt.and.ui.theme.darkGray4
@@ -74,11 +74,21 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.height(30.dp))
             TitleText(
                 text = buildAnnotatedString {
-                    withStyle(style = SpanStyle(color = Color.White, fontSize = 22.sp)) {
+                    withStyle(
+                        style = SpanStyle(
+                            color = WavveTheme.colors.white,
+                            fontSize = WavveTheme.typography.h1.fontSize,
+                        )
+                    ) {
                         append("이메일과 비밀번호")
                     }
                     append("만으로\n")
-                    withStyle(style = SpanStyle(color = Color.White, fontSize = 22.sp)) {
+                    withStyle(
+                        style = SpanStyle(
+                            color = WavveTheme.colors.white,
+                            fontSize = WavveTheme.typography.h1.fontSize,
+                        )
+                    ) {
                         append(" Wavve를 즐길 수")
                     }
                     append("있어요!")
@@ -108,7 +118,6 @@ fun SignUpScreen(
                 text = viewModel.signUpEmailDescription,
                 icon = painterResource(id = R.drawable.exclamation_mark_icon),
                 color = darkGray3,
-                fontSize = 13.sp
             )
             FillMaxWidthTextField(
                 value = viewModel.passwordInput,
@@ -133,7 +142,6 @@ fun SignUpScreen(
                 text = viewModel.signUpPasswordDescription,
                 icon = painterResource(id = R.drawable.exclamation_mark_icon),
                 color = darkGray3,
-                fontSize = 13.sp
             )
             Spacer(modifier = Modifier.height(30.dp))
             StrikethroughText(
@@ -170,13 +178,15 @@ fun SignUpScreen(
             ) {
                 Text(
                     text = "·",
-                    color = Color.Gray,
-                    fontSize = 12.sp,
+                    style = WavveTheme.typography.caption.copy(
+                        color = Color.Gray
+                    )
                 )
                 Text(
                     text = loginDescription,
-                    color = Color.Gray,
-                    fontSize = 12.sp,
+                    style = WavveTheme.typography.caption.copy(
+                        color = Color.Gray
+                    ),
                     modifier = Modifier.padding(start = 5.dp)
                 )
             }
@@ -199,8 +209,9 @@ fun SignUpScreen(
             ) {
                 Text(
                     text = "Wavve 회원가입",
-                    color = Color.White,
-                    fontSize = 15.sp,
+                    style = WavveTheme.typography.body1.copy(
+                        color = WavveTheme.colors.white
+                    )
                 )
             }
         }
