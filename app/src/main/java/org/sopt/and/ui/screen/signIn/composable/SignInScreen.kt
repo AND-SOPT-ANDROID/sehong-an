@@ -24,7 +24,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.and.R
 import org.sopt.and.data.SocialLogin
@@ -33,6 +32,7 @@ import org.sopt.and.ui.components.icon.SocialLoginIcon
 import org.sopt.and.ui.components.text.StrikethroughText
 import org.sopt.and.ui.components.textField.FillMaxWidthTextField
 import org.sopt.and.ui.screen.signIn.viewmodel.SignInViewModel
+import org.sopt.and.ui.theme.WavveTheme
 import org.sopt.and.ui.theme.darkGray1
 import org.sopt.and.ui.theme.darkGray3
 
@@ -69,6 +69,7 @@ fun SignInScreen(
             Spacer(modifier = Modifier.height(30.dp))
             FillMaxWidthButton(
                 text = "로그인",
+                style = WavveTheme.typography.body1,
                 onClick = { viewModel.handleLoginClick(navController) }
             )
             Spacer(modifier = Modifier.height(10.dp))
@@ -80,8 +81,9 @@ fun SignInScreen(
             ) {
                 Text(
                     text = "아이디 찾기",
-                    color = darkGray3,
-                    fontSize = 14.sp,
+                    style = WavveTheme.typography.body2.copy(
+                        color = darkGray3,
+                    ),
                     textAlign = TextAlign.Right,
                     modifier = Modifier
                         .weight(1f)
@@ -89,31 +91,35 @@ fun SignInScreen(
                 )
                 Text(
                     text = "|",
-                    color = darkGray3,
-                    fontSize = 14.sp,
+                    style = WavveTheme.typography.body2.copy(
+                        color = darkGray3,
+                    ),
                     textAlign = TextAlign.Center,
                     modifier = Modifier.weight(0.2f)
                 )
 
                 Text(
                     text = "비밀번호 설정",
-                    color = darkGray3,
-                    fontSize = 14.sp,
+                    style = WavveTheme.typography.body2.copy(
+                        color = darkGray3,
+                    ),
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .clickable { /* 비밀번호 재설정 */ }
                 )
                 Text(
                     text = "|",
-                    color = darkGray3,
-                    fontSize = 14.sp,
+                    style = WavveTheme.typography.body2.copy(
+                        color = darkGray3,
+                    ),
                     textAlign = TextAlign.Center,
                     modifier = Modifier.weight(0.2f)
                 )
                 Text(
                     text = "회원가입",
-                    color = darkGray3,
-                    fontSize = 14.sp,
+                    style = WavveTheme.typography.body2.copy(
+                        color = darkGray3,
+                    ),
                     textAlign = TextAlign.Left,
                     modifier = Modifier
                         .weight(1f)
@@ -157,13 +163,15 @@ fun SignInScreen(
             ) {
                 Text(
                     text = "·",
-                    color = Color.Gray,
-                    fontSize = 12.sp,
+                    style = WavveTheme.typography.body2.copy(
+                        color = Color.Gray
+                    ),
                 )
                 Text(
                     text = loginDescription,
-                    color = Color.Gray,
-                    fontSize = 12.sp,
+                    style = WavveTheme.typography.body2.copy(
+                        color = Color.Gray
+                    ),
                     modifier = Modifier.padding(start = 5.dp)
                 )
             }
