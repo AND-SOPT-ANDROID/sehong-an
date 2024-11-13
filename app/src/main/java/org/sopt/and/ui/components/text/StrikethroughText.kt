@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,12 +31,12 @@ fun StrikethroughText(
             .padding(horizontal = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Spacer(
+        HorizontalDivider(
             modifier = Modifier
                 .weight(1f)
-                .height(1.dp)
-                .padding(end = 8.dp)
-                .background(Color.DarkGray)
+                .padding(end = 8.dp),
+            color = Color.DarkGray,
+            thickness = 0.8.dp
         )
         Text(
             text = text,
@@ -43,12 +44,12 @@ fun StrikethroughText(
             color = color,
             textAlign = TextAlign.Center
         )
-        Spacer(
+        HorizontalDivider(
             modifier = Modifier
                 .weight(1f)
-                .height(1.dp)
-                .padding(start = 8.dp)
-                .background(Color.DarkGray)
+                .padding(start = 8.dp),
+            color = Color.DarkGray,
+            thickness = 0.8.dp
         )
     }
 }
