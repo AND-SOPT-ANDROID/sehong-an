@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -118,21 +119,20 @@ fun MyScreen(
             style = WavveTheme.typography.body2
         )
         ColumnIconText(
-            text = "시청내역이 없어요.",
+            text = stringResource(id = R.string.my_screen_no_history),
             iconResId = R.drawable.exclamation_mark_icon,
             iconContentDescription = "exclamation_mark_icon"
         )
         Text(
-            text = "관심 프로그램",
+            text = stringResource(id = R.string.my_screen_interest_program),
             color = WavveTheme.colors.white,
             modifier = Modifier
                 .padding(horizontal = 20.dp),
             fontWeight = FontWeight.Bold,
             style = WavveTheme.typography.body1
         )
-//        Spacer(modifier = Modifier.height(20.dp))
         ColumnIconText(
-            text = "관심 프로그램이 없어요.",
+            text = stringResource(id = R.string.my_screen_no_interest_program),
             iconResId = R.drawable.exclamation_mark_icon,
             iconContentDescription = "exclamation_mark_icon"
         )
