@@ -15,20 +15,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.and.R
+import org.sopt.and.ui.theme.WavveTheme
 
 @Composable
 fun ProfileContainer(
+//    modifier: Modifier = Modifier,
     profileName: String,
     onLogoutClick: () -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = modifier,
+        modifier = Modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
@@ -39,24 +39,24 @@ fun ProfileContainer(
         Spacer(modifier = Modifier.width(20.dp))
         Text(
             text = profileName,
-            color = Color.White,
+            color = WavveTheme.colors.white,
         )
         Text(
             text = "님",
-            color = Color.White,
+            color = WavveTheme.colors.white,
         )
         Spacer(modifier = Modifier.weight(1f))
         Icon(
             imageVector = Icons.Outlined.Notifications,
             contentDescription = "알림",
-            tint = Color.White,
+            tint = WavveTheme.colors.white,
             modifier = Modifier.padding(bottom = 4.dp)
         )
         Spacer(modifier = Modifier.width(20.dp))
         Icon(
             imageVector = Icons.Outlined.Settings,
             contentDescription = "세팅",
-            tint = Color.White,
+            tint = WavveTheme.colors.white,
             modifier = Modifier
                 .padding(bottom = 4.dp)
                 .clickable { onLogoutClick() }
@@ -68,7 +68,8 @@ fun ProfileContainer(
 @Composable
 fun ProfileContainerPreview() {
     ProfileContainer(
-        profileName = "안세홍",
-        onLogoutClick = {}
-    )
+        profileName = "안세홍"
+    ) {
+
+    }
 }

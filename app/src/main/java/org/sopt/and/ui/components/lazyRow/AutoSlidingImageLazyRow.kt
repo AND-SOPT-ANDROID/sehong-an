@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import org.sopt.and.R
 import org.sopt.and.ui.screen.home.viewmodel.ImageOverviewViewState
-import org.sopt.and.ui.theme.darkGray1
+import org.sopt.and.ui.theme.WavveTheme
 
 @Composable
 fun AutoSlidingImagePager(
@@ -93,7 +93,7 @@ fun AutoSlidingImageItem(
         ) {
             Text(
                 text = stringResource(R.string.page_indicator, currentPage, totalPage),
-                color = Color.White,
+                color = WavveTheme.colors.white,
                 style = MaterialTheme.typography.bodySmall
             )
         }
@@ -117,7 +117,7 @@ fun PreviewAutoSlidingImagePager() {
     )
     LazyColumn(
         modifier = Modifier
-            .background(darkGray1)
+            .background(WavveTheme.colors.gray_1)
     ) {
         item {
             AutoSlidingImagePager(

@@ -1,6 +1,5 @@
 package org.sopt.and.ui.components.lazyRow
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,8 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import org.sopt.and.ui.theme.darkGray1
+import org.sopt.and.ui.theme.WavveTheme
 
 @Composable
 fun CategoryLazyRow(
@@ -26,7 +24,7 @@ fun CategoryLazyRow(
     LazyRow(
         modifier = modifier
             .fillMaxWidth()
-            .background(darkGray1)
+            .background(WavveTheme.colors.gray_1)
             .padding(vertical = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp) // 텍스트 사이의 간격을 설정합니다.
     ) {
@@ -40,8 +38,9 @@ fun CategoryLazyRow(
 fun CategoryItem(category: String) {
     Text(
         text = category,
-        color = Color.LightGray,
-        fontSize = 18.sp,
+        style = WavveTheme.typography.title.copy(
+            color = Color.LightGray
+        ),
         modifier = Modifier
             .padding(horizontal = 8.dp)
             .clickable {
@@ -56,7 +55,7 @@ fun PreviewCategoryLazyRow() {
     val categories = listOf("뉴클래식", "드라마", "예능", "영화", "애니", "해외시리즈", "시사교양", "키즈")
     LazyColumn(
         modifier = Modifier
-            .background(darkGray1)
+            .background(WavveTheme.colors.gray_1)
     ) {
         item {
             CategoryLazyRow(categories)

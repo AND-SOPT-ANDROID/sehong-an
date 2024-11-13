@@ -33,8 +33,6 @@ import org.sopt.and.ui.components.text.StrikethroughText
 import org.sopt.and.ui.components.textField.FillMaxWidthTextField
 import org.sopt.and.ui.screen.signIn.viewmodel.SignInViewModel
 import org.sopt.and.ui.theme.WavveTheme
-import org.sopt.and.ui.theme.darkGray1
-import org.sopt.and.ui.theme.darkGray3
 
 
 val icons = SocialLogin.entries
@@ -50,7 +48,7 @@ fun SignInScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(darkGray1)
+                .background(WavveTheme.colors.gray_1)
         ) {
             Spacer(modifier = Modifier.height(30.dp))
             FillMaxWidthTextField(
@@ -82,7 +80,7 @@ fun SignInScreen(
                 Text(
                     text = "아이디 찾기",
                     style = WavveTheme.typography.body2.copy(
-                        color = darkGray3,
+                        color = WavveTheme.colors.gray_3,
                     ),
                     textAlign = TextAlign.Right,
                     modifier = Modifier
@@ -92,7 +90,7 @@ fun SignInScreen(
                 Text(
                     text = "|",
                     style = WavveTheme.typography.body2.copy(
-                        color = darkGray3,
+                        color = WavveTheme.colors.gray_3,
                     ),
                     textAlign = TextAlign.Center,
                     modifier = Modifier.weight(0.2f)
@@ -101,7 +99,7 @@ fun SignInScreen(
                 Text(
                     text = "비밀번호 설정",
                     style = WavveTheme.typography.body2.copy(
-                        color = darkGray3,
+                        color = WavveTheme.colors.gray_3,
                     ),
                     textAlign = TextAlign.Center,
                     modifier = Modifier
@@ -110,7 +108,7 @@ fun SignInScreen(
                 Text(
                     text = "|",
                     style = WavveTheme.typography.body2.copy(
-                        color = darkGray3,
+                        color = WavveTheme.colors.gray_3,
                     ),
                     textAlign = TextAlign.Center,
                     modifier = Modifier.weight(0.2f)
@@ -118,7 +116,7 @@ fun SignInScreen(
                 Text(
                     text = "회원가입",
                     style = WavveTheme.typography.body2.copy(
-                        color = darkGray3,
+                        color = WavveTheme.colors.gray_3,
                     ),
                     textAlign = TextAlign.Left,
                     modifier = Modifier
@@ -148,7 +146,7 @@ fun SignInScreen(
                             .clip(CircleShape)
                             .then(
                                 if (socialLogin.description == "apple_icon") Modifier.background(
-                                    Color.White
+                                    WavveTheme.colors.white
                                 ) else Modifier
                             )
                     )

@@ -46,11 +46,7 @@ import org.sopt.and.ui.components.text.StrikethroughText
 import org.sopt.and.ui.components.text.TitleText
 import org.sopt.and.ui.components.textField.FillMaxWidthTextField
 import org.sopt.and.ui.screen.signUp.viewmodel.SignUpViewModel
-import org.sopt.and.ui.theme.BlueBtnColor
 import org.sopt.and.ui.theme.WavveTheme
-import org.sopt.and.ui.theme.darkGray1
-import org.sopt.and.ui.theme.darkGray3
-import org.sopt.and.ui.theme.darkGray4
 
 val icons = SocialLogin.entries
 
@@ -69,7 +65,7 @@ fun SignUpScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(darkGray1)
+                .background(WavveTheme.colors.gray_1)
         ) {
             Spacer(modifier = Modifier.height(30.dp))
             TitleText(
@@ -117,7 +113,7 @@ fun SignUpScreen(
             LabeledIconText(
                 text = viewModel.signUpEmailDescription,
                 icon = painterResource(id = R.drawable.exclamation_mark_icon),
-                color = darkGray3,
+                color = WavveTheme.colors.gray_3,
             )
             FillMaxWidthTextField(
                 value = viewModel.passwordInput,
@@ -141,7 +137,7 @@ fun SignUpScreen(
             LabeledIconText(
                 text = viewModel.signUpPasswordDescription,
                 icon = painterResource(id = R.drawable.exclamation_mark_icon),
-                color = darkGray3,
+                color = WavveTheme.colors.gray_3,
             )
             Spacer(modifier = Modifier.height(30.dp))
             StrikethroughText(
@@ -163,7 +159,7 @@ fun SignUpScreen(
                             .clip(CircleShape)
                             .then(
                                 if (socialLogin.description == "apple_icon") Modifier.background(
-                                    Color.White
+                                    WavveTheme.colors.white
                                 ) else Modifier
                             )
                     )
@@ -200,8 +196,8 @@ fun SignUpScreen(
                 shape = RoundedCornerShape(0.dp),
                 enabled = viewModel.isEnabled,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = BlueBtnColor,
-                    disabledContainerColor = darkGray4,
+                    containerColor = WavveTheme.colors.main_blue,
+                    disabledContainerColor = WavveTheme.colors.gray_5,
                 ),
                 modifier = Modifier
                     .fillMaxWidth()

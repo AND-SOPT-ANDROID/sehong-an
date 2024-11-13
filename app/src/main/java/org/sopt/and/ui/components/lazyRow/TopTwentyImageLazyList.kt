@@ -28,7 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.sopt.and.R
-import org.sopt.and.ui.theme.darkGray1
+import org.sopt.and.ui.theme.WavveTheme
 
 @Composable
 fun TopTwentyImageList(
@@ -48,8 +48,9 @@ fun TopTwentyImageList(
         ) {
             Text(
                 text = "오늘의 TOP 20",
-                color = Color.White,
-                fontSize = 20.sp,
+                style = WavveTheme.typography.title.copy(
+                    color = WavveTheme.colors.white
+                ),
                 fontWeight = FontWeight.Bold
             )
         }
@@ -85,7 +86,7 @@ fun TopTwentyImageListItem(imageRes: Int, index: Int) {
         )
         Text(
             text = index.toString(),
-            color = Color.White,
+            color = WavveTheme.colors.white,
             fontSize = 80.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
@@ -107,7 +108,7 @@ fun PreviewTopTwentyImageList() {
     )
     LazyColumn(
         modifier = Modifier
-            .background(darkGray1)
+            .background(WavveTheme.colors.gray_1)
     ) {
         item {
             TopTwentyImageList(imageItems)

@@ -22,7 +22,7 @@ import org.sopt.and.ui.components.lazyRow.EditorSelectImageLazyList
 import org.sopt.and.ui.components.lazyRow.TopTwentyImageList
 import org.sopt.and.ui.screen.home.viewmodel.HomeViewModel
 import org.sopt.and.ui.screen.home.viewmodel.ImageOverviewViewState
-import org.sopt.and.ui.theme.darkGray1
+import org.sopt.and.ui.theme.WavveTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -63,7 +63,7 @@ fun HomeScreenContent(
 
     LazyColumn(
         modifier = modifier
-            .background(darkGray1)
+            .background(WavveTheme.colors.gray_1)
     ) {
         stickyHeader {
             CategoryLazyRow(categories)

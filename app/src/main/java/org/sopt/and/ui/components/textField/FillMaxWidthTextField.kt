@@ -17,7 +17,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -26,9 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.sopt.and.ui.theme.ANDANDROIDTheme
-import org.sopt.and.ui.theme.darkGray2
-import org.sopt.and.ui.theme.darkGray3
-import org.sopt.and.ui.theme.errorColor
+import org.sopt.and.ui.theme.WavveTheme
 
 @Composable
 fun FillMaxWidthTextField(
@@ -45,30 +42,30 @@ fun FillMaxWidthTextField(
     TextField(
         value = value,
         onValueChange = onValueChange,
-        placeholder = { Text(text = placeholder, color = darkGray3) },
+        placeholder = { Text(text = placeholder, color = WavveTheme.colors.gray_3) },
         modifier = modifier
             .padding(4.dp)
             .fillMaxWidth()
             .clip(RoundedCornerShape(4.dp))
             .border(
                 width = 1.dp,
-                color = if (!isValid) errorColor else darkGray2,
+                color = if (!isValid) WavveTheme.colors.error_1 else WavveTheme.colors.gray_2,
                 shape = RoundedCornerShape(4.dp)
             ),
         isError = !isValid,
         visualTransformation = if (isPassword && !passwordVisible) PasswordVisualTransformation() else VisualTransformation.None,
         colors = TextFieldDefaults.colors(
-            cursorColor = Color.White,
-            errorTextColor = darkGray3,
-            errorCursorColor = Color.White,
-            focusedTextColor = darkGray3,
-            unfocusedTextColor = darkGray3,
-            unfocusedContainerColor = darkGray2,
-            focusedContainerColor = darkGray2,
-            errorContainerColor = darkGray2,
-            focusedPlaceholderColor = darkGray2,
-            focusedIndicatorColor = darkGray2,
-            unfocusedIndicatorColor = darkGray2
+            cursorColor = WavveTheme.colors.white,
+            errorTextColor = WavveTheme.colors.gray_3,
+            errorCursorColor = WavveTheme.colors.white,
+            focusedTextColor = WavveTheme.colors.gray_3,
+            unfocusedTextColor = WavveTheme.colors.gray_3,
+            unfocusedContainerColor = WavveTheme.colors.gray_2,
+            focusedContainerColor = WavveTheme.colors.gray_2,
+            errorContainerColor = WavveTheme.colors.gray_2,
+            focusedPlaceholderColor = WavveTheme.colors.gray_2,
+            focusedIndicatorColor = WavveTheme.colors.gray_2,
+            unfocusedIndicatorColor = WavveTheme.colors.gray_2
         ),
         textStyle = TextStyle(fontSize = 15.sp),
         keyboardOptions = keyboardOptions,
@@ -77,8 +74,8 @@ fun FillMaxWidthTextField(
             if (isPassword) {
                 Text(
                     text = if (passwordVisible) "HIDE" else "SHOW",
-                    color = Color.White,
-                    fontSize = 13.sp,
+                    color = WavveTheme.colors.white,
+                    fontSize = WavveTheme.typography.caption.fontSize,
                     modifier = Modifier
                         .clickable { passwordVisible = !passwordVisible }
                         .padding(horizontal = 16.dp)

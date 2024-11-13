@@ -14,7 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.and.R
-import org.sopt.and.ui.theme.darkGray3
+import org.sopt.and.ui.theme.WavveTheme
 
 @Composable
 fun ColumnIconText(
@@ -38,7 +38,7 @@ fun ColumnIconText(
         Spacer(modifier = Modifier.height(20.dp))
         Text(
             text = text,
-            color = darkGray3,
+            color = WavveTheme.colors.gray_3,
         )
     }
 }

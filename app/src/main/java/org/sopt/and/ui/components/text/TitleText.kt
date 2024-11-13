@@ -13,14 +13,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.sopt.and.ui.theme.darkGray3
+import org.sopt.and.ui.theme.WavveTheme
 
 @Composable
 fun TitleText(
     text: AnnotatedString,
     lineHeight: TextUnit = 40.sp,
-    fontSize: TextUnit = 22.sp,
-    color: Color = darkGray3,  // 기본 색상을 검은색으로 설정
+    fontSize: TextUnit = WavveTheme.typography.h1.fontSize,
+    color: Color = WavveTheme.colors.gray_3,  // 기본 색상을 검은색으로 설정
     modifier: Modifier = Modifier.padding(start = 30.dp)
 ) {
     Text(
@@ -37,7 +37,7 @@ fun TitleText(
 fun TitleTextPreview() {
     TitleText(
         text = buildAnnotatedString {
-            withStyle(style = SpanStyle(color = Color.White, fontSize = 22.sp)) {
+            withStyle(style = SpanStyle(color = WavveTheme.colors.white, fontSize = 22.sp)) {
                 append("이메일과 비밀번호")
             }
             append("만으로\n")
