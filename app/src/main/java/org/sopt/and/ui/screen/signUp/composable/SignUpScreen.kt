@@ -162,7 +162,7 @@ fun SignUpScreen(
                                 ) else Modifier
                             )
                     )
-                    if (index < org.sopt.and.ui.screen.signIn.composable.icons.size - 1) {
+                    if (index < icons.size - 1) {
                         Spacer(modifier = Modifier.width(18.dp))
                     }
                 }

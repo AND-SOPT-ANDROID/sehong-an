@@ -38,11 +38,7 @@ fun ProfileContainer(
         )
         Spacer(modifier = Modifier.width(20.dp))
         Text(
-            text = profileName,
-            color = WavveTheme.colors.white,
-        )
-        Text(
-            text = "님",
+            text = "$profileName 님",
             color = WavveTheme.colors.white,
         )
         Spacer(modifier = Modifier.weight(1f))
