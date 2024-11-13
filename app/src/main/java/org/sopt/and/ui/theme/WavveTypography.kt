@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.sp
 data class WavveTypography(
     val h1: TextStyle = TextStyle(
         fontWeight = FontWeight.SemiBold,
-        fontSize = 24.sp,
+        fontSize = 22.sp,
         lineHeight = 30.sp,
         letterSpacing = 0.sp,
         platformStyle = PlatformTextStyle(
@@ -75,7 +75,7 @@ data class WavveTypography(
     ),
     val caption: TextStyle = TextStyle(
         fontWeight = FontWeight.Medium,
-        fontSize = 12.sp,
+        fontSize = 13.sp,
         lineHeight = 18.sp,
         letterSpacing = 0.sp,
         platformStyle = PlatformTextStyle(
