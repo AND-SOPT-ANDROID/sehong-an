@@ -35,14 +35,13 @@ import org.sopt.and.ui.screen.signIn.viewmodel.SignInViewModel
 import org.sopt.and.ui.theme.WavveTheme
 
 
-val icons = SocialLogin.entries
-
 @Composable
 fun SignInScreen(
     navController: androidx.navigation.NavHostController,
     modifier: Modifier,
     viewModel: SignInViewModel = hiltViewModel()
 ) {
+    val icons = SocialLogin.entries
     val loginDescription = stringResource(id = R.string.login_description)
     Box(modifier = modifier) {
         Column(

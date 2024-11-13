@@ -48,14 +48,13 @@ import org.sopt.and.ui.components.textField.FillMaxWidthTextField
 import org.sopt.and.ui.screen.signUp.viewmodel.SignUpViewModel
 import org.sopt.and.ui.theme.WavveTheme
 
-val icons = SocialLogin.entries
-
 @Composable
 fun SignUpScreen(
     onNavigateToSignIn: () -> Unit,
     modifier: Modifier,
     viewModel: SignUpViewModel = hiltViewModel()
 ) {
+    val icons = SocialLogin.entries
     val context = LocalContext.current
     val loginDescription = stringResource(id = R.string.login_description)
     val focusRequesterEmail = remember { FocusRequester() }
