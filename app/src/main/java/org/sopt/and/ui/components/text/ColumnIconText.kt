@@ -1,5 +1,6 @@
 package org.sopt.and.ui.components.text
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,7 +21,7 @@ import org.sopt.and.ui.theme.WavveTheme
 @Composable
 fun ColumnIconText(
     text: String,
-    iconResId: Int,
+    @DrawableRes iconResId: Int,
     iconContentDescription: String,
     modifier: Modifier = Modifier
 ) {
