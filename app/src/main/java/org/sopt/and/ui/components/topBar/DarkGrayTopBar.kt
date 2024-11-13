@@ -27,7 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.and.R
 import org.sopt.and.ui.theme.ANDANDROIDTheme
-import org.sopt.and.ui.theme.darkGray1
+import org.sopt.and.ui.theme.WavveTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -42,7 +42,7 @@ fun DarkGrayTopBar(
 ) {
     Box(
         modifier = modifier
-            .background(darkGray1)  // 배경색 설정
+            .background(WavveTheme.colors.gray_1)  // 배경색 설정
             .padding(end = 15.dp)  // 패딩 설정
     ) {
         TopAppBar(
@@ -87,7 +87,7 @@ fun DarkGrayTopBar(
 
 @Preview(showBackground = true)
 @Composable
-fun SignInTopBarCustomPreview() {
+fun SignInTopBarPreview() {
     ANDANDROIDTheme {
         DarkGrayTopBar(
             modifier = Modifier,
@@ -98,7 +98,7 @@ fun SignInTopBarCustomPreview() {
                     modifier = Modifier
                         .size(30.dp)  // 아이콘 크기 설정
                         .padding(start = 0.dp),
-                    tint = Color.White
+                    tint = WavveTheme.colors.white
                 )
             },
             centerContent = {
@@ -116,7 +116,7 @@ fun SignInTopBarCustomPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun HomeTopBarCustomPreview() {
+fun HomeTopBarPreview() {
     ANDANDROIDTheme {
         DarkGrayTopBar(
             modifier = Modifier,
@@ -132,7 +132,7 @@ fun HomeTopBarCustomPreview() {
                     imageVector = Icons.Filled.Search,
                     contentDescription = "Search",
                     modifier = Modifier.size(24.dp),  // 아이콘 크기 설정
-                    tint = Color.White
+                    tint = WavveTheme.colors.white
                 )
             },
             onLeftIconClicked = { Log.d("DarkGrayTopBar", "Left icon clicked") },
@@ -143,7 +143,7 @@ fun HomeTopBarCustomPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun SignUpTopBarCustomPreview() {
+fun SignUpTopBarPreview() {
     ANDANDROIDTheme {
         DarkGrayTopBar(
             modifier = Modifier,
@@ -152,7 +152,7 @@ fun SignUpTopBarCustomPreview() {
                     imageVector = Icons.Filled.Close,
                     contentDescription = "Search",
                     modifier = Modifier.size(24.dp),  // 아이콘 크기 설정
-                    tint = Color.White
+                    tint = WavveTheme.colors.white
                 )
             },
             onRightIconClicked = { Log.d("DarkGrayTopBar", "Right icon clicked") }

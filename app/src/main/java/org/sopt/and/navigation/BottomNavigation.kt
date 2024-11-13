@@ -13,6 +13,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import org.sopt.and.ui.theme.ANDANDROIDTheme
+import org.sopt.and.ui.theme.WavveTheme
 
 @Composable
 fun BottomNavigation(navController: NavController) {
@@ -41,9 +42,9 @@ fun BottomNavigation(navController: NavController) {
                     }
                 },
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = Color.White,
+                    selectedIconColor = WavveTheme.colors.white,
                     unselectedIconColor = Color.Gray,
-                    selectedTextColor = Color.White,
+                    selectedTextColor = WavveTheme.colors.white,
                     unselectedTextColor = Color.Gray,
                     indicatorColor = Color.Transparent
                 )
@@ -54,7 +55,7 @@ fun BottomNavigation(navController: NavController) {
 
 @Preview
 @Composable
-fun MyScreenPreview() {
+fun BottomNavigationPreview() {
     ANDANDROIDTheme {
         val navController = rememberNavController()
         BottomNavigation(navController = navController)

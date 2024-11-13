@@ -12,7 +12,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,6 +20,7 @@ import org.sopt.and.R
 import org.sopt.and.navigation.BottomNavItem
 import org.sopt.and.navigation.Screen
 import org.sopt.and.ui.components.topBar.DarkGrayTopBar
+import org.sopt.and.ui.theme.WavveTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,7 +41,7 @@ fun TopBar(navController: NavHostController, currentRoute: String?) {
                         imageVector = Icons.Filled.Search,
                         contentDescription = "Search",
                         modifier = Modifier.size(24.dp),  // 아이콘 크기 설정
-                        tint = Color.White
+                        tint = WavveTheme.colors.white
                     )
                 },
                 onLeftIconClicked = { Log.d("TopBar", "Left icon clicked") },
@@ -67,7 +67,7 @@ fun TopBar(navController: NavHostController, currentRoute: String?) {
                         modifier = Modifier
                             .size(30.dp)  // 아이콘 크기 설정
                             .padding(start = 0.dp),
-                        tint = Color.White
+                        tint = WavveTheme.colors.white
                     )
                 },
                 centerContent = {
@@ -90,7 +90,7 @@ fun TopBar(navController: NavHostController, currentRoute: String?) {
                         imageVector = Icons.Filled.Close,
                         contentDescription = "Close",
                         modifier = Modifier.size(24.dp),  // 아이콘 크기 설정
-                        tint = Color.White
+                        tint = WavveTheme.colors.white
                     )
                 },
                 onRightIconClicked = { navController.navigate("login") }
@@ -121,7 +121,7 @@ fun PreviewHomeTopAppBar() {
                 imageVector = Icons.Filled.Search,
                 contentDescription = "Search",
                 modifier = Modifier.size(24.dp),  // 아이콘 크기 설정
-                tint = Color.White
+                tint = WavveTheme.colors.white
             )
         },
         onLeftIconClicked = { Log.d("TopBar", "Left icon clicked") },
@@ -141,7 +141,7 @@ fun PreviewSignInTopAppBar() {
                 modifier = Modifier
                     .size(30.dp)  // 아이콘 크기 설정
                     .padding(start = 0.dp),
-                tint = Color.White
+                tint = WavveTheme.colors.white
             )
         },
         centerContent = {
@@ -167,7 +167,7 @@ fun PreviewSignUpTopAppBar() {
                 imageVector = Icons.Filled.Close,
                 contentDescription = "Close",
                 modifier = Modifier.size(24.dp),  // 아이콘 크기 설정
-                tint = Color.White
+                tint = WavveTheme.colors.white
             )
         },
         onRightIconClicked = { Log.d("TopBar", "Right icon clicked") }
