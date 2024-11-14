@@ -3,9 +3,10 @@ package org.sopt.and.data
 import javax.inject.Inject
 
 class UserManager @Inject constructor(private val preferencesManager: PreferencesManager) {
-    fun registerUser(username: String, password: String) {
+    fun registerUser(username: String, password: String, hobby: String) {
         preferencesManager.setValue(USERNAME, username)
         preferencesManager.setValue(PASSWORD, password)
+        preferencesManager.setValue(HOBBY, hobby)
     }
 
     fun loginUser(username: String, password: String): Boolean {
@@ -34,5 +35,6 @@ class UserManager @Inject constructor(private val preferencesManager: Preference
         private const val IS_LOGGED_IN = "IS_LOGGED_IN"
         private const val USERNAME = "USERNAME"
         private const val PASSWORD = "PASSWORD"
+        private const val HOBBY = "HOBBY"
     }
 }

@@ -83,6 +83,10 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.kotlin.serialization.converter)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.converter.gson)
+    implementation(libs.data.preferences)
+    implementation(libs.coroutines.android)
+    implementation(libs.chucker.library)
 }
 kapt {
     correctErrorTypes = true
