@@ -5,22 +5,65 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.launch
 import org.sopt.and.R
-import org.sopt.and.data.UserManager
-import org.sopt.and.utils.isValidEmail
+import org.sopt.and.data.repository.DataStoreRepository
+import org.sopt.and.data.repository.UserRepository
+import org.sopt.and.network.adapter.ApiResult
+import org.sopt.and.network.model.request.SignUpRequest
+import org.sopt.and.ui.screen.signUp.contract.SignUpContract
+import org.sopt.and.utils.BaseViewModel
 import org.sopt.and.utils.isValidPassword
 import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-    private val userManager: UserManager,
+    private val userRepository: UserRepository,
+    private val dataStoreRepository: DataStoreRepository,
     @ApplicationContext private val context: Context
-) : ViewModel() {
+) : BaseViewModel<SignUpContract.State, SignUpContract.Event, SignUpContract.Effect>(
+    initialState = SignUpContract.State()
+) {
+    override fun reduceState(event: SignUpContract.Event) {
+        viewModelScope.launch {
+            when (event) {
+                is SignUpContract.Event.SignUpButtonClicked -> {
+                    UserSignUp(
+                        hobby = event.hobby,
+                        password = event.password,
+                        username = event.username,
+                    )
+                }
+            }
+        }
+    }
+
+    private suspend fun UserSignUp(username: String, password: String, hobby: String) {
+        updateState(currentState.copy(isLoading = true))
+        userRepository.signUp(SignUpRequest(username, password, hobby)).collect { result ->
+            when (result) {
+                is ApiResult.Success -> {
+                    postEffect(SignUpContract.Effect.ShowSuccessMessage("회원가입 성공"))
+                }
+
+                is ApiResult.ApiError -> {
+                    postEffect(SignUpContract.Effect.ShowErrorMessage("API 에러: ${result.message}"))
+                }
+
+                is ApiResult.NetworkError -> {
+                    postEffect(SignUpContract.Effect.ShowErrorMessage("네트워크 에러: ${result.throwable.message}"))
+                }
+            }
+            updateState(currentState.copy(isLoading = false))
+        }
+
+    }
+
     /** Email 입력값 */
-    var userIdInput by mutableStateOf("")
+    var usernameInput by mutableStateOf("")
         private set
 
     /** Password 입력값 */
@@ -33,11 +76,11 @@ class SignUpViewModel @Inject constructor(
 
     /** 회원가입 가능 여부 */
     val isEnabled by derivedStateOf {
-        isEmailValid && isPasswordValid && userIdInput.isNotEmpty() && passwordInput.isNotEmpty()
+        isUsernameValid && isPasswordValid && usernameInput.isNotEmpty() && passwordInput.isNotEmpty()
     }
 
     /** Email Valid 여부 */
-    var isEmailValid by mutableStateOf(true)
+    var isUsernameValid by mutableStateOf(true)
         private set
 
     /** Password Valid 여부 */
@@ -49,15 +92,16 @@ class SignUpViewModel @Inject constructor(
         private set
 
     /** Email 의 Description */
-    var signUpEmailDescription by mutableStateOf(context.getString(R.string.sign_up_email_default))
+    var signUpEmailDescription by mutableStateOf(context.getString(R.string.sign_up_username))
         private set
 
     /** Password 의 Description */
     var signUpPasswordDescription by mutableStateOf(context.getString(R.string.sign_up_password_default))
         private set
 
+
     /** Email 초기 포커스 한번은 무시하기 */
-    var hasFocusEmailChanged by mutableStateOf(false)
+    var hasFocusUsernameChanged by mutableStateOf(false)
         private set
 
     /** Password 초기 포커스 한번은 무시하기 */
@@ -68,8 +112,8 @@ class SignUpViewModel @Inject constructor(
     var hasFocusHobbyChanged by mutableStateOf(false)
         private set
 
-    fun onUserIdInputChange(value: String) {
-        userIdInput = value
+    fun onUsernameInputChange(value: String) {
+        usernameInput = value
         validateEmail()
     }
 
@@ -78,11 +122,16 @@ class SignUpViewModel @Inject constructor(
         validatePassword()
     }
 
+    fun onHobbyInputChange(value: String) {
+        hobbyInput = value
+        validateHobby()
+    }
+
     fun onEmailFocusChange(isFocused: Boolean) {
-        if (hasFocusEmailChanged && !isFocused) {
+        if (hasFocusUsernameChanged && !isFocused) {
             validateEmail()
         }
-        hasFocusEmailChanged = true
+        hasFocusUsernameChanged = true
     }
 
     fun onPasswordFocusChange(isFocused: Boolean) {
@@ -101,13 +150,7 @@ class SignUpViewModel @Inject constructor(
 
 
     private fun validateEmail() {
-        isEmailValid = userIdInput.isNotEmpty() && isValidEmail(userIdInput)
-        signUpEmailDescription = when {
-            userIdInput.isEmpty() -> context.getString(R.string.sign_up_email_default)
-            userIdInput.length < 5 -> context.getString(R.string.sign_up_email_error1)
-            !isEmailValid -> context.getString(R.string.sign_up_email_error2)
-            else -> context.getString(R.string.sign_up_email_default)
-        }
+        isUsernameValid = usernameInput.isNotEmpty() && usernameInput.length <= 8
     }
 
     private fun validatePassword() {
@@ -119,10 +162,7 @@ class SignUpViewModel @Inject constructor(
     }
 
     private fun validateHobby() {
-        isHobbyValid = hobbyInput.isNotEmpty()
+        isHobbyValid = hobbyInput.isNotEmpty() && hobbyInput.length <= 8
     }
 
-    fun registerUser() {
-        userManager.registerUser(userIdInput, passwordInput)
-    }
 }
