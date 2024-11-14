@@ -1,5 +1,6 @@
 package org.sopt.and.ui.screen.signIn.composable
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -18,9 +19,12 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -31,6 +35,7 @@ import org.sopt.and.ui.components.buttom.FillMaxWidthButton
 import org.sopt.and.ui.components.icon.SocialLoginIcon
 import org.sopt.and.ui.components.text.StrikethroughText
 import org.sopt.and.ui.components.textField.FillMaxWidthTextField
+import org.sopt.and.ui.screen.signIn.contract.SignInContract
 import org.sopt.and.ui.screen.signIn.viewmodel.SignInViewModel
 import org.sopt.and.ui.theme.WavveTheme
 
@@ -39,10 +44,31 @@ import org.sopt.and.ui.theme.WavveTheme
 fun SignInScreen(
     navController: androidx.navigation.NavHostController,
     modifier: Modifier,
-    viewModel: SignInViewModel = hiltViewModel()
+    viewModel: SignInViewModel = hiltViewModel(),
 ) {
     val icons = SocialLogin.entries
+    val context = LocalContext.current
     val loginDescription = stringResource(id = R.string.login_description)
+    val effects = viewModel.effect.collectAsState(initial = null).value
+    LaunchedEffect(effects) {
+        when (effects) {
+            is SignInContract.Effect.NavigateToMyScreen -> {
+                navController.navigate("my")
+            }
+
+            is SignInContract.Effect.ShowSuccessMessage -> {
+                Toast.makeText(context, effects.message, Toast.LENGTH_SHORT).show()
+                navController.navigate("my")
+            }
+
+            is SignInContract.Effect.ShowErrorMessage -> {
+                Toast.makeText(context, effects.message, Toast.LENGTH_SHORT).show()
+            }
+
+            else -> {}
+        }
+    }
+
     Box(modifier = modifier) {
         Column(
             modifier = Modifier

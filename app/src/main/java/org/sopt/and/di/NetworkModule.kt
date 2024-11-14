@@ -11,6 +11,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.sopt.and.BuildConfig
 import org.sopt.and.network.adapter.ApiResultCallAdapterFactory
+import org.sopt.and.network.interceptor.AuthInterceptor
 import org.sopt.and.network.service.UserService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,9 +24,11 @@ object NetworkModule {
     @Provides
     @Singleton
     fun providesOkHttpClient(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
+        tokenProvider: () -> String
     ): OkHttpClient {
         val builder = OkHttpClient.Builder()
+            .addInterceptor(AuthInterceptor(tokenProvider))
             .addNetworkInterceptor(
                 HttpLoggingInterceptor().apply {
                     if (BuildConfig.DEBUG) {
@@ -55,4 +58,15 @@ object NetworkModule {
     @Singleton
     fun providesUserService(retrofit: Retrofit): UserService =
         retrofit.create(UserService::class.java)
+
+
+    @Provides
+    fun provideTokenProvider(
+        @ApplicationContext context: Context
+    ): () -> String {
+        return {
+            val sharedPreferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
+            sharedPreferences.getString("auth_token", "") ?: ""
+        }
+    }
 }

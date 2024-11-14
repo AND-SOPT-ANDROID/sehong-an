@@ -2,7 +2,7 @@ package org.sopt.and.network.model
 
 open class BaseResponse<out T>(
     val success: Boolean,
-    val data: T?,
+    val result: T?,
     val error: ErrorResponse?
 )
 
