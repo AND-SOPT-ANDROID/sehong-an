@@ -13,15 +13,20 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
@@ -45,6 +50,7 @@ import org.sopt.and.ui.components.text.LabeledIconText
 import org.sopt.and.ui.components.text.StrikethroughText
 import org.sopt.and.ui.components.text.TitleText
 import org.sopt.and.ui.components.textField.FillMaxWidthTextField
+import org.sopt.and.ui.screen.signUp.contract.SignUpContract
 import org.sopt.and.ui.screen.signUp.viewmodel.SignUpViewModel
 import org.sopt.and.ui.theme.WavveTheme
 
@@ -61,11 +67,39 @@ fun SignUpScreen(
     val focusRequesterPassword = remember { FocusRequester() }
     val focusRequesterHobby = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current
-    Box(modifier = modifier) {
+
+    val effects = viewModel.effect.collectAsState(initial = null).value
+
+    // 효과 처리
+    LaunchedEffect(effects) {
+        when (effects) {
+            is SignUpContract.Effect.NavigateToSignIn -> {
+                onNavigateToSignIn()
+            }
+
+            is SignUpContract.Effect.ShowSuccessMessage -> {
+                Toast.makeText(context, effects.message, Toast.LENGTH_SHORT).show()
+                onNavigateToSignIn()
+            }
+
+            is SignUpContract.Effect.ShowErrorMessage -> {
+                Toast.makeText(context, effects.message, Toast.LENGTH_SHORT).show()
+            }
+
+            else -> {}
+        }
+    }
+
+    val scrollState = rememberScrollState()
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(WavveTheme.colors.gray_1)
+                .verticalScroll(scrollState)
         ) {
             Spacer(modifier = Modifier.height(30.dp))
             TitleText(
@@ -92,9 +126,9 @@ fun SignUpScreen(
             )
             Spacer(modifier = Modifier.height(20.dp))
             FillMaxWidthTextField(
-                value = viewModel.userIdInput,
-                placeholder = "wavve@example.com",
-                onValueChange = viewModel::onUserIdInputChange,
+                value = viewModel.usernameInput,
+                placeholder = "닉네임을 입력해 주세요.",
+                onValueChange = viewModel::onUsernameInputChange,
                 modifier = Modifier
                     .padding(horizontal = 10.dp)
                     .onFocusChanged { focusState ->
@@ -107,7 +141,7 @@ fun SignUpScreen(
                 keyboardActions = KeyboardActions(
                     onNext = { focusRequesterPassword.requestFocus() }
                 ),
-                isValid = viewModel.isEmailValid,
+                isValid = viewModel.isUsernameValid,
             )
             Spacer(modifier = Modifier.height(5.dp))
             LabeledIconText(
@@ -146,8 +180,8 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.height(5.dp))
             FillMaxWidthTextField(
                 value = viewModel.hobbyInput,
-                placeholder = "취미를 설정해주세요",
-                onValueChange = viewModel::onUserIdInputChange,
+                placeholder = "취미를 설정해 주세요.",
+                onValueChange = viewModel::onHobbyInputChange,
                 modifier = Modifier
                     .padding(horizontal = 10.dp)
                     .onFocusChanged { focusState ->
@@ -217,30 +251,38 @@ fun SignUpScreen(
                     modifier = Modifier.padding(start = 5.dp)
                 )
             }
-            Spacer(modifier = Modifier.weight(1f))
-            Button(
-                onClick = {
-                    viewModel.registerUser()
-                    Toast.makeText(context, "회원가입 성공", Toast.LENGTH_SHORT).show()
-                    onNavigateToSignIn()
-                },
-                shape = RoundedCornerShape(0.dp),
-                enabled = viewModel.isEnabled,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = WavveTheme.colors.main_blue,
-                    disabledContainerColor = WavveTheme.colors.gray_5,
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-            ) {
-                Text(
-                    text = stringResource(id = R.string.sign_up_button),
-                    style = WavveTheme.typography.body1.copy(
-                        color = WavveTheme.colors.white
+            Spacer(modifier = Modifier.height(100.dp))
+        }
+        Button(
+            onClick = {
+//                Toast.makeText(context, "회원가입 성공", Toast.LENGTH_SHORT).show()
+//                onNavigateToSignIn()
+                viewModel.processEvent(
+                    SignUpContract.Event.SignUpButtonClicked(
+                        username = viewModel.usernameInput,
+                        password = viewModel.passwordInput,
+                        hobby = viewModel.hobbyInput
                     )
                 )
-            }
+            },
+
+            shape = RoundedCornerShape(0.dp),
+            enabled = viewModel.isEnabled,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = WavveTheme.colors.main_blue,
+                disabledContainerColor = WavveTheme.colors.gray_5,
+            ),
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .height(50.dp)
+        ) {
+            Text(
+                text = stringResource(id = R.string.sign_up_button),
+                style = WavveTheme.typography.body1.copy(
+                    color = WavveTheme.colors.white
+                )
+            )
         }
     }
 }
