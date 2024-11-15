@@ -1,5 +1,6 @@
 package org.sopt.and.ui.screen.myPage.composable
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,8 +16,11 @@ import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -25,6 +29,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.sopt.and.R
 import org.sopt.and.ui.components.container.ProfileContainer
 import org.sopt.and.ui.components.text.ColumnIconText
+import org.sopt.and.ui.screen.myPage.contract.MyPageContract
 import org.sopt.and.ui.screen.myPage.viewmodel.MyScreenViewModel
 import org.sopt.and.ui.theme.WavveTheme
 
@@ -34,8 +39,22 @@ fun MyScreen(
     modifier: Modifier,
     viewModel: MyScreenViewModel = hiltViewModel()
 ) {
-    val profileName by viewModel.profileName.collectAsStateWithLifecycle()
+    val context = LocalContext.current
+    val hobby by viewModel.hobby.collectAsStateWithLifecycle()
+    val effects = viewModel.effect.collectAsState(initial = null).value
+    LaunchedEffect(effects) {
+        when (effects) {
+            is MyPageContract.Effect.NavigateToLogin -> {
+                navController.navigate("login")
+            }
 
+            is MyPageContract.Effect.ShowErrorMessage -> {
+                Toast.makeText(context, effects.message, Toast.LENGTH_SHORT).show()
+            }
+
+            else -> {}
+        }
+    }
     /** 스크롤이 가능하도록 scrollState 설정 */
     val scrollState = rememberScrollState()
     Column(
@@ -51,12 +70,10 @@ fun MyScreen(
                 .padding(top = 15.dp, start = 15.dp, end = 15.dp, bottom = 30.dp),
         ) {
             ProfileContainer(
-                profileName,
-                onLogoutClick = {
-                    viewModel.logout()
-                    navController.navigate("login")
-                }
-            )
+                hobby,
+            ) {
+                viewModel.logout()
+            }
         }
         Text(
             text = "첫 결제 시 첫 달 100원!",

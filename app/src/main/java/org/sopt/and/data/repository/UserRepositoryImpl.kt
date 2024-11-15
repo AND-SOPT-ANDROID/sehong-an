@@ -16,4 +16,8 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun login(
         loginRequest: LoginRequest
     ) = userDataSource.login(loginRequest)
+
+    override suspend fun getHobby(
+        token: String
+    ) = userDataSource.getHobby(token)
 }

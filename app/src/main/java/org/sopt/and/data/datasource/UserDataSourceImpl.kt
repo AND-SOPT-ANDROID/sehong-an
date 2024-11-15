@@ -10,6 +10,7 @@ import org.sopt.and.network.model.BaseResponse
 import org.sopt.and.network.model.request.LoginRequest
 import org.sopt.and.network.model.request.SignUpRequest
 import org.sopt.and.network.model.response.SignUpResponse
+import org.sopt.and.network.model.response.UserHobbyResponse
 import org.sopt.and.network.model.response.UserTokenResponse
 import org.sopt.and.network.service.UserService
 import javax.inject.Inject
@@ -29,5 +30,11 @@ class UserDataSourceImpl @Inject constructor(
         loginRequest: LoginRequest
     ): Flow<ApiResult<BaseResponse<UserTokenResponse>>> = flow {
         emit(userService.login(loginRequest))
+    }.flowOn(ioDispatcher)
+
+    override suspend fun getHobby(
+        token: String
+    ): Flow<ApiResult<BaseResponse<UserHobbyResponse>>> = flow {
+        emit(userService.getUserHobby(token))
     }.flowOn(ioDispatcher)
 }

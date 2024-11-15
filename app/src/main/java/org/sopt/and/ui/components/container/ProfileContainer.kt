@@ -23,12 +23,12 @@ import org.sopt.and.ui.theme.WavveTheme
 
 @Composable
 fun ProfileContainer(
-//    modifier: Modifier = Modifier,
-    profileName: String,
+    hobbyName: String,
+    modifier: Modifier = Modifier,
     onLogoutClick: () -> Unit,
 ) {
     Row(
-        modifier = Modifier,
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
@@ -38,7 +38,7 @@ fun ProfileContainer(
         )
         Spacer(modifier = Modifier.width(20.dp))
         Text(
-            text = "$profileName 님",
+            text = "취미: $hobbyName",
             color = WavveTheme.colors.white,
         )
         Spacer(modifier = Modifier.weight(1f))
@@ -64,7 +64,7 @@ fun ProfileContainer(
 @Composable
 fun ProfileContainerPreview() {
     ProfileContainer(
-        profileName = "안세홍"
+        hobbyName = "LoL"
     ) {
 
     }

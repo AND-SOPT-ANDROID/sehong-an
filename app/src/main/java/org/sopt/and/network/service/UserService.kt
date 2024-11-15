@@ -25,7 +25,7 @@ interface UserService {
 
     @GET("/user/my-hobby")
     suspend fun getUserHobby(
-        @Header("Authorization") token: String
+        @Header("token") token: String
     ): ApiResult<BaseResponse<UserHobbyResponse>>
 
 }

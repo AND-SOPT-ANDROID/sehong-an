@@ -1,7 +1,6 @@
 package org.sopt.and.ui.screen.signIn.viewmodel
 
 import android.content.Context
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -74,7 +73,6 @@ class SignInViewModel @Inject constructor(
         userRepository.login(LoginRequest(username, password)).collect { result ->
             when (result) {
                 is ApiResult.Success -> {
-                    Log.e("result", result.data?.result?.token.toString())
                     val accessToken = result.data?.result?.token ?: ""
                     if (accessToken.isNotEmpty()) {
                         dataStoreRepository.setAccessToken(accessToken)
