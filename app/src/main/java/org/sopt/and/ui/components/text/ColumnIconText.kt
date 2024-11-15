@@ -49,7 +49,7 @@ fun ColumnIconText(
 @Composable
 fun PreviewColumnIconText() {
     ColumnIconText(
-        text = stringResource(id = R.string.my_screen_no_history),
+        text = stringResource(id = R.string.my_no_history),
         iconResId = R.drawable.exclamation_mark_icon,
         iconContentDescription = "exclamation_mark_icon"
     )
