@@ -28,10 +28,14 @@ class SignInViewModel @Inject constructor(
         viewModelScope.launch {
             when (event) {
                 is SignInContract.Event.SignInButtonClicked -> {
-                    userLogin(
-                        password = event.password,
-                        username = event.username,
-                    )
+                    if (event.username.isEmpty() || event.password.isEmpty()) {
+                        showDialog = true
+//                        postEffect(SignInContract.Effect.ShowErrorMessage("아이디와 비밀번호를 모두 입력해주세요."))
+                    } else {
+                        viewModelScope.launch {
+                            userLogin(event.username, event.password)
+                        }
+                    }
                 }
             }
         }
@@ -50,17 +54,6 @@ class SignInViewModel @Inject constructor(
 
     fun onPasswordInputChange(newInput: String) {
         passwordInput = newInput
-    }
-
-    fun handleLoginClick(username: String, password: String) {
-        if (userIdInput.isEmpty() || passwordInput.isEmpty()) {
-            showDialog = true
-            postEffect(SignInContract.Effect.ShowErrorMessage("아이디와 비밀번호를 모두 입력해주세요."))
-            return
-        }
-        viewModelScope.launch {
-            userLogin(userIdInput, passwordInput)
-        }
     }
 
     fun dismissDialog() {

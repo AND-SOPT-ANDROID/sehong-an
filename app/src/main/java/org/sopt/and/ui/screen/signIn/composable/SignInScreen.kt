@@ -94,9 +94,11 @@ fun SignInScreen(
                 text = stringResource(id = R.string.sign_in_button),
                 style = WavveTheme.typography.body1,
                 onClick = {
-                    viewModel.handleLoginClick(
-                        viewModel.userIdInput,
-                        viewModel.passwordInput
+                    viewModel.processEvent(
+                        SignInContract.Event.SignInButtonClicked(
+                            username = viewModel.userIdInput,
+                            password = viewModel.passwordInput,
+                        )
                     )
                 }
             )

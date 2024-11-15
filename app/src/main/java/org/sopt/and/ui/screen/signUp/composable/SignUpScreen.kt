@@ -104,22 +104,14 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.height(30.dp))
             TitleText(
                 text = buildAnnotatedString {
-                    withStyle(
-                        style = SpanStyle(
-                            color = WavveTheme.colors.white,
-                            fontSize = WavveTheme.typography.h1.fontSize,
-                        )
-                    ) {
-                        append("이메일과 비밀번호")
-                    }
-                    append("만으로\n")
-                    withStyle(
-                        style = SpanStyle(
-                            color = WavveTheme.colors.white,
-                            fontSize = WavveTheme.typography.h1.fontSize,
-                        )
-                    ) {
-                        append(" Wavve를 즐길 수")
+                    val commonStyle = SpanStyle(
+                        color = WavveTheme.colors.white,
+                        fontSize = WavveTheme.typography.h1.fontSize
+                    )
+
+                    withStyle(style = commonStyle) {
+                        append("이메일과 비밀번호만으로\n")
+                        append("Wavve를 즐길 수 ")
                     }
                     append("있어요!")
                 }
@@ -127,7 +119,7 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.height(20.dp))
             FillMaxWidthTextField(
                 value = viewModel.usernameInput,
-                placeholder = "닉네임을 입력해 주세요.",
+                placeholder = stringResource(id = R.string.sign_up_placeholder_username),
                 onValueChange = viewModel::onUsernameInputChange,
                 modifier = Modifier
                     .padding(horizontal = 10.dp)
@@ -153,7 +145,7 @@ fun SignUpScreen(
             )
             FillMaxWidthTextField(
                 value = viewModel.passwordInput,
-                placeholder = "Wavve 비밀번호 설정",
+                placeholder = stringResource(id = R.string.sign_up_placeholder_password),
                 onValueChange = viewModel::onPasswordInputChange,
                 modifier = Modifier
                     .padding(8.dp)
@@ -180,7 +172,7 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.height(5.dp))
             FillMaxWidthTextField(
                 value = viewModel.hobbyInput,
-                placeholder = "취미를 설정해 주세요.",
+                placeholder = stringResource(id = R.string.sign_up_placeholder_hobby),
                 onValueChange = viewModel::onHobbyInputChange,
                 modifier = Modifier
                     .padding(horizontal = 10.dp)
@@ -255,8 +247,6 @@ fun SignUpScreen(
         }
         Button(
             onClick = {
-//                Toast.makeText(context, "회원가입 성공", Toast.LENGTH_SHORT).show()
-//                onNavigateToSignIn()
                 viewModel.processEvent(
                     SignUpContract.Event.SignUpButtonClicked(
                         username = viewModel.usernameInput,

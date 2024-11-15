@@ -76,7 +76,7 @@ fun MyScreen(
             }
         }
         Text(
-            text = "첫 결제 시 첫 달 100원!",
+            text = stringResource(id = R.string.my_first_payment),
             color = WavveTheme.colors.gray_3,
             modifier = Modifier
                 .background(WavveTheme.colors.gray_1)
@@ -90,19 +90,19 @@ fun MyScreen(
                 .padding(horizontal = 15.dp)
         ) {
             Text(
-                text = "구매하기",
+                text = stringResource(id = R.string.purchase),
                 color = WavveTheme.colors.white,
             )
             Icon(
                 imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,
-                contentDescription = "구매하기 페이지로 이동",
+                contentDescription = stringResource(id = R.string.go_purchase_page),
                 tint = WavveTheme.colors.white,
                 modifier = Modifier.padding(bottom = 24.dp)
             )
         }
         Spacer(modifier = Modifier.height(1.dp))
         Text(
-            text = "현재 보유하신 이용권이 없습니다.",
+            text = stringResource(id = R.string.no_have_pass),
             color = WavveTheme.colors.gray_3,
             modifier = Modifier
                 .background(WavveTheme.colors.gray_1)
@@ -116,19 +116,19 @@ fun MyScreen(
                 .padding(horizontal = 15.dp)
         ) {
             Text(
-                text = "구매하기",
+                text = stringResource(id = R.string.purchase),
                 color = WavveTheme.colors.white,
             )
             Icon(
                 imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,
-                contentDescription = "구매하기 페이지로 이동",
+                contentDescription = stringResource(id = R.string.go_purchase_page),
                 tint = WavveTheme.colors.white,
                 modifier = Modifier.padding(bottom = 24.dp)
             )
         }
         Spacer(modifier = Modifier.height(20.dp))
         Text(
-            text = "전체 시청내역",
+            text = stringResource(id = R.string.total_program),
             color = WavveTheme.colors.white,
             modifier = Modifier
                 .padding(horizontal = 20.dp),
@@ -136,12 +136,12 @@ fun MyScreen(
             style = WavveTheme.typography.body2
         )
         ColumnIconText(
-            text = stringResource(id = R.string.my_screen_no_history),
+            text = stringResource(id = R.string.my_no_history),
             iconResId = R.drawable.exclamation_mark_icon,
             iconContentDescription = "exclamation_mark_icon"
         )
         Text(
-            text = stringResource(id = R.string.my_screen_interest_program),
+            text = stringResource(id = R.string.my_interest_program),
             color = WavveTheme.colors.white,
             modifier = Modifier
                 .padding(horizontal = 20.dp),
@@ -149,7 +149,7 @@ fun MyScreen(
             style = WavveTheme.typography.body1
         )
         ColumnIconText(
-            text = stringResource(id = R.string.my_screen_no_interest_program),
+            text = stringResource(id = R.string.my_no_interest_program),
             iconResId = R.drawable.exclamation_mark_icon,
             iconContentDescription = "exclamation_mark_icon"
         )
