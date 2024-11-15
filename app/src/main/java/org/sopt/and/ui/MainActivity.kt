@@ -56,7 +56,6 @@ fun MainScreen(viewModel: MainViewModel) {
         MainNavigation(
             navController = navController,
             modifier = Modifier.padding(innerPadding),
-            userManager = viewModel.userManager
         )
     }
 }
