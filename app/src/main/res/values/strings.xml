@@ -4,7 +4,8 @@
     <string name="title_home">홈</string>
     <string name="title_my">MY</string>
     <string name="title_search">검색</string>
-    <string name="login_description">SNS계정으로 간편하게 가입하여 서비스를 이용하실 수 있습니다. \n기존 POOQ 계정 또는 Wavve 계정과는 연동되지 않으니 이용에 참고하세요.</string>
+    <string name="confirm">확인</string>
+    <string name="login_description">SNS계정으로 간편하게 가입하여 서비스를 이용하실 수 있습니다. 기존 POOQ 계정 또는 Wavve 계정과는 연동되지 않으니 이용에 참고하세요.</string>
     <string name="sign_up_email_default">로그인, 비밀번호 찾기, 알림에 사용되니 정확한 이메일을 입력해 주세요.</string>
     <string name="sign_up_email_error1">5~50자의 이메일 형식으로 입력해 주세요.</string>
     <string name="sign_up_email_error2">입력하신 이메일 주소가 형식에 맞지 않습니다. 다시 입력해 주세요.</string>
@@ -15,7 +16,17 @@
     <string name="my_screen_no_history">시청내역이 없어요.</string>
     <string name="my_screen_interest_program">관심 프로그램</string>
     <string name="my_screen_no_interest_program">관심 프로그램이 없어요.</string>
-    <string name="sign_up_social_login">또는 다른 서비스 계정으로 로그인</string>
+    <string name="other_service_login">또는 다른 서비스 계정으로 로그인</string>
     <string name="sign_up_hobby">취미는 8글자 이내로 작성해 주세요.</string>
     <string name="sign_up_button">Wavve 회원가입</string>
+    <string name="sign_in_id_text_field">아이디 주소 또는 아이디</string>
+    <string name="sign_in_password_text_field">비밀번호</string>
+    <string name="sign_in_button">로그인</string>
+    <string name="sign_in_search_id">아이디 찾기</string>
+    <string name="sign_in_reset_password">비밀번호 설정</string>
+    <string name="sign_in_go_sign_up">회원가입</string>
+    <string name="login_fail">로그인 실패</string>
+    <string name="login_success_message">로그인 성공</string>
+    <string name="sign_up_success_message">회원가입 성공</string>
+    <string name="login_fail_message">아이디 또는 비밀번호가 올바르지 않습니다.</string>
 </resources>

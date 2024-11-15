@@ -206,7 +206,7 @@ fun SignUpScreen(
             )
             Spacer(modifier = Modifier.height(30.dp))
             StrikethroughText(
-                text = stringResource(id = R.string.sign_up_social_login)
+                text = stringResource(id = R.string.other_service_login)
             )
             Spacer(modifier = Modifier.height(35.dp))
             Row(

@@ -5,7 +5,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavHostController
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
@@ -29,7 +28,7 @@ class SignInViewModel @Inject constructor(
         viewModelScope.launch {
             when (event) {
                 is SignInContract.Event.SignInButtonClicked -> {
-                    UserLogin(
+                    userLogin(
                         password = event.password,
                         username = event.username,
                     )
@@ -53,14 +52,14 @@ class SignInViewModel @Inject constructor(
         passwordInput = newInput
     }
 
-    fun handleLoginClick(navController: NavHostController) {
+    fun handleLoginClick(username: String, password: String) {
         if (userIdInput.isEmpty() || passwordInput.isEmpty()) {
             showDialog = true
             postEffect(SignInContract.Effect.ShowErrorMessage("아이디와 비밀번호를 모두 입력해주세요."))
             return
         }
         viewModelScope.launch {
-            UserLogin(userIdInput, passwordInput)
+            userLogin(userIdInput, passwordInput)
         }
     }
 
@@ -68,7 +67,7 @@ class SignInViewModel @Inject constructor(
         showDialog = false
     }
 
-    private suspend fun UserLogin(username: String, password: String) {
+    private suspend fun userLogin(username: String, password: String) {
         updateState(currentState.copy(isLoading = true))
         userRepository.login(LoginRequest(username, password)).collect { result ->
             when (result) {

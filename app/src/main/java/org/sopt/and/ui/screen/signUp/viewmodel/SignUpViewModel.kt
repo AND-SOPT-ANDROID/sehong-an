@@ -31,7 +31,7 @@ class SignUpViewModel @Inject constructor(
         viewModelScope.launch {
             when (event) {
                 is SignUpContract.Event.SignUpButtonClicked -> {
-                    UserSignUp(
+                    userSignUp(
                         hobby = event.hobby,
                         password = event.password,
                         username = event.username,
@@ -41,7 +41,7 @@ class SignUpViewModel @Inject constructor(
         }
     }
 
-    private suspend fun UserSignUp(username: String, password: String, hobby: String) {
+    private suspend fun userSignUp(username: String, password: String, hobby: String) {
         updateState(currentState.copy(isLoading = true))
         userRepository.signUp(SignUpRequest(username, password, hobby)).collect { result ->
             when (result) {
