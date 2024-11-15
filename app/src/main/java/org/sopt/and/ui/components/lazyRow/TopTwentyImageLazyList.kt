@@ -22,6 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -46,7 +47,7 @@ fun TopTwentyImageList(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "오늘의 TOP 20",
+                text = stringResource(id = R.string.today_top_twenty),
                 style = WavveTheme.typography.title.copy(
                     color = WavveTheme.colors.white
                 ),

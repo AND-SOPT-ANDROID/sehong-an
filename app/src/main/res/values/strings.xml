@@ -37,6 +37,6 @@
     <string name="sign_up_placeholder_password">Wavve 비밀번호 설정</string>
     <string name="sign_up_placeholder_hobby">취미를 설정해 주세요.</string>
     <string name="my_first_payment">첫 결제 시 첫 달 100원!</string>
-
-
+    <string name="wavve_editor_suggestion">믿고 보는 웨이브 에디터 추천작</string>
+    <string name="today_top_twenty">오늘의 TOP 20</string>
 </resources>
