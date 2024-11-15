@@ -6,4 +6,5 @@ open class BaseResponse<out T>(
 
 open class ErrorResponse(
     val code: String = "",
+    val message: String = ""
 )
