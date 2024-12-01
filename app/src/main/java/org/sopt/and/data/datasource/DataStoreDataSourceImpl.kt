@@ -21,7 +21,6 @@ class DataStoreDataSourceImpl @Inject constructor(
         return preferenceDataStore.data
             .catch { exception ->
                 if (exception is IOException) {
-                    exception.printStackTrace()
                     emit(emptyPreferences())
                 } else {
                     throw exception
@@ -41,7 +40,6 @@ class DataStoreDataSourceImpl @Inject constructor(
         return preferenceDataStore.data
             .catch { exception ->
                 if (exception is IOException) {
-                    exception.printStackTrace()
                     emit(emptyPreferences())
                 } else {
                     throw exception
@@ -61,7 +59,6 @@ class DataStoreDataSourceImpl @Inject constructor(
         return preferenceDataStore.data
             .catch { exception ->
                 if (exception is IOException) {
-                    exception.printStackTrace()
                     emit(emptyPreferences())
                 } else {
                     throw exception
