@@ -11,9 +11,9 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-interface UiState
-interface UiEvent
-interface UiEffect
+//interface UiState
+//interface UiEvent
+//interface UiEffect
 
 /**
  * MVI 패턴을 따르기 위한 ViewModel 추상 클래스
