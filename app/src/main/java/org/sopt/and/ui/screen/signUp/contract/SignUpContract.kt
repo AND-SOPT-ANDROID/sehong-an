@@ -1,8 +1,8 @@
 package org.sopt.and.ui.screen.signUp.contract
 
-import org.sopt.and.utils.UiEffect
-import org.sopt.and.utils.UiEvent
-import org.sopt.and.utils.UiState
+import org.sopt.and.ui.utils.UiEffect
+import org.sopt.and.ui.utils.UiEvent
+import org.sopt.and.ui.utils.UiState
 
 class SignUpContract {
     data class State(

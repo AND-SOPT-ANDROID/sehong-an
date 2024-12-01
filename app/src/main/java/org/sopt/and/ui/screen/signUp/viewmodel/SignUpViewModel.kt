@@ -15,7 +15,7 @@ import org.sopt.and.data.repository.UserRepository
 import org.sopt.and.network.adapter.ApiResult
 import org.sopt.and.network.model.request.SignUpRequest
 import org.sopt.and.ui.screen.signUp.contract.SignUpContract
-import org.sopt.and.utils.BaseViewModel
+import org.sopt.and.ui.utils.BaseViewModel
 import org.sopt.and.utils.isValidPassword
 import javax.inject.Inject
 
