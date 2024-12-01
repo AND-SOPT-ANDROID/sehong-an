@@ -64,7 +64,7 @@ abstract class BaseViewModel<State : UiState, Event : UiEvent, Effect : UiEffect
         }
     }
 
-    fun processEvent(event: Event) {
+    fun sendEvent(event: Event) {
         viewModelScope.launch { _event.emit(event) }
     }
 

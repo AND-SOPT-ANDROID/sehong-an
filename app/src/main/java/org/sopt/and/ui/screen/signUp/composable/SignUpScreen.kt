@@ -247,7 +247,7 @@ fun SignUpScreen(
         }
         Button(
             onClick = {
-                viewModel.processEvent(
+                viewModel.sendEvent(
                     SignUpContract.Event.SignUpButtonClicked(
                         username = viewModel.usernameInput,
                         password = viewModel.passwordInput,
