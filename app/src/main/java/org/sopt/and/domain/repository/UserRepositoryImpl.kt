@@ -1,4 +1,4 @@
-package org.sopt.and.data.repository
+package org.sopt.and.domain.repository
 
 import org.sopt.and.data.datasource.UserDataSource
 import org.sopt.and.network.model.request.LoginRequest

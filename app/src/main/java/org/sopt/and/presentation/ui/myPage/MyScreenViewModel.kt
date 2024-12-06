@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.sopt.and.data.repository.DataStoreRepository
-import org.sopt.and.data.repository.UserRepository
+import org.sopt.and.domain.repository.DataStoreRepository
+import org.sopt.and.domain.repository.UserRepository
 import org.sopt.and.network.adapter.ApiResult
 import org.sopt.and.presentation.utils.BaseViewModel
 import javax.inject.Inject

@@ -8,10 +8,10 @@ import org.sopt.and.data.datasource.DataStoreDataSource
 import org.sopt.and.data.datasource.DataStoreDataSourceImpl
 import org.sopt.and.data.datasource.UserDataSource
 import org.sopt.and.data.datasource.UserDataSourceImpl
-import org.sopt.and.data.repository.DataStoreRepository
-import org.sopt.and.data.repository.DataStoreRepositoryImpl
-import org.sopt.and.data.repository.UserRepository
-import org.sopt.and.data.repository.UserRepositoryImpl
+import org.sopt.and.domain.repository.DataStoreRepository
+import org.sopt.and.domain.repository.DataStoreRepositoryImpl
+import org.sopt.and.domain.repository.UserRepository
+import org.sopt.and.domain.repository.UserRepositoryImpl
 
 @Module
 @InstallIn(SingletonComponent::class)

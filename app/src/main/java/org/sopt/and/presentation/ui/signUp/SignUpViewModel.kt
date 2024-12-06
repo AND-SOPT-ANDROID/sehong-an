@@ -10,8 +10,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import org.sopt.and.R
-import org.sopt.and.data.repository.DataStoreRepository
-import org.sopt.and.data.repository.UserRepository
+import org.sopt.and.domain.repository.DataStoreRepository
+import org.sopt.and.domain.repository.UserRepository
 import org.sopt.and.network.adapter.ApiResult
 import org.sopt.and.network.model.request.SignUpRequest
 import org.sopt.and.presentation.utils.BaseViewModel

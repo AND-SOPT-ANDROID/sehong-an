@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.sopt.and.data.repository.DataStoreRepository
+import org.sopt.and.domain.repository.DataStoreRepository
 import javax.inject.Inject
 
 @HiltViewModel
