@@ -1,15 +1,16 @@
 package org.sopt.and.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import org.sopt.and.data.PreferencesManager
-import org.sopt.and.data.UserManager
+import org.sopt.and.ui.AuthViewModel
 import org.sopt.and.ui.screen.home.composable.HomeScreen
 import org.sopt.and.ui.screen.myPage.composable.MyScreen
 import org.sopt.and.ui.screen.search.composable.SearchScreen
@@ -20,9 +21,9 @@ import org.sopt.and.ui.screen.signUp.composable.SignUpScreen
 fun MainNavigation(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    userManager: UserManager = UserManager(PreferencesManager(LocalContext.current))
 ) {
-    val isLoggedIn = userManager.isLoggedIn()
+    val authViewModel: AuthViewModel = hiltViewModel()
+    val isLoggedIn by authViewModel.isLoggedIn.collectAsState()
     NavHost(
         navController = navController,
         startDestination = if (isLoggedIn) Graph.Main.route else Graph.Auth.route
