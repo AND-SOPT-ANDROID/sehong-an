@@ -66,7 +66,7 @@ object NetworkModule {
     ): () -> String {
         return {
             val sharedPreferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
-            sharedPreferences.getString("auth_token", "") ?: ""
+            sharedPreferences.getString("access_token", "") ?: ""
         }
     }
 }
