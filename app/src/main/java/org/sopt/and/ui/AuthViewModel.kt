@@ -21,8 +21,10 @@ class AuthViewModel @Inject constructor(
         checkLoginStatus()
     }
 
-    private fun checkLoginStatus() = viewModelScope.launch {
-        val token = dataStoreRepository.getAccessToken()
-        _isLoggedIn.value = token.isNotEmpty()
+    private fun checkLoginStatus() {
+        viewModelScope.launch {
+            val token = dataStoreRepository.getAccessToken()
+            _isLoggedIn.value = token.isNotEmpty()
+        }
     }
 }
