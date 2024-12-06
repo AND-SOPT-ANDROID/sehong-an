@@ -5,14 +5,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import org.sopt.and.di.IoDispatcher
-import org.sopt.and.ui.network.adapter.ApiResult
-import org.sopt.and.ui.network.model.BaseResponse
-import org.sopt.and.ui.network.model.request.LoginRequest
-import org.sopt.and.ui.network.model.request.SignUpRequest
-import org.sopt.and.ui.network.model.response.SignUpResponse
-import org.sopt.and.ui.network.model.response.UserHobbyResponse
-import org.sopt.and.ui.network.model.response.UserTokenResponse
-import org.sopt.and.ui.network.service.UserService
+import org.sopt.and.network.adapter.ApiResult
+import org.sopt.and.network.model.BaseResponse
+import org.sopt.and.network.model.request.LoginRequest
+import org.sopt.and.network.model.request.SignUpRequest
+import org.sopt.and.network.model.response.SignUpResponse
+import org.sopt.and.network.model.response.UserHobbyResponse
+import org.sopt.and.network.model.response.UserTokenResponse
+import org.sopt.and.network.service.UserService
 import javax.inject.Inject
 
 class UserDataSourceImpl @Inject constructor(
