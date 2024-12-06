@@ -9,7 +9,6 @@ import org.sopt.and.network.model.response.UserHobbyResponse
 import org.sopt.and.network.model.response.UserTokenResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface UserService {
@@ -24,8 +23,6 @@ interface UserService {
     ): ApiResult<BaseResponse<UserTokenResponse>>
 
     @GET("/user/my-hobby")
-    suspend fun getUserHobby(
-        @Header("token") token: String
-    ): ApiResult<BaseResponse<UserHobbyResponse>>
+    suspend fun getUserHobby(): ApiResult<BaseResponse<UserHobbyResponse>>
 
 }

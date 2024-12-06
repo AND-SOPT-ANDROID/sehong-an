@@ -10,6 +10,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.sopt.and.BuildConfig
+import org.sopt.and.data.repository.DataStoreRepository
 import org.sopt.and.network.adapter.ApiResultCallAdapterFactory
 import org.sopt.and.network.interceptor.AuthInterceptor
 import org.sopt.and.network.service.UserService
@@ -62,11 +63,10 @@ object NetworkModule {
 
     @Provides
     fun provideTokenProvider(
-        @ApplicationContext context: Context
+        dataStoreRepository: DataStoreRepository
     ): () -> String {
         return {
-            val sharedPreferences = context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
-            sharedPreferences.getString("access_token", "") ?: ""
+            dataStoreRepository.getAccessToken()
         }
     }
 }

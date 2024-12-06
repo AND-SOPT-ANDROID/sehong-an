@@ -41,15 +41,15 @@ class MyScreenViewModel @Inject constructor(
         viewModelScope.launch {
             val token = dataStoreRepository.getAccessToken()
             if (token.isNotEmpty()) {
-                fetchHobbies(token)
+                fetchHobbies()
             }
         }
     }
 
-    private fun fetchHobbies(token: String) {
+    private fun fetchHobbies() {
         viewModelScope.launch {
             updateState(currentState.copy(isLoading = true))
-            userRepository.getHobby(token).collect { result ->
+            userRepository.getHobby().collect { result ->
                 when (result) {
                     is ApiResult.Success -> {
                         Log.e("result", "${result.data}")

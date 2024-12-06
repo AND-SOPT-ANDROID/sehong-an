@@ -33,8 +33,7 @@ class UserDataSourceImpl @Inject constructor(
     }.flowOn(ioDispatcher)
 
     override suspend fun getHobby(
-        token: String
     ): Flow<ApiResult<BaseResponse<UserHobbyResponse>>> = flow {
-        emit(userService.getUserHobby(token))
+        emit(userService.getUserHobby())
     }.flowOn(ioDispatcher)
 }

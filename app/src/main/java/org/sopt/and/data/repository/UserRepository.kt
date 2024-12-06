@@ -18,7 +18,5 @@ interface UserRepository {
         loginRequest: LoginRequest
     ): Flow<ApiResult<BaseResponse<UserTokenResponse>>>
 
-    suspend fun getHobby(
-        token: String
-    ): Flow<ApiResult<BaseResponse<UserHobbyResponse>>>
+    suspend fun getHobby(): Flow<ApiResult<BaseResponse<UserHobbyResponse>>>
 }
