@@ -1,4 +1,4 @@
-package org.sopt.and.network.interceptor
+package org.sopt.and.ui.network.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response

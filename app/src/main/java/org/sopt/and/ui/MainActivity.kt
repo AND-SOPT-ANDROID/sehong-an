@@ -15,8 +15,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.and.navigation.BottomNavItem
 import org.sopt.and.navigation.BottomNavigation
 import org.sopt.and.navigation.MainNavigation
-import org.sopt.and.topbar.TopBar
 import org.sopt.and.ui.theme.ANDANDROIDTheme
+import org.sopt.and.ui.topbar.TopBar
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

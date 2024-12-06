@@ -10,8 +10,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import org.sopt.and.data.repository.DataStoreRepository
 import org.sopt.and.data.repository.UserRepository
-import org.sopt.and.network.adapter.ApiResult
-import org.sopt.and.network.model.request.LoginRequest
+import org.sopt.and.ui.network.adapter.ApiResult
+import org.sopt.and.ui.network.model.request.LoginRequest
 import org.sopt.and.ui.screen.signIn.contract.SignInContract
 import org.sopt.and.ui.utils.BaseViewModel
 import javax.inject.Inject

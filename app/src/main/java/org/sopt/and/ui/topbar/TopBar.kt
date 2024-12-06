@@ -1,4 +1,4 @@
-package org.sopt.and.topbar
+package org.sopt.and.ui.topbar
 
 import android.util.Log
 import androidx.compose.foundation.Image

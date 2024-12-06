@@ -1,4 +1,4 @@
-package org.sopt.and.network.model
+package org.sopt.and.ui.network.model
 
 import com.google.gson.annotations.SerializedName
 

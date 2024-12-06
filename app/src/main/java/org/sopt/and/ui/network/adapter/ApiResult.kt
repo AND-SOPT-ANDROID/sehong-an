@@ -1,4 +1,4 @@
-package org.sopt.and.network.adapter
+package org.sopt.and.ui.network.adapter
 
 sealed class ApiResult<T> {
 

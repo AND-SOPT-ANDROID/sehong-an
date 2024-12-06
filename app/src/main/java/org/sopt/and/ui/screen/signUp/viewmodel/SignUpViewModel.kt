@@ -12,8 +12,8 @@ import kotlinx.coroutines.launch
 import org.sopt.and.R
 import org.sopt.and.data.repository.DataStoreRepository
 import org.sopt.and.data.repository.UserRepository
-import org.sopt.and.network.adapter.ApiResult
-import org.sopt.and.network.model.request.SignUpRequest
+import org.sopt.and.ui.network.adapter.ApiResult
+import org.sopt.and.ui.network.model.request.SignUpRequest
 import org.sopt.and.ui.screen.signUp.contract.SignUpContract
 import org.sopt.and.ui.utils.BaseViewModel
 import org.sopt.and.utils.isValidPassword
