@@ -17,9 +17,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import org.sopt.and.R
-import org.sopt.and.navigation.BottomNavItem
-import org.sopt.and.navigation.Screen
 import org.sopt.and.ui.components.topBar.DarkGrayTopBar
+import org.sopt.and.ui.navigation.BottomNavItem
+import org.sopt.and.ui.navigation.Screen
 import org.sopt.and.ui.theme.WavveTheme
 
 @OptIn(ExperimentalMaterial3Api::class)

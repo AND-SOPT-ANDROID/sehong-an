@@ -12,9 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import org.sopt.and.navigation.BottomNavItem
-import org.sopt.and.navigation.BottomNavigation
-import org.sopt.and.navigation.MainNavigation
+import org.sopt.and.ui.navigation.BottomNavItem
+import org.sopt.and.ui.navigation.BottomNavigation
+import org.sopt.and.ui.navigation.MainNavigation
 import org.sopt.and.ui.theme.ANDANDROIDTheme
 import org.sopt.and.ui.topbar.TopBar
 

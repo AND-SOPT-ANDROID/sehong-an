@@ -1,4 +1,4 @@
-package org.sopt.and.navigation
+package org.sopt.and.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState

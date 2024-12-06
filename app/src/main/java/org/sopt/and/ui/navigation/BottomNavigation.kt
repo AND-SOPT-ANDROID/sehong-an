@@ -1,4 +1,4 @@
-package org.sopt.and.navigation
+package org.sopt.and.ui.navigation
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar

@@ -1,4 +1,4 @@
-package org.sopt.and.navigation
+package org.sopt.and.ui.navigation
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
