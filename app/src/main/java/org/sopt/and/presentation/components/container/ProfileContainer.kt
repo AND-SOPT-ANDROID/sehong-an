@@ -23,7 +23,7 @@ import org.sopt.and.presentation.theme.WavveTheme
 
 @Composable
 fun ProfileContainer(
-    hobbyName: String,
+    hobbyName: String = "",
     modifier: Modifier = Modifier,
     onLogoutClick: () -> Unit,
 ) {

@@ -38,7 +38,7 @@ fun MyScreen(
     viewModel: MyScreenViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
-    val hobby by viewModel.hobby.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val effects = viewModel.effect.collectAsState(initial = null).value
     LaunchedEffect(effects) {
         when (effects) {
@@ -68,7 +68,7 @@ fun MyScreen(
                 .padding(top = 15.dp, start = 15.dp, end = 15.dp, bottom = 30.dp),
         ) {
             ProfileContainer(
-                hobby,
+                uiState.hobby,
             ) {
                 viewModel.logout()
             }

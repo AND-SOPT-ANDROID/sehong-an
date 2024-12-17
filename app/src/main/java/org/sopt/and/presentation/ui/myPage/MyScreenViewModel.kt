@@ -23,8 +23,8 @@ class MyScreenViewModel @Inject constructor(
 ) : BaseViewModel<MyPageContract.State, MyPageContract.Event, MyPageContract.Effect>(
     initialState = MyPageContract.State()
 ) {
-    private val _hobby = MutableStateFlow<String>("")
-    val hobby: StateFlow<String> = _hobby.asStateFlow()
+//    private val _hobby = MutableStateFlow<String>("")
+//    val hobby: StateFlow<String> = _hobby.asStateFlow()
 
     override fun reduceState(event: MyPageContract.Event) {
         viewModelScope.launch {
@@ -45,6 +45,10 @@ class MyScreenViewModel @Inject constructor(
         }
     }
 
+    private fun updateHobby(hobby: String) {
+        updateState(currentState.copy(hobby = hobby))
+    }
+
     private fun fetchHobbies() {
         viewModelScope.launch {
             updateState(currentState.copy(isLoading = true))
@@ -55,7 +59,7 @@ class MyScreenViewModel @Inject constructor(
                         val hobby = result.data?.result?.hobby ?: ""
                         if (hobby.isNotEmpty()) {
                             Log.e("hobby", hobby)
-                            _hobby.value = hobby
+                            updateHobby(hobby)
                         } else {
                             postEffect(MyPageContract.Effect.ShowErrorMessage("취미 불러오기 실패."))
                         }
