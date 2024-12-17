@@ -6,7 +6,10 @@ import org.sopt.and.presentation.utils.UiState
 
 class SignInContract {
     data class State(
-        val isLoading: Boolean = false
+        val isLoading: Boolean = false,
+        val userId: String = "",
+        val password: String = "",
+        val isDialogShown: Boolean = false
     ) : UiState
 
     sealed class Event : UiEvent {

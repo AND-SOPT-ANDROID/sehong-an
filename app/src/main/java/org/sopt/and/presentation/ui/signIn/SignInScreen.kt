@@ -21,6 +21,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -29,6 +30,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import org.sopt.and.R
 import org.sopt.and.data.SocialLogin
 import org.sopt.and.presentation.components.buttom.FillMaxWidthButton
@@ -40,10 +43,11 @@ import org.sopt.and.presentation.theme.WavveTheme
 
 @Composable
 fun SignInScreen(
-    navController: androidx.navigation.NavHostController,
+    navController: NavHostController,
     modifier: Modifier,
     viewModel: SignInViewModel = hiltViewModel(),
 ) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val icons = SocialLogin.entries
     val context = LocalContext.current
     val loginDescription = stringResource(id = R.string.login_description)
@@ -75,15 +79,15 @@ fun SignInScreen(
         ) {
             Spacer(modifier = Modifier.height(30.dp))
             FillMaxWidthTextField(
-                value = viewModel.userIdInput,
+                value = uiState.userId,
                 placeholder = stringResource(id = R.string.sign_in_id_text_field),
-                onValueChange = viewModel::onUserIdInputChange,
+                onValueChange = viewModel::updateId,
                 modifier = Modifier.padding(8.dp)
             )
             FillMaxWidthTextField(
-                value = viewModel.passwordInput,
+                value = uiState.password,
                 placeholder = stringResource(id = R.string.sign_in_password_text_field),
-                onValueChange = viewModel::onPasswordInputChange,
+                onValueChange = viewModel::updatePassword,
                 modifier = Modifier.padding(8.dp),
                 isPassword = true,
             )
@@ -94,8 +98,8 @@ fun SignInScreen(
                 onClick = {
                     viewModel.sendEvent(
                         SignInContract.Event.SignInButtonClicked(
-                            username = viewModel.userIdInput,
-                            password = viewModel.passwordInput,
+                            username = uiState.userId,
+                            password = uiState.password,
                         )
                     )
                 }
@@ -171,14 +175,14 @@ fun SignInScreen(
                 )
             }
             /** 다이얼로그를 표시할지 여부 */
-            if (viewModel.showDialog) {
+            if (uiState.isDialogShown) {
                 AlertDialog(
-                    onDismissRequest = { viewModel.dismissDialog() },
+                    onDismissRequest = { viewModel.updateDialogStatus(false) },
                     title = { Text(stringResource(id = R.string.login_fail)) },
                     text = { Text(stringResource(id = R.string.login_fail_message)) },
                     confirmButton = {
                         TextButton(
-                            onClick = { viewModel.dismissDialog() }
+                            onClick = { viewModel.updateDialogStatus(false) }
                         ) {
                             Text(stringResource(id = R.string.confirm))
                         }
