@@ -9,8 +9,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -23,7 +24,6 @@ import org.sopt.and.presentation.components.lazyRow.EditorSelectImageLazyList
 import org.sopt.and.presentation.components.lazyRow.TopTwentyImageList
 import org.sopt.and.presentation.theme.WavveTheme
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
     navController: NavHostController,
@@ -31,6 +31,20 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val effects = viewModel.effect.collectAsState(initial = null).value
+    LaunchedEffect(effects) {
+        when (effects) {
+            is HomeContract.Effect.NavigateToSearch -> {
+                navController.navigate("search")
+            }
+
+            is HomeContract.Effect.NavigateToDetailScreen -> {
+                // 디테일 페이지로 이동
+            }
+
+            else -> {}
+        }
+    }
     HomeScreenContent(
         modifier = modifier,
         imageOverviews = uiState.imageOverviews,

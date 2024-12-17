@@ -26,7 +26,6 @@ class HomeContract {
 
     sealed class Effect : UiEffect {
         data object NavigateToSearch : Effect()
-        data object NavigateTo : Effect()
-        data class ShowErrorMessage(val message: String) : Effect()  // 에러 메시지 표시
+        data object NavigateToDetailScreen : Effect()
     }
 }
