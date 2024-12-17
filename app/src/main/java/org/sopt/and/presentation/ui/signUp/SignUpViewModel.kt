@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 import org.sopt.and.R
 import org.sopt.and.data.network.adapter.ApiResult
 import org.sopt.and.data.network.model.request.SignUpRequest
-import org.sopt.and.domain.repository.DataStoreRepository
 import org.sopt.and.domain.repository.UserRepository
 import org.sopt.and.presentation.utils.BaseViewModel
 import org.sopt.and.utils.isValidPassword
@@ -20,7 +19,6 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    private val dataStoreRepository: DataStoreRepository,
     @ApplicationContext private val context: Context
 ) : BaseViewModel<SignUpContract.State, SignUpContract.Event, SignUpContract.Effect>(
     initialState = SignUpContract.State()

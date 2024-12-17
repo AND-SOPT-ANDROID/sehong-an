@@ -5,9 +5,6 @@ import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.sopt.and.data.network.adapter.ApiResult
 import org.sopt.and.domain.repository.DataStoreRepository
@@ -23,9 +20,6 @@ class MyScreenViewModel @Inject constructor(
 ) : BaseViewModel<MyPageContract.State, MyPageContract.Event, MyPageContract.Effect>(
     initialState = MyPageContract.State()
 ) {
-//    private val _hobby = MutableStateFlow<String>("")
-//    val hobby: StateFlow<String> = _hobby.asStateFlow()
-
     override fun reduceState(event: MyPageContract.Event) {
         viewModelScope.launch {
             when (event) {

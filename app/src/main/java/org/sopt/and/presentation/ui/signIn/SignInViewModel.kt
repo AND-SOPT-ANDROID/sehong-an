@@ -23,7 +23,6 @@ class SignInViewModel @Inject constructor(
                 is SignInContract.Event.SignInButtonClicked -> {
                     if (event.username.isEmpty() || event.password.isEmpty()) {
                         updateDialogStatus(true)
-//                        postEffect(SignInContract.Effect.ShowErrorMessage("아이디와 비밀번호를 모두 입력해주세요."))
                     } else {
                         viewModelScope.launch {
                             userLogin(event.username, event.password)
