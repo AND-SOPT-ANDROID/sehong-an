@@ -8,10 +8,10 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
+import org.sopt.and.data.network.adapter.ApiResult
+import org.sopt.and.data.network.model.request.LoginRequest
 import org.sopt.and.domain.repository.DataStoreRepository
 import org.sopt.and.domain.repository.UserRepository
-import org.sopt.and.network.adapter.ApiResult
-import org.sopt.and.network.model.request.LoginRequest
 import org.sopt.and.presentation.utils.BaseViewModel
 import javax.inject.Inject
 

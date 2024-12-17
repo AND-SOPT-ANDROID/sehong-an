@@ -1,9 +1,9 @@
-package org.sopt.and.network.adapter
+package org.sopt.and.data.network.adapter
 
 import com.google.gson.Gson
 import okhttp3.Request
 import okio.Timeout
-import org.sopt.and.network.model.ErrorResponse
+import org.sopt.and.data.network.model.ErrorResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
