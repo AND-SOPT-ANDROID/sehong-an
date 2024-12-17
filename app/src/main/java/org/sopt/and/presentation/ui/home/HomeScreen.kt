@@ -9,11 +9,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.sopt.and.presentation.components.lazyRow.AutoSlidingImagePager
@@ -22,25 +24,33 @@ import org.sopt.and.presentation.components.lazyRow.EditorSelectImageLazyList
 import org.sopt.and.presentation.components.lazyRow.TopTwentyImageList
 import org.sopt.and.presentation.theme.WavveTheme
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
     navController: NavHostController,
     modifier: Modifier,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-    // 뷰모델에서 데이터를 가져옵니다.
-    val imageOverviews by viewModel.imageOverviews.observeAsState(emptyList())
-    val categories by viewModel.categories.observeAsState(emptyList())
-    val imageItemsType1 by viewModel.imageItemsType1.observeAsState(emptyList())
-    val imageItemsType2 by viewModel.imageItemsType2.observeAsState(emptyList())
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val effects = viewModel.effect.collectAsState(initial = null).value
+    LaunchedEffect(effects) {
+        when (effects) {
+            is HomeContract.Effect.NavigateToSearch -> {
+                navController.navigate("search")
+            }
 
+            is HomeContract.Effect.NavigateToDetailScreen -> {
+                // 디테일 페이지로 이동
+            }
+
+            else -> {}
+        }
+    }
     HomeScreenContent(
         modifier = modifier,
-        imageOverviews = imageOverviews,
-        categories = categories,
-        imageItemsType1 = imageItemsType1,
-        imageItemsType2 = imageItemsType2
+        imageOverviews = uiState.imageOverviews,
+        categories = uiState.categories,
+        imageItemsType1 = uiState.imageItemsType1,
+        imageItemsType2 = uiState.imageItemsType2
     )
 }
 

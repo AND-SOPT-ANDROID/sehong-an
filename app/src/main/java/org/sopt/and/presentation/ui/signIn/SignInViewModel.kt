@@ -1,12 +1,7 @@
 package org.sopt.and.presentation.ui.signIn
 
-import android.content.Context
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import org.sopt.and.data.network.adapter.ApiResult
 import org.sopt.and.data.network.model.request.LoginRequest
@@ -19,7 +14,6 @@ import javax.inject.Inject
 class SignInViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val dataStoreRepository: DataStoreRepository,
-    @ApplicationContext private val context: Context
 ) : BaseViewModel<SignInContract.State, SignInContract.Event, SignInContract.Effect>(
     initialState = SignInContract.State()
 ) {
@@ -28,8 +22,7 @@ class SignInViewModel @Inject constructor(
             when (event) {
                 is SignInContract.Event.SignInButtonClicked -> {
                     if (event.username.isEmpty() || event.password.isEmpty()) {
-                        showDialog = true
-//                        postEffect(SignInContract.Effect.ShowErrorMessage("아이디와 비밀번호를 모두 입력해주세요."))
+                        updateDialogStatus(true)
                     } else {
                         viewModelScope.launch {
                             userLogin(event.username, event.password)
@@ -40,23 +33,16 @@ class SignInViewModel @Inject constructor(
         }
     }
 
-    var userIdInput by mutableStateOf("")
-        private set
-    var passwordInput by mutableStateOf("")
-        private set
-    var showDialog by mutableStateOf(false)
-        private set
-
-    fun onUserIdInputChange(newInput: String) {
-        userIdInput = newInput
+    fun updateDialogStatus(isDialogShown: Boolean) {
+        updateState(currentState.copy(isDialogShown = isDialogShown))
     }
 
-    fun onPasswordInputChange(newInput: String) {
-        passwordInput = newInput
+    fun updateId(userId: String) {
+        updateState(currentState.copy(userId = userId))
     }
 
-    fun dismissDialog() {
-        showDialog = false
+    fun updatePassword(password: String) {
+        updateState(currentState.copy(password = password))
     }
 
     private suspend fun userLogin(username: String, password: String) {

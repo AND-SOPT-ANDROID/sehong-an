@@ -5,9 +5,6 @@ import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.sopt.and.data.network.adapter.ApiResult
 import org.sopt.and.domain.repository.DataStoreRepository
@@ -23,9 +20,6 @@ class MyScreenViewModel @Inject constructor(
 ) : BaseViewModel<MyPageContract.State, MyPageContract.Event, MyPageContract.Effect>(
     initialState = MyPageContract.State()
 ) {
-    private val _hobby = MutableStateFlow<String>("")
-    val hobby: StateFlow<String> = _hobby.asStateFlow()
-
     override fun reduceState(event: MyPageContract.Event) {
         viewModelScope.launch {
             when (event) {
@@ -45,6 +39,10 @@ class MyScreenViewModel @Inject constructor(
         }
     }
 
+    private fun updateHobby(hobby: String) {
+        updateState(currentState.copy(hobby = hobby))
+    }
+
     private fun fetchHobbies() {
         viewModelScope.launch {
             updateState(currentState.copy(isLoading = true))
@@ -55,7 +53,7 @@ class MyScreenViewModel @Inject constructor(
                         val hobby = result.data?.result?.hobby ?: ""
                         if (hobby.isNotEmpty()) {
                             Log.e("hobby", hobby)
-                            _hobby.value = hobby
+                            updateHobby(hobby)
                         } else {
                             postEffect(MyPageContract.Effect.ShowErrorMessage("취미 불러오기 실패."))
                         }

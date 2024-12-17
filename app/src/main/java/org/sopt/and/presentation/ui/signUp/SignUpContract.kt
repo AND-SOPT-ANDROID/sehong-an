@@ -6,12 +6,19 @@ import org.sopt.and.presentation.utils.UiState
 
 class SignUpContract {
     data class State(
-        val isLoading: Boolean = false
+        val isLoading: Boolean = false,
+        val userId: String = "",
+        val password: String = "",
+        val hobby: String = "",
+        val isUserIdValid: Boolean = true,
+        val isPasswordValid: Boolean = true,
+        val isHobbyValid: Boolean = true,
+        val isSignUpEnabled: Boolean = false
     ) : UiState
 
     sealed class Event : UiEvent {
         data class SignUpButtonClicked(
-            val username: String,
+            val userId: String,
             val password: String,
             val hobby: String
         ) : Event()

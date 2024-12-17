@@ -8,7 +8,7 @@ class MyPageContract {
     data class State(
         val isLoading: Boolean = false,
         val authToken: String? = null,
-        val hobby: String? = null
+        val hobby: String = ""
     ) : UiState
 
     sealed class Event : UiEvent {
