@@ -1,8 +1,9 @@
 package org.sopt.and.data.repository
 
 import org.sopt.and.data.datasource.UserDataSource
-import org.sopt.and.network.model.request.LoginRequest
-import org.sopt.and.network.model.request.SignUpRequest
+import org.sopt.and.data.network.model.request.LoginRequest
+import org.sopt.and.data.network.model.request.SignUpRequest
+import org.sopt.and.domain.repository.UserRepository
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(

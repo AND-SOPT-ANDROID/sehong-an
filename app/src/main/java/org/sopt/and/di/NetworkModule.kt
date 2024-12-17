@@ -10,10 +10,10 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.sopt.and.BuildConfig
-import org.sopt.and.data.repository.DataStoreRepository
-import org.sopt.and.network.adapter.ApiResultCallAdapterFactory
-import org.sopt.and.network.interceptor.AuthInterceptor
-import org.sopt.and.network.service.UserService
+import org.sopt.and.data.network.adapter.ApiResultCallAdapterFactory
+import org.sopt.and.data.network.interceptor.AuthInterceptor
+import org.sopt.and.data.network.service.UserService
+import org.sopt.and.domain.repository.DataStoreRepository
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton

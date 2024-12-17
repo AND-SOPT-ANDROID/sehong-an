@@ -4,6 +4,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.sopt.and.Constants
 import org.sopt.and.data.datasource.DataStoreDataSource
+import org.sopt.and.domain.repository.DataStoreRepository
 import javax.inject.Inject
 
 class DataStoreRepositoryImpl @Inject constructor(

@@ -1,6 +1,5 @@
-package org.sopt.and.data.datasource
+package org.sopt.and.data.network.service
 
-import kotlinx.coroutines.flow.Flow
 import org.sopt.and.data.network.adapter.ApiResult
 import org.sopt.and.data.network.model.BaseResponse
 import org.sopt.and.data.network.model.request.LoginRequest
@@ -8,15 +7,22 @@ import org.sopt.and.data.network.model.request.SignUpRequest
 import org.sopt.and.data.network.model.response.SignUpResponse
 import org.sopt.and.data.network.model.response.UserHobbyResponse
 import org.sopt.and.data.network.model.response.UserTokenResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
 
-interface UserDataSource {
+interface UserService {
+    @POST("/user")
     suspend fun signUp(
-        signUpRequest: SignUpRequest
-    ): Flow<ApiResult<BaseResponse<SignUpResponse>>>
+        @Body signUpRequest: SignUpRequest
+    ): ApiResult<BaseResponse<SignUpResponse>>
 
+    @POST("/login")
     suspend fun login(
-        loginRequest: LoginRequest
-    ): Flow<ApiResult<BaseResponse<UserTokenResponse>>>
+        @Body loginRequest: LoginRequest
+    ): ApiResult<BaseResponse<UserTokenResponse>>
 
-    suspend fun getHobby(): Flow<ApiResult<BaseResponse<UserHobbyResponse>>>
+    @GET("/user/my-hobby")
+    suspend fun getUserHobby(): ApiResult<BaseResponse<UserHobbyResponse>>
+
 }

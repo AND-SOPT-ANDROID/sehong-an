@@ -1,4 +1,4 @@
-package org.sopt.and.data.datasource
+package org.sopt.and.domain.repository
 
 import kotlinx.coroutines.flow.Flow
 import org.sopt.and.data.network.adapter.ApiResult
@@ -9,7 +9,7 @@ import org.sopt.and.data.network.model.response.SignUpResponse
 import org.sopt.and.data.network.model.response.UserHobbyResponse
 import org.sopt.and.data.network.model.response.UserTokenResponse
 
-interface UserDataSource {
+interface UserRepository {
     suspend fun signUp(
         signUpRequest: SignUpRequest
     ): Flow<ApiResult<BaseResponse<SignUpResponse>>>
