@@ -25,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -43,6 +44,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.sopt.and.R
 import org.sopt.and.data.SocialLogin
 import org.sopt.and.presentation.components.icon.SocialLoginIcon
@@ -65,7 +67,7 @@ fun SignUpScreen(
     val focusRequesterPassword = remember { FocusRequester() }
     val focusRequesterHobby = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current
-
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val effects = viewModel.effect.collectAsState(initial = null).value
 
     // 효과 처리
@@ -116,9 +118,9 @@ fun SignUpScreen(
             )
             Spacer(modifier = Modifier.height(20.dp))
             FillMaxWidthTextField(
-                value = viewModel.usernameInput,
+                value = uiState.userId,
                 placeholder = stringResource(id = R.string.sign_up_placeholder_username),
-                onValueChange = viewModel::onUsernameInputChange,
+                onValueChange = viewModel::updateId,
                 modifier = Modifier
                     .padding(horizontal = 10.dp)
                     .onFocusChanged { focusState ->
@@ -131,7 +133,7 @@ fun SignUpScreen(
                 keyboardActions = KeyboardActions(
                     onNext = { focusRequesterPassword.requestFocus() }
                 ),
-                isValid = viewModel.isUsernameValid,
+                isValid = uiState.isUserIdValid,
             )
             Spacer(modifier = Modifier.height(5.dp))
             LabeledIconText(
@@ -142,9 +144,9 @@ fun SignUpScreen(
                 )
             )
             FillMaxWidthTextField(
-                value = viewModel.passwordInput,
+                value = uiState.password,
                 placeholder = stringResource(id = R.string.sign_up_placeholder_password),
-                onValueChange = viewModel::onPasswordInputChange,
+                onValueChange = viewModel::updatePassword,
                 modifier = Modifier
                     .padding(8.dp)
                     .onFocusChanged { focusState ->
@@ -158,7 +160,7 @@ fun SignUpScreen(
                 keyboardActions = KeyboardActions(
                     onDone = { focusManager.clearFocus() }
                 ),
-                isValid = viewModel.isPasswordValid,
+                isValid = uiState.isPasswordValid,
             )
             LabeledIconText(
                 text = viewModel.signUpPasswordDescription,
@@ -169,9 +171,9 @@ fun SignUpScreen(
             )
             Spacer(modifier = Modifier.height(5.dp))
             FillMaxWidthTextField(
-                value = viewModel.hobbyInput,
+                value = uiState.hobby,
                 placeholder = stringResource(id = R.string.sign_up_placeholder_hobby),
-                onValueChange = viewModel::onHobbyInputChange,
+                onValueChange = viewModel::updateHobby,
                 modifier = Modifier
                     .padding(horizontal = 10.dp)
                     .onFocusChanged { focusState ->
@@ -184,7 +186,7 @@ fun SignUpScreen(
                 keyboardActions = KeyboardActions(
                     onDone = { focusManager.clearFocus() }
                 ),
-                isValid = viewModel.isHobbyValid,
+                isValid = uiState.isHobbyValid,
             )
             Spacer(modifier = Modifier.height(5.dp))
             LabeledIconText(
@@ -247,15 +249,15 @@ fun SignUpScreen(
             onClick = {
                 viewModel.sendEvent(
                     SignUpContract.Event.SignUpButtonClicked(
-                        username = viewModel.usernameInput,
-                        password = viewModel.passwordInput,
-                        hobby = viewModel.hobbyInput
+                        userId = uiState.userId,
+                        password = uiState.password,
+                        hobby = uiState.hobby
                     )
                 )
             },
 
             shape = RoundedCornerShape(0.dp),
-            enabled = viewModel.isEnabled,
+            enabled = uiState.isSignUpEnabled,
             colors = ButtonDefaults.buttonColors(
                 containerColor = WavveTheme.colors.main_blue,
                 disabledContainerColor = WavveTheme.colors.gray_5,
